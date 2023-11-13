@@ -102,3 +102,17 @@ html{
     padding-top: 100%;
     padding-bottom: 25px;
 }
+
+
+/*GROUP PAGE*/
+
+.flex-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 50px;}
+
+    .your-groups-list, h3{
+        text-decoration: underline;
+    }
+
