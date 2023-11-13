@@ -105,15 +105,13 @@ html{
 }
 
 
-/*GROUP PAGE*/
+footer {
+    background-color: #1a1a1a93;
+    padding: 10px;
+    text-align: center;
+    box-shadow: var(--box-shadow);
+    color: var(--third-color); 
+    width: 100%;
 
-.flex-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    line-height: 50px;}
-
-    .your-groups-list, h3{
-        text-decoration: underline;
-    }
+}
 
