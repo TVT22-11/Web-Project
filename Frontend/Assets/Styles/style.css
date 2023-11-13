@@ -16,6 +16,7 @@
     --body-bg-img-dark: url('');
 */
     --body-background-color: #202020f8;
+    --navbar-background-color: #202020f8;
     --hover-background-color: rgba(0, 0, 0, 0.205);
 
     --small-font-size: 0.9em;
@@ -53,7 +54,7 @@ html{
 .navbar{
     color: var(--third-color);
     backdrop-filter: blur(20px);
-    background-color: var(--body-background-color);
+    background-color: var(--navbar-background-color);
     font-size: var(--big-font-size);
     display: flex;
     justify-content: center ;
