@@ -1,18 +1,21 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
-
+import Groups from './components/Groups/Groups';
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <div>
         <Navbar />
-        {/* Your main content here */}
+        <Routes>
+          <Route path="/groups" element={<Groups />} />
+          {/* Add more routes for other components */}
+        </Routes>
         <Footer />
       </div>
-    </BrowserRouter>
+    </Router>
   );
 }
 
