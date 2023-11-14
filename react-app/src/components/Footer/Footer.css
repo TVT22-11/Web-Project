@@ -5,5 +5,6 @@ footer {
     box-shadow: var(--box-shadow);
     color: var(--third-color); 
     width: 100%;
-    bottom: 0;
+
 }
+
