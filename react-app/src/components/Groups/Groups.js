@@ -3,6 +3,7 @@ import React from 'react';
 import YourGroups from './yourGroups';
 import SearchBar from '../Searchbar/searchbar';
 import AvailableGroups from './availableGroups';
+import CreateGroup from './createGroup';
 
 
 function Groups() {
@@ -11,6 +12,7 @@ function Groups() {
       <YourGroups />
       <SearchBar />
       <AvailableGroups />
+      <CreateGroup />
     </div>
   );
 }
