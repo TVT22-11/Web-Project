@@ -1,2 +1,30 @@
 /*SEARCHBAR*/
 
+.search-bar {
+    display: flex;
+    max-width: 300px;
+    margin: 10px;
+  }
+  
+  input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+    font-size: 16px;
+  }
+  
+  button {
+    padding: 8px 12px;
+    border: 1px solid #007BFF;
+    border-radius: 0 4px 4px 0;
+    background-color: #007BFF;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
