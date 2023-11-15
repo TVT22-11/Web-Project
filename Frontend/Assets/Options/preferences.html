@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="Assets/Scripts/script.js"></script>
+    <script src="load-options.js"></script>
+    <meta charset="UTF-8">
+    <title>Preferences</title>
+    <link rel="stylesheet" type="text/css" href="Assets/Styles/style.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="Assets/Styles/style-options.css" media="screen" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar" id="navbar">
+
+            <span class="logo-name">O/L</span>
+
+            <div class="navbar-links">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="">Reviews</a></li>
+                    <li><a href="">Movies</a></li>
+                    <li><a href="">Groups</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="sidebar">
+        <h2>Options</h2>
+        <button onclick="loadOption('preferences')">Preferences</button>
+        <button onclick="loadOption('posts')">Posts</button>
+        <button onclick="loadOption('alerts')">Alerts</button>
+        <button onclick="loadOption('appearance')">Appearance</button>
+    </div>
+    <div id="options-container">
+        <!-- Content will be dynamically loaded here -->
+    </div>
+
+    <div class="preference-container">
+        <h2>Preferences</h2>
+        <form action="#" method="post">
+
+            <label>
+                <input type="checkbox" name="notifications"> Receive Notifications
+            </label>
+            <label>
+                <input type="radio" name="theme" value="light"> Light Theme
+            </label>
+            <label>
+                <input type="radio" name="theme" value="dark"> Dark Theme
+            </label>
+            <label>
+                Timezone:
+                <select name="timezone">
+                    <option value="utc+2">UTC+2 (Eastern European Time)</option>
+                    <option value="utc+1">UTC+1 (Central European Time)</option>
+                    <option value="utc">UTC (Western European Time)</option>
+                    <option value="gmt-5">GMT-5 (Eastern Standard Time)</option>
+                    <option value="gmt-7">GMT-7 (Mountain Standard Time)</option>
+                    <!-- Add more timezone options as needed -->
+                </select>
+            </label>
+            <button type="submit">Save Preferences</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; Real movie catalogue</p>
+    </footer>
+    
+</body>
+</html>

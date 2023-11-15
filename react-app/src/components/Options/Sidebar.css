@@ -1,0 +1,22 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    background-color: var(--sidebar-first-color);
+    height: 100vh;
+  }
+.sidebar a {
+    font-size: xx-large;
+    text-decoration: none;
+    color: var(--second-color);
+    margin-left: 20px;
+
+}
+.sidebar a:hover {
+    color: var(--hover-color);
+}
+.sidebar li.selected {
+    border-radius: 7px;
+    color: rgb(0, 0, 0);
+    background-color: var(--hover-background-color);
+}

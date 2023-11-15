@@ -65,6 +65,7 @@ const Navbar = () => {
             <li><Link to="/reviews">Reviews</Link></li>
             <li><Link to="/movies">Movies</Link></li>
             <li><Link to="/groups">Groups</Link></li>
+            <li><Link to="/options/preferences">Options</Link></li>
           </ul>
         </div>
         <button className="Sign-in" type="submit">Sign In</button>
