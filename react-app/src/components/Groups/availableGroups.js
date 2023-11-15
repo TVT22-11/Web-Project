@@ -1,6 +1,6 @@
 import React from 'react';
 import './Groups.css';
- function availableGroups (){
+function availableGroups (){
     return (
 <div className="groups flex-container">
         <div className="groups-list">
