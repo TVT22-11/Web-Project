@@ -1,0 +1,36 @@
+.News-Box {
+    max-height: 200px; 
+    overflow-y: auto; 
+    border: 1px solid #ccc; 
+    padding: 10px; 
+    background-color: var(--body-background-color);
+    display: flex;
+    flex-direction: row-reverse; 
+    justify-content: center;
+    align-items: center;
+    max-width: 80%;
+    margin: 0 auto; 
+  }
+  
+  .News-Box img {
+    max-width: 500px;
+    max-height: 200px; 
+    margin-left: 10px;
+  }
+  
+  .News-Box div {
+    flex-grow: 1; 
+  }
+  
+  .News-Box h2 {
+    color: var(--second-color);
+  }
+  
+  .News-Box p {
+    color: var(--third-color);
+  }
+  
+  .News-Box strong {
+    color: var(--second-color);
+  }
+  
