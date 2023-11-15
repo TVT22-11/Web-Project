@@ -9,11 +9,17 @@
      }
 .your-groups-list, h3{
     text-decoration: underline;
+    color: black;
 }
 .your-groups-list, ul li a{
-    text-decoration: none;  
+    text-decoration: none, underline;  
     color: black;
  }
+
+ .your-groups-list, ul li a:hover{
+    color: rgb(78, 78, 78);
+ }
+
 .your-groups-list, ul li {
     list-style: none;
     margin-top: 5px;  
@@ -82,7 +88,7 @@
 
 
 
-/*CREATE-GROUP-CSS*/
+/*CREATE-GROUP-BUTTON-CSS*/
 
 .header{
     display: flex;
