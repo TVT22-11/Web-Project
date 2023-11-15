@@ -1,14 +1,17 @@
 // components/News/News.js
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom'
 import './News.css';
 
 function News({ area, categoryID, eventID }) {
   const [news, setNews] = useState([]);
+  const [currentNewsIndex, setCurrentNewsIndex] = useState(0);
+
 
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        // Construct the URL with optional parameters
+
         const url = new URL('https://www.finnkino.fi/xml/News/');
         if (area) url.searchParams.append('area', area);
         if (categoryID) url.searchParams.append('categoryID', categoryID);
@@ -37,16 +40,34 @@ function News({ area, categoryID, eventID }) {
     fetchNews();
   }, [area, categoryID, eventID]);
 
+
+  const autoTransition = () => {
+    setCurrentNewsIndex((prevIndex) => (prevIndex + 1) % news.length);
+  };
+
+
+  useEffect(() => {
+    const intervalId = setInterval(autoTransition, 5000);
+
+    return () => clearInterval(intervalId); 
+  }, [news]);
+
   return (
     <div className='News-Box'>
-      <h2>News</h2>
+      <h2 className='Article-title'>News</h2>
       <ul>
         {news.map((item, index) => (
-          <li key={index}>
+          <li
+            key={index}
+            className={index === currentNewsIndex ? 'active' : ''}
+            style={{ opacity: index === currentNewsIndex ? 1 : 0 }}
+          >
             <strong>{item.title}</strong>
-            <p>{item.publishDate}</p>
+            <div>
+            <p className='Article-desc'>{item.publishDate}</p>
+            <p><Link to={item.articleURL}>{item.articleURL}</Link> </p>
+            </div>
             <img src={item.imageURL} alt={`News ${index}`} />
-            <p>{item.articleURL}</p>
           </li>
         ))}
       </ul>
