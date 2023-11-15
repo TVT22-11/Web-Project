@@ -9,10 +9,17 @@
      }
 .your-groups-list, h3{
     text-decoration: underline;
+    color: black;
 }
 .your-groups-list, ul li a{
-    text-decoration: none;  
+    text-decoration: none, underline;  
+    color: black;
  }
+
+ .your-groups-list, ul li a:hover{
+    color: rgb(78, 78, 78);
+ }
+
 .your-groups-list, ul li {
     list-style: none;
     margin-top: 5px;  
@@ -43,7 +50,7 @@
     flex-direction: column; 
     justify-content: center;
     align-items: center;
-    margin-top: 10px; 
+    margin-top: -25px; 
 }
 
 .groups-list td {
@@ -72,3 +79,40 @@
 .groups-list button:hover {
     background-color: #6B56E9; }
 
+
+/*CREATING-GROUP-CSS*/
+
+
+
+/*CHATPAGE-CSS*/
+
+
+
+/*CREATE-GROUP-BUTTON-CSS*/
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+.create-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+.create-button button{
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  button:hover {
+    background-color: #6B56E9;
+  }
