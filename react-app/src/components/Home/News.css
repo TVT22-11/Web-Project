@@ -1,36 +1,62 @@
 /* components/News/News.css */
 .News-Box {
-  max-height: 500px; 
-  min-height: 500px;
-  border: 1px solid #ccc; 
-  padding: 10px; 
+  max-height: 500px;
+  min-height: 400px;
+  padding: 10px;
   background-color: var(--body-background-color);
-  flex-direction:column-reverse;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  max-width: 80%;
-  margin: 0 auto; 
+  margin: 0 auto;
   border-radius: 15px;
   box-shadow: var(--box-shadow);
   margin-top: 150px;
+  position: relative;
+  overflow: hidden;
 }
 
-.News-Box img {
-  max-width: 500px;
-  max-height: 200px; 
-  margin-left: 10px;
-  justify-content: left;
+.News-title {
+  display: flex;
+  justify-content: center;
 }
 
-.Article-desc{
-  flex-flow: column;
+.Article-title {
   display: flex;
   justify-content: space-between;
 }
 
+.News-Box img {
+  border-radius: 15px;
+  max-width: 950px;
+  max-height: 600px;
+  min-width: 500px;
+  min-height: 500px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  overflow: hidden;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Article-desc {
+  justify-content: space-between;
+  top: 25%;
+  left: 35%;
+  position: absolute;
+  display: flex;
+  align-items: right;
+  flex-direction: column;
+}
+
+.Article-url {
+  display: flex;
+  top: 100%;
+  position: relative;
+}
+
 .News-Box h2 {
   color: var(--second-color);
-  margin-bottom: 20px; 
+  margin-bottom: 20px;
 }
 
 .News-Box p {
@@ -41,11 +67,51 @@
   color: var(--second-color);
 }
 
-.News-Box li{
+.News-Box.active {
+  top: 0;
+  justify-content: space-between;
   position: absolute;
-  opacity: 0;
-}
-.News-Box li.active {
+  display: flex;
   opacity: 1;
-  transition: opacity 0.5s ease-in-out; 
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* Media Query for smaller screens */
+@media only screen and (max-width: 990px) {
+  .News-Box {
+    max-height: 100px;
+    min-height: 200px;
+    display: flex;
+  }
+
+  .News-Box img {
+    max-width: 50px;
+    max-height: 10px;
+    min-width: 10px;
+    min-height: 10px;
+    display: flex;
+  }
+
+  .News-Box.active {
+    top: 0;
+    justify-content: flex-end; /* Align to the right on smaller screens */
+    position: absolute;
+    display: flex;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  .Article-desc {
+    background-color: var(--body-background-color);
+    width: max-content;
+    height: max-content;
+    border-radius: 10px;
+    padding: 10px; /* Adjust padding for smaller screens */
+    display: flex;
+    justify-content: center;
+    align-items: left; /* Align to the left on smaller screens */
+    flex-direction: column;
+    top: 0;
+    left: 0;
+  }
 }

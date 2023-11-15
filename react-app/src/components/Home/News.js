@@ -1,6 +1,7 @@
 // components/News/News.js
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
+import { Grid, Image } from 'semantic-ui-react'
 import './News.css';
 
 function News({ area, categoryID, eventID }) {
@@ -47,30 +48,31 @@ function News({ area, categoryID, eventID }) {
 
 
   useEffect(() => {
-    const intervalId = setInterval(autoTransition, 5000);
+    const intervalId = setInterval(autoTransition, 8000);
 
     return () => clearInterval(intervalId); 
   }, [news]);
 
   return (
     <div className='News-Box'>
-      <h2 className='Article-title'>News</h2>
-      <ul>
-        {news.map((item, index) => (
-          <li
-            key={index}
-            className={index === currentNewsIndex ? 'active' : ''}
-            style={{ opacity: index === currentNewsIndex ? 1 : 0 }}
-          >
-            <strong>{item.title}</strong>
-            <div>
-            <p className='Article-desc'>{item.publishDate}</p>
-            <p><Link to={item.articleURL}>{item.articleURL}</Link> </p>
-            </div>
-            <img src={item.imageURL} alt={`News ${index}`} />
-          </li>
-        ))}
-      </ul>
+      <h2 className='News-title'>News</h2>
+
+      {news.map((item, index) => (
+        <div
+          key={index}
+          className={index === currentNewsIndex ? 'active' : ''}
+          style={{ opacity: index === currentNewsIndex ? 1 : 0 }}
+        >
+          <Image src={item.imageURL} alt={`News ${index}`} />
+          <div className='Article-desc'>
+            <strong className='Article-title'>{item.title}</strong>
+            <p className='Article-date'>{item.publishDate}</p>
+            <p className='Article-url'>
+              <Link to={item.articleURL}>{item.articleURL}</Link>
+            </p>
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
