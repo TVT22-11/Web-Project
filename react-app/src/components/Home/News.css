@@ -1,36 +1,51 @@
+/* components/News/News.css */
 .News-Box {
-    max-height: 200px; 
-    overflow-y: auto; 
-    border: 1px solid #ccc; 
-    padding: 10px; 
-    background-color: var(--body-background-color);
-    display: flex;
-    flex-direction: row-reverse; 
-    justify-content: center;
-    align-items: center;
-    max-width: 80%;
-    margin: 0 auto; 
-  }
-  
-  .News-Box img {
-    max-width: 500px;
-    max-height: 200px; 
-    margin-left: 10px;
-  }
-  
-  .News-Box div {
-    flex-grow: 1; 
-  }
-  
-  .News-Box h2 {
-    color: var(--second-color);
-  }
-  
-  .News-Box p {
-    color: var(--third-color);
-  }
-  
-  .News-Box strong {
-    color: var(--second-color);
-  }
-  
+  max-height: 500px; 
+  min-height: 500px;
+  border: 1px solid #ccc; 
+  padding: 10px; 
+  background-color: var(--body-background-color);
+  flex-direction:column-reverse;
+  justify-content: center;
+  align-items: center;
+  max-width: 80%;
+  margin: 0 auto; 
+  border-radius: 15px;
+  box-shadow: var(--box-shadow);
+  margin-top: 150px;
+}
+
+.News-Box img {
+  max-width: 500px;
+  max-height: 200px; 
+  margin-left: 10px;
+  justify-content: left;
+}
+
+.Article-desc{
+  flex-flow: column;
+  display: flex;
+  justify-content: space-between;
+}
+
+.News-Box h2 {
+  color: var(--second-color);
+  margin-bottom: 20px; 
+}
+
+.News-Box p {
+  color: var(--third-color);
+}
+
+.News-Box strong {
+  color: var(--second-color);
+}
+
+.News-Box li{
+  position: absolute;
+  opacity: 0;
+}
+.News-Box li.active {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out; 
+}
