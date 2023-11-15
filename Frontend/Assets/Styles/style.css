@@ -6,7 +6,7 @@
     --third-color: #f5f5f5;
     --dark-first-color: #ffffff;
     --dark-second-color: #ebebeb;
-
+     
 
     --hover-color: rgb(167, 164, 164);
 
@@ -15,7 +15,7 @@
     --body-bg-img: url('');
     --body-bg-img-dark: url('');
 */
-    --body-background-color: #202020f8;
+    --body-background-color: #222222f8;
     --navbar-background-color: #202020f8;
     --hover-background-color: rgba(0, 0, 0, 0.205);
 
@@ -47,6 +47,10 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
    
+}
+
+body{
+    background-color: var(--body-background-color);
 }
 
 html{

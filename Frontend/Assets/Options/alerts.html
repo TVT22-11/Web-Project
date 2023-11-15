@@ -3,6 +3,7 @@
 
 <head>
     <script src="Assets/Scripts/script.js"></script>
+    <script src="load-options.js"></script>
     <meta charset="UTF-8">
     <title>Options</title>
     <link rel="stylesheet" type="text/css" href="Assets/Styles/style.css" media="screen" />
@@ -18,7 +19,7 @@
 
             <div class="navbar-links">
                 <ul>
-                    <li><a class="active" href="index.html">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li><a href="">Reviews</a></li>
                     <li><a href="">Movies</a></li>
                     <li><a href="">Groups</a></li>
@@ -27,12 +28,20 @@
         </nav>
     </header>
 
-<div class="groups-flex-container">
- 
-</div>
+    <div class="sidebar">
+        <h2>Options</h2>
+        <button onclick="loadOption('preferences')">Preferences</button>
+        <button onclick="loadOption('posts')">Posts</button>
+        <button onclick="loadOption('alerts')">Alerts</button>
+        <button onclick="loadOption('appearance')">Appearance</button>
+    </div>
+    <div id="options-container">
+        <!-- Content will be dynamically loaded here -->
+    </div>
 
     <footer>
         <p>&copy; Real movie catalogue</p>
     </footer>
+    
 </body>
 </html>
