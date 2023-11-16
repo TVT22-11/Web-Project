@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 
 import "./SingUp.css";
 
-function App() {
+function SignUp() {
   // React States
   const [errorMessages, setErrorMessages] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -85,4 +85,4 @@ function App() {
   );
 }
 
-export default App;
+export default SignUp;

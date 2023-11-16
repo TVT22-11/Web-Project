@@ -9,6 +9,7 @@ import Groups from './components/Groups/Groups';
 import Home from './components/Home/Home';
 import Login from './components/Login/Login';
 import Options from './components/Options/Options';
+import SignUp from './components/Login/SignUp';
 
 function App() {
   return (
@@ -17,10 +18,11 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/groups" element={<Groups />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/groups/*" element={<Groups />} />
           <Route path="/options/*" element={<Options />} />
+          <Route path="/login/*" element={<Login />} />
+          <Route path="/SignUp/*" element={<SignUp />} />
         </Routes>
       </div>
       <Footer />
