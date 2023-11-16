@@ -41,7 +41,7 @@ function Navbar() {
             <li><Link to="/groups">Groups</Link></li>
           </ul>
         </div>
-        <button className="Sign-in" type="submit">Sign In</button>
+        <button className="Sign-in" type="submit"><Link to="/Login">Sign In</Link></button>
       </nav>
     </header>
   );
