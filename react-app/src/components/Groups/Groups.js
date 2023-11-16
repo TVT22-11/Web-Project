@@ -1,13 +1,11 @@
 // components/Groups/Groups.js
 import React from 'react';
-import YourGroups from './yourGroups';
+import YourGroups from './YourGroups';
 import SearchBar from '../Searchbar/searchbar';
-import AvailableGroups from './availableGroups';
-import CreateGroup from './createGroup';
-import { Route, Routes} from 'react-router-dom';
+import AvailableGroups from './AvailableGroups';
+import CreateGroup from './CreateGroup';
 
 
-import CreatingPage from './CreatingPage';
 
 
 function Groups() {
@@ -21,10 +19,6 @@ function Groups() {
       <SearchBar />
       <AvailableGroups />
       <CreateGroup />
-      
-      <Routes>
-        <Route path="CreatingPage" element={<CreatingPage />} />
-      </Routes>
       </div>
     
 
