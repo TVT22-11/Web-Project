@@ -5,7 +5,7 @@ import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
-import Groups from './components/Groups/Groups';
+import GroupRoutes from './components/Groups/GroupRoutes';
 import Home from './components/Home/Home';
 import Login from './components/Login/Login';
 import Options from './components/Options/Options';
@@ -21,6 +21,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
+
           <Route path="/Login" element={<Login />} />
           <Route path="/groups/*" element={<Groups />} />
           <Route path="/options/*" element={<Options />} />
