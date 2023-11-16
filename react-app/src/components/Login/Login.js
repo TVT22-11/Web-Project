@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+/*import SignUp from './components/SingUp/SingUp';*/
 import './Login.css';
 import {
   Button,
@@ -38,7 +40,7 @@ const Login = () => (
         </Segment>
       </Form>
       <Message>
-        Don't have an account? <a href="#">Sign Up</a>
+      <p>Don't have an account? <Link to="/SingUp">Sign Up</Link></p>
       </Message>
     </Grid.Column>
   </Grid>
