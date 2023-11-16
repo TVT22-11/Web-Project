@@ -2,10 +2,16 @@
 import React from 'react';
 import YourGroups from './YourGroups';
 import SearchBar from '../Searchbar/searchbar';
-import AvailableGroups from './availableGroups';
-import CreateGroup from './createGroup';
-import { Route, Routes} from 'react-router-dom';
-import CreatingPage from './creatingPage';
+
+
+
+
+import AvailableGroups from './AvailableGroups';
+import CreateGroup from './CreateGroup';
+
+
+
+
 
 
 function Groups() {

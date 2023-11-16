@@ -1,7 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Groups.css';
-import './creatingPage'
+
+
+import './CreatingPage';
+
+
 function createGroup() {
         return (
                 <>
