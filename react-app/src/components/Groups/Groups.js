@@ -5,7 +5,7 @@ import SearchBar from '../Searchbar/searchbar';
 import AvailableGroups from './availableGroups';
 import CreateGroup from './createGroup';
 import { Route, Routes} from 'react-router-dom';
-import CreatingPage from './CreatingPage';
+import CreatingPage from './creatingPage';
 
 function Groups() {
   
