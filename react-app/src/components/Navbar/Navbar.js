@@ -68,7 +68,7 @@ const Navbar = () => {
             <li><Link to="/options/preferences">Options</Link></li>
           </ul>
         </div>
-        <button className="Sign-in" type="submit">Sign In</button>
+        <button className="Sign-in" type="submit"><Link to="/Login">Sign In</Link></button>
       </nav>
     </header>
   );

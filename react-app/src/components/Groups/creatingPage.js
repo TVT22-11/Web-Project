@@ -1,10 +1,12 @@
 import React from 'react';
 import './Groups.css';
-function createPage (){
-    return (
 
 
-      
-    );
- }
- export default createPage;
+function creatingPage(){
+return(
+<div className='create-container'>
+<h1>Moi</h1>
+</div>
+);
+};
+export default creatingPage
