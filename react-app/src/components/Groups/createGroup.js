@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Groups.css';
 
 
-import './CreatingPage';
+
+
+
 
 
 function createGroup() {
@@ -14,7 +15,7 @@ function createGroup() {
                 </div>
                 <div className='create-button'>
                   <button>
-                    <Link to="CreatingPage">Create Group</Link>
+                    <Link to="/Groups/CreatingPage">Create Group</Link>
                   </button>
                 </div>
               </>
