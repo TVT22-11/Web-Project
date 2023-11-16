@@ -1,3 +1,4 @@
+
 // App.js
 import React from 'react';
 import './App.css';
@@ -6,6 +7,7 @@ import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import Groups from './components/Groups/Groups';
 import Home from './components/Home/Home';
+import Login from './components/Login/Login';
 import Options from './components/Options/Options';
 
 
@@ -19,6 +21,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/groups" element={<Groups />} />
+          <Route path="/Login" element={<Login />} />
+          <Route path="/groups/*" element={<Groups />} />
           <Route path="/options/*" element={<Options />} />
         </Routes>
       </div>
@@ -28,3 +32,4 @@ function App() {
 }
 
 export default App;
+

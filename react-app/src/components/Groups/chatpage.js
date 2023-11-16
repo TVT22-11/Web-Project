@@ -1,5 +1,6 @@
 import React from 'react';
 import './Groups.css';
+import './Navbar.js'
 function chatpage (){
     return (
       <div className='chat'>
