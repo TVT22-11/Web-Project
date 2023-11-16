@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 
-import "./SingUp.css";
+import "./SignUp.css";
 
 function SignUp() {
   // React States

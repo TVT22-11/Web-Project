@@ -49,9 +49,9 @@ const Navbar = () => {
             <div className="dd-navbar-links">
               <ul>
                 <li><Link to="/">Home</Link></li>
-                <li><Link to="/reviews">Reviews</Link></li>
-                <li><Link to="/movies">Movies</Link></li>
-                <li><Link to="/groups">Groups</Link></li>
+                <li><Link to="/Reviews">Reviews</Link></li>
+                <li><Link to="/Movies">Movies</Link></li>
+                <li><Link to="/Groups">Groups</Link></li>
               </ul>
             </div>
           </div>
@@ -62,9 +62,9 @@ const Navbar = () => {
         <div className="navbar-links">
           <ul>
             <li><Link to="/">Home</Link></li>
-            <li><Link to="/reviews">Reviews</Link></li>
-            <li><Link to="/movies">Movies</Link></li>
-            <li><Link to="/groups">Groups</Link></li>
+            <li><Link to="/Reviews">Reviews</Link></li>
+            <li><Link to="/Movies">Movies</Link></li>
+            <li><Link to="/Groups">Groups</Link></li>
             <li><Link to="/options/preferences">Options</Link></li>
           </ul>
         </div>

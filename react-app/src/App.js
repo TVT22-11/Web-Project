@@ -23,7 +23,7 @@ function App() {
           <Route path="/" element={<Home />} />
 
           <Route path="/Login" element={<Login />} />
-          <Route path="/groups/*" element={<Groups />} />
+          <Route path="/groups/*" element={<GroupRoutes />} />
           <Route path="/options/*" element={<Options />} />
           <Route path="/login/*" element={<Login />} />
           <Route path="/SignUp/*" element={<SignUp />} />

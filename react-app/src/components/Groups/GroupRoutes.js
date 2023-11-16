@@ -7,10 +7,12 @@ function groupRoutes () {
 
 return(
 
-<Routes>
-<Route path="/" element={<Navigate to="Groups" />} />
-        <Route path="CreatingPage" element={<CreatingPage />} />
+      <Routes>
+        
+        <Route path="/" element={<Navigate to="Groups" />} />
         <Route path="groups" element={<Groups/>} />
+        <Route path="CreatingPage" element={<CreatingPage />} />
+
       </Routes>
     );  
     };
