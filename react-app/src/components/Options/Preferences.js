@@ -7,10 +7,9 @@ import moment from 'moment-timezone';
 import Sidebar from './Sidebar';
 
 function Preferences() {
-  const storedDarkMode = JSON.parse(localStorage.getItem('darkMode')) || false;
   const storedTimezone = localStorage.getItem('selectedTimezone') || 'Europe/Helsinki';
 
-  const [darkMode, setDarkMode] = useState(storedDarkMode);
+  const [isDarkMode, setIsDarkMode] = useState(false); // Set initial dark mode state
   const [selectedTimezone, setSelectedTimezone] = useState(storedTimezone);
   const [allTimezones, setAllTimezones] = useState([]);
 
@@ -24,8 +23,8 @@ function Preferences() {
   }, []);
 
   const handleDarkModeToggle = () => {
-    const newDarkMode = !darkMode;
-    setDarkMode(newDarkMode);
+    const newDarkMode = !isDarkMode;
+    setIsDarkMode(newDarkMode);
     localStorage.setItem('darkMode', JSON.stringify(newDarkMode));
   };
 
@@ -38,14 +37,14 @@ function Preferences() {
   return (
     <div className="page-container">
       <Sidebar />
-      <div className={`content ${darkMode ? 'dark-mode' : ''}`}>
+      <div className={`content ${isDarkMode ? 'dark-mode' : ''}`}>
         <ul>
           <li>
             <label>
               Dark Mode
               <input
                 type="checkbox"
-                checked={darkMode}
+                checked={isDarkMode}
                 onChange={handleDarkModeToggle}
               />
             </label>
