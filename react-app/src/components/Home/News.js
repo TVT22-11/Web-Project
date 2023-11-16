@@ -1,8 +1,8 @@
 // components/News/News.js
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
-import { Grid, Image } from 'semantic-ui-react'
 import './News.css';
+
 
 function News({ area, categoryID, eventID }) {
   const [news, setNews] = useState([]);
@@ -30,6 +30,7 @@ function News({ area, categoryID, eventID }) {
           articleURL: node.querySelector('ArticleURL').textContent,
           imageURL: node.querySelector('ImageURL').textContent,
           thumbnailURL: node.querySelector('ThumbnailURL').textContent,
+          description: node.querySelector('HTMLLead').textContent,
         }));
 
         setNews(newsData);
@@ -53,9 +54,17 @@ function News({ area, categoryID, eventID }) {
     return () => clearInterval(intervalId); 
   }, [news]);
 
+  useEffect(() => {
+
+    const newsImages = document.querySelectorAll('.News-Box img');
+    newsImages.forEach((image, index) => {
+      image.style.opacity = index === currentNewsIndex ? 1 : 0;
+    });
+  }, [currentNewsIndex]);
+
+
   return (
     <div className='News-Box'>
-      <h2 className='News-title'>News</h2>
 
       {news.map((item, index) => (
         <div
@@ -63,13 +72,14 @@ function News({ area, categoryID, eventID }) {
           className={index === currentNewsIndex ? 'active' : ''}
           style={{ opacity: index === currentNewsIndex ? 1 : 0 }}
         >
-          <Image src={item.imageURL} alt={`News ${index}`} />
-          <div className='Article-desc'>
+          <img src={item.imageURL} alt={`News ${index}`} />
+          <div className='Article-full'>
             <strong className='Article-title'>{item.title}</strong>
+            <p className='Article-desc'>{item.description}</p>
             <p className='Article-date'>{item.publishDate}</p>
             <p className='Article-url'>
-              <Link to={item.articleURL}>{item.articleURL}</Link>
-            </p>
+                <Link to={item.articleURL}>{item.articleURL}</Link>
+              </p>
           </div>
         </div>
       ))}
