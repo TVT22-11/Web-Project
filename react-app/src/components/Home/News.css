@@ -1,6 +1,6 @@
 /* components/News/News.css */
 .News-Box {
-  height: 300px;
+  height: 250px;
   padding: 10px;
   background-color: var(--body-background-color);
   justify-content: space-between;
@@ -11,30 +11,58 @@
   margin-top: 150px;
   position: relative;
   overflow: hidden;
+
 }
   .News-Box.active {
     top: 0;
     justify-content: flex-end; /* Align to the right on smaller screens */
     position: absolute;
     display: flex;
-    opacity: 1;
-    transition: opacity 0.5s ease-in-out;
+
   }
   .News-Box img{
     position: absolute;
     top: 0;
+    max-width: 450px;
     height: 300px;
+    overflow: hidden;
     left: 0;
     align-items: center;
-    display: block;
+    display: flex;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
     
   }
 
-  .Article-desc {
+  .Article-full {
+    height: 250px;
+    width: max-content;
     color: var(--second-color);
-     
-    top: 0;
     position: absolute;
+    padding: 10px;
+    font-size: large;
+    padding: 5px;
+    left: 450px;
+    align-items: center;
+    justify-content: center;
 
-  
   }
+  .Article-title{
+    justify-content: space-between;
+    position: absolute;
+    width: max-content;
+    font-size: 34px;
+  }
+  .Article-desc{
+    justify-content: space-between;
+    position: relative;
+    width: 1000px;
+    top: 45px;
+    font-weight: 100;
+  }
+  .Article-date{
+    position:relative;
+    width: 200px;
+    top: 85px;
+  }
+  
