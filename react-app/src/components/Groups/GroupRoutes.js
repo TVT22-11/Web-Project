@@ -1,5 +1,5 @@
 import React from 'react';
-import CreatingPage from './CreatingPage';
+import CreatingPage from './creatingPage';
 import Groups from './Groups';
 import { Routes, Route, Navigate } from 'react-router-dom';
 

@@ -1,13 +1,7 @@
 import React from 'react';
 import './Groups.css';
+import { Input } from 'semantic-ui-react'
 
-
-function CreatingPage(){
-return(
-<div className='create-container'>
-<h1>Moi</h1>
-</div>
-);
-};
+const CreatingPage = () => <Input focus placeholder='Group Name...' />
 
 export default CreatingPage
