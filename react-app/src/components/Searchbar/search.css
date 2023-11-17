@@ -1,31 +1,52 @@
 /*SEARCHBAR*/
 
-.search-bar {
+.Search-bar {
     display: flex;
-    padding-left: 30%;
-    padding-right: 30%;
-    padding-bottom: 5%;
+    align-items: center;
+    margin-top: 25px;
+    background-color: var(--body-background-color);
+    padding: 25px;
+    border-radius: 5px;
+    margin-left: 25%;
+    margin-right: 25%;
+    justify-content: center;
+    box-shadow: var(--box-shadow);
+    height: 70px;
+    margin-bottom: 25px;
+
   }
   
-  input {
-    flex: 1;
-    padding: 8px;
+  .Search-Input {
+    padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px 0 0 4px;
-    font-size: 16px;
+    font-size: 20px; 
+    display: flex;
+    height: 100%;
+    width: 100%;
+    background-color: var(--body-background-color);
   }
   
   button {
-    padding: 8px 12px;
+    padding: 10px 10px;
     border: none;
     border-radius: 4px;
     background-color: black;
-    color: #fff;
+    color: var(--second-color);
     cursor: pointer;
     font-size: 16px;
+    height: 25px;
+    align-items: center;
+    display: flex;
   }
   
   button:hover {
     background-color: #6B56E9;
   }
   
+  @media only screen and (max-width: 990px){
+    .Search-bar{
+      margin: 25px;
+    }
+
+  }

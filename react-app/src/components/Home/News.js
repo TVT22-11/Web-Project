@@ -24,14 +24,18 @@ function News({ area, categoryID, eventID }) {
         const xmlDoc = parser.parseFromString(xmlData, 'text/xml');
         const newsNodes = xmlDoc.querySelectorAll('NewsArticle');
 
-        const newsData = Array.from(newsNodes).map((node) => ({
-          title: node.querySelector('Title').textContent,
-          publishDate: node.querySelector('PublishDate').textContent,
-          articleURL: node.querySelector('ArticleURL').textContent,
-          imageURL: node.querySelector('ImageURL').textContent,
-          thumbnailURL: node.querySelector('ThumbnailURL').textContent,
-          description: node.querySelector('HTMLLead').textContent,
-        }));
+        const newsData = Array.from(newsNodes).map((node) => {
+          const rawPublishDate = node.querySelector('PublishDate').textContent;
+          const trimmedPublishDate = trimTimeFromDate(rawPublishDate);
+        
+          return {
+            title: node.querySelector('Title').textContent,
+            publishDate: trimmedPublishDate,
+            articleURL: node.querySelector('ArticleURL').textContent,
+            imageURL: node.querySelector('ImageURL').textContent,
+            description: node.querySelector('HTMLLead').textContent,
+          };
+        });
 
         setNews(newsData);
       } catch (error) {
@@ -63,26 +67,34 @@ function News({ area, categoryID, eventID }) {
   }, [currentNewsIndex]);
 
 
+  function trimTimeFromDate(dateString) {
+    const date = new Date(dateString);
+    
+    const trimmedDate = date.toLocaleDateString('fi-FI', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+    return trimmedDate;
+  }
+
   return (
     <div className='News-Box'>
-
       {news.map((item, index) => (
         <div
-          key={index}
-          className={index === currentNewsIndex ? 'active' : ''}
+          key={item.articleURL}
+          className={item.articleURL === news[currentNewsIndex].articleURL ? 'active' : ''}
           style={{ opacity: index === currentNewsIndex ? 1 : 0 }}
         >
           <img src={item.imageURL} alt={`News ${index}`} />
           <div className='Article-full'>
-            <strong className='Article-title'>{item.title}</strong>
-            <p className='Article-desc'>{item.description}</p>
+            <strong className='Article-title'><Link to={item.articleURL}>{item.title}</Link></strong>
             <p className='Article-date'>{item.publishDate}</p>
-            <p className='Article-url'>
-                <Link to={item.articleURL}>{item.articleURL}</Link>
-              </p>
+            <p className='Article-desc'>{item.description}</p>
           </div>
         </div>
       ))}
+
     </div>
   );
 }
