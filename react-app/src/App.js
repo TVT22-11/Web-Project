@@ -5,11 +5,12 @@ import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
-import GroupRoutes from './components/Groups/groupRoutes';
+import GroupRoutes from './components/Groups/GroupRoutes';
 import Home from './components/Home/Home';
 import Login from './components/Login/Login';
 import Options from './components/Options/Options';
 import SignUp from './components/Login/SignUp';
+import Movies from './components/Movies/Movies';
 
 
 
@@ -30,7 +31,7 @@ function App() {
 
 
           <Route path="/groups/*" element={<GroupRoutes />} />
-
+          <Route path= "/Movies/*" element={<Movies/>} />
           <Route path="/options/*" element={<Options />} />
           <Route path="/login/*" element={<Login />} />
           <Route path="/SignUp/*" element={<SignUp />} />
