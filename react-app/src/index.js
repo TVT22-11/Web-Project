@@ -9,11 +9,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // Add icons to the library
 library.add(faBars);
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>
+  
 );
 
 
