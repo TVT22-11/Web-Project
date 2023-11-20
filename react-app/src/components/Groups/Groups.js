@@ -1,26 +1,27 @@
 // components/Groups/Groups.js
 import React from 'react';
-import YourGroups from './yourGroups';
+import './Groups.css';
+import YourGroups from './YourGroups';
 import SearchBar from '../Searchbar/searchbar';
-import AvailableGroups from './availableGroups';
-import CreateGroup from './createGroup';
-import { Route, Routes} from 'react-router-dom';
-import CreatingPage from './creatingPage';
+
+
+
+
+import AvailableGroups from './AvailableGroups';
+import CreateGroup from './CreateGroup';
 
 function Groups() {
   
   return (
+
     <div>
       <YourGroups />
       <SearchBar />
       <AvailableGroups />
       <CreateGroup />
-      
-      <Routes>
-        <Route path="CreatingPage" element={<CreatingPage />} />
-      </Routes>
       </div>
     
+
   );
   
 }
