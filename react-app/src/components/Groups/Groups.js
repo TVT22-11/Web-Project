@@ -8,7 +8,7 @@ import SearchBar from '../Searchbar/searchbar';
 
 
 import AvailableGroups from './AvailableGroups';
-import CreateGroup from './CreateGroup';
+import CreateGroup from './createGroup';
 
 function Groups() {
   
