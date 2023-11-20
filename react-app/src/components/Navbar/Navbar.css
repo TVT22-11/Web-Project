@@ -56,26 +56,32 @@
     background-color: var(--hover-background-color);
     width: 120%;
     padding-top: 100%;
-    padding-bottom: 24px;
+    padding-bottom: 20px;
     box-sizing: border-box;
+    border-radius: 10px;
 }
 
-.Sign-in{
-    position: absolute;
-    display: flex;
-    right: 15px;
-    color: var(--third-color);
-    border-radius: 10px;
-    background: none;
-    padding: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
-    border: none;
-    font-weight: 500;
+
+.sign-in-button {
+  position: absolute;
+  display: flex;
+  right: 15px;
+  color: #6B56E9 !important;
+  border-radius: 10px;
+  background: none;
+  padding: 12px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border: none;
+  font-weight: 500;
+  text-decoration: none; /* Remove default underline on the link */
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, border 0.3s;
 }
 
-.Sign-in:hover{
-    border-radius: 10px;
+
+.sign-in-button:hover{
+    border-radius: 7px;
     background-color: var(--hover-background-color);
 }
 
