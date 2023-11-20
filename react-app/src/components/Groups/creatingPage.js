@@ -25,7 +25,7 @@ function CreatingPage() {
       <div className='creating-form-container'>
         <h3>Create Group</h3>
 
-        {/* Input for Group Name */}
+        <div className='label-1'>
         <label htmlFor="groupName">Group Name:</label>
         <input
           type="text"
@@ -34,8 +34,8 @@ function CreatingPage() {
           value={groupName}
           onChange={handleGroupNameChange}
         />
-
-        {/* Input for Additional Information */}
+</div>
+        <div className='label-2'>
         <label htmlFor="additionalInfo">Group Description:</label>
         <input
           type="text"
@@ -44,8 +44,8 @@ function CreatingPage() {
           value={additionalInfo}
           onChange={handleAdditionalInfoChange}
         />
-
-        {/* Checkbox for Optional Feature */}
+</div>
+        <div className='checkbox-container'>
         <label>
         Group Is Private:
           <input
@@ -55,7 +55,7 @@ function CreatingPage() {
           />
           
         </label>
-
+</div>
 <button>Create</button>
 
       </div>
