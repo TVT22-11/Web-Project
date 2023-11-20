@@ -12,6 +12,7 @@
 }
 
 .navbar{
+  z-index: 1000;
     color: var(--third-color);
     backdrop-filter: blur(20px);
     background-color: var(--navbar-background-color);
@@ -87,43 +88,46 @@
 }
 
 
-  .dropdown-content {
-    z-index: 1000;
-    top: 100%;
-    -webkit-transition: all .2s linear;
-    -o-transition: all .2s linear;
-    transition: all .2s linear;
-    display: block !important;
-    transform: translateX(-600px);
-    display: none;
-    position: fixed;
-    background-color: var(--body-background-color);
-    height: calc(125vh);
-    left: 0;
-    width: 50%;
+.dropdown-content {
+  z-index: 100;
+  top: 100%;
+  transition: all .2s linear;
+  display: none;
+  position: fixed;
+  background-color: var(--body-background-color);
+  height: calc(125vh);
+  left: 0;
+  width: 50%;
+}
 
-  }
-  .dropdown-content.show{
-    transform: translateX(0px);
-    left: 0;
-    display: block;
-    
-  }
-  
-  .dropdown-content a {
-    transition: right 0.6s ease-in-out;
-    text-decoration: none;
-    display: block;
-    padding-top: 10px;
-  }
-  .dropdown-content a.active {
-    transition: right 0.6s ease-in-out;
-    padding: 10px;
-    border-radius: 5px;
-    
-  }
-  .dropdown-content a:hover{
-    color: var(--hover-color);
-    background-color: var(--hover-background-color);
-    box-sizing: border-box;
-  }
+.dropdown-container {
+  position: relative; /* Ensure the parent container is positioned relative */
+}
+
+.dropdown-content.show {
+  z-index: 100;
+  position: absolute; /* Change back to absolute */
+  transform: translateX(0);
+  left: 0;
+  display: block;
+  top: 100%; /* Adjust top position to align with the parent container */
+}
+
+.dropdown-content a {
+  transition: right 0.6s ease-in-out;
+  text-decoration: none;
+  display: block;
+  padding-top: 10px;
+}
+
+.dropdown-content a.active {
+  transition: right 0.6s ease-in-out;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.dropdown-content a:hover {
+  color: var(--hover-color);
+  background-color: var(--hover-background-color);
+  box-sizing: border-box;
+}

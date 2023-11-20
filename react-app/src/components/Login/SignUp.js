@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import ReactDOM from "react-dom";
 
 import './Login.css';
-
 import "./SignUp.css";
 
 

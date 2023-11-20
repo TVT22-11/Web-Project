@@ -9,16 +9,14 @@
   border-radius: 15px;
   box-shadow: var(--box-shadow);
   margin-top: 100px;
-  position: relative;
+  position:relative;
   overflow: hidden;
   width: 80%;
-  z-index: -100;
 
 }
   .News-Box.active {
     top: 0;
-    justify-content: flex-end; /* Align to the right on smaller screens */
-    position: absolute;
+    position: relative;
     display: flex;
 
   }
@@ -51,11 +49,12 @@
  
   }
   .Article-title{
+    color: var(--second-color);
     text-overflow: ellipsis;
     justify-content: space-between;
     font-size: 34px;
     display: flex;
-    
+    text-decoration: none;
   }
   .Article-desc{
     
@@ -79,7 +78,7 @@
   @media only screen and (max-width: 990px){
     
     .News-Box {
-      justify-content: flex-start; /* Align to the top on smaller screens */
+   /* Align to the top on smaller screens */
       max-width: 444px;
     }
     .Article-full {
