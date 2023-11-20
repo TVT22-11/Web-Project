@@ -4,7 +4,6 @@ import ReactDOM from "react-dom";
 
 import './Login.css';
 import "./SignUp.css";
-import "./SignUp.css";
 
 
 function SignUp() {

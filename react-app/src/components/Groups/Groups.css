@@ -95,24 +95,28 @@
     align-items: center;
     background-color: #bbbaba;
     width: 300px;
-    height: 400px;
+    height: 310px;
     border-radius: 30px;
-    padding-bottom: 10px;
-    padding-top: 10px;
+    padding-top: 10px;  
   }
   
-  .creating-form-container label {
-    margin-bottom: 8px; /* Add some space between the labels and inputs */
-  }
+ .label-1{
+margin-bottom: 10px;
+ }
   
-  .creating-form-container input {
-    margin-bottom: 16px; /* Add some space between the inputs */
-  }
-  
+.label-2{
+margin-bottom: 20px;
+}
+
   .creating-form-container button {
     border-radius: 4px;
+    margin-top: 10px;
   }
   
+ .checkbox-container{
+  padding-top: 10px;
+  padding-left: 60px;
+  }
 
 /*CHATPAGE-CSS*/
 
