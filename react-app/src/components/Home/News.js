@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
 import './News.css';
+const apiUrl = process.env.REACT_APP_FINNKINO_API_URL;
 
 
 function News({ area, categoryID, eventID }) {
@@ -13,7 +14,7 @@ function News({ area, categoryID, eventID }) {
     const fetchNews = async () => {
       try {
 
-        const url = new URL('https://www.finnkino.fi/xml/News/');
+        const url = new URL(apiUrl);
         if (area) url.searchParams.append('area', area);
         if (categoryID) url.searchParams.append('categoryID', categoryID);
         if (eventID) url.searchParams.append('eventID', eventID);
