@@ -26,7 +26,7 @@ useEffect(() =>{
       }
 
       const data = await response.json();
-      setMovie(data.results.slice(0, 3)); // Display only the first 5 movies
+      setMovie(data.results.slice(0, 3)); 
     } catch (error) {
       console.error('Error fetching data:', error);
     }
