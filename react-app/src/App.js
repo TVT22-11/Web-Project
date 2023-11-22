@@ -10,6 +10,7 @@ import Home from './components/Home/Home';
 import Login from './components/Login/Login';
 import Options from './components/Options/Options';
 import SignUp from './components/Login/SignUp';
+import Movies from './components/Movies/Movies';
 
 
 
@@ -17,12 +18,17 @@ import SignUp from './components/Login/SignUp';
 function App() {
   return (
     <Router>
+      <div className='app-navbar'>
+      <Navbar />
+      </div>
       <div className="main-container">
-        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/groups/*" element={<GroupRoutes />} />
+
+          <Route path= "/Movies/*" element={<Movies/>} />
+
           <Route path="/options/*" element={<Options />} />
           <Route path="/login/*" element={<Login />} />
           <Route path="/SignUp/*" element={<SignUp />} />

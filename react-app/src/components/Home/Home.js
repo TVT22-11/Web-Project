@@ -6,7 +6,7 @@ import Searchbar from '../Searchbar/searchbar';
 
 function Home() {
     return (
-        <div>
+        <div className='Home-container'>
           <News />
           <Searchbar />
         </div>
