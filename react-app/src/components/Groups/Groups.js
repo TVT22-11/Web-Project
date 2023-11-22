@@ -1,7 +1,7 @@
 // components/Groups/Groups.js
 import React from 'react';
 import './Groups.css';
-import YourGroups from './yourGroups';
+import YourGroups from './YourGroups';
 import SearchBar from '../Searchbar/searchbar';
 
 

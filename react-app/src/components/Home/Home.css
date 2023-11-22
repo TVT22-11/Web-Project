@@ -1,4 +1,16 @@
 .Home-container{
 position: relative;
-    
+    align-items: center;
+    justify-content: center;
+}
+
+.Top-Movie{
+    padding-top: 80px;
+    padding-bottom: 80px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    color: var(--second-color);
+    font-size: 55px;
+    text-decoration: underline;
 }
