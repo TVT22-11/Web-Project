@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import ReactDOM from "react-dom";
 import './Login.css';
-import "./SingUp.css";
+/*import "./SignUp.css";*/
 
 function Login() {
 
