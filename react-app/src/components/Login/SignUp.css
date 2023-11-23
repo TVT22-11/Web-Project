@@ -23,7 +23,7 @@
     cursor: pointer;
     font-size: 15px;
     background: #000000;
-    color: #fff;
+    color: #fff; 
     padding: 10px 20px;
     border-radius: 5px;
     border: 1px solid #000000;
@@ -75,17 +75,9 @@
     margin: 10px;
   }
 
-.button {
-    background-color: #202020f8 !important;
-    
-    
-}
-
-
   .input-color::placeholder{
-    color: rgba(255, 255, 255, 0.700);
+    color: rgba(255, 253, 253, 0.700);
     padding-left: 10px;
-
   }
 
   label{

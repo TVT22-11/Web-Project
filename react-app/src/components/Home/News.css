@@ -1,6 +1,6 @@
 /* components/News/News.css */
 .News-Box {
-  height: 300px;
+  height: 250px;
   padding: 10px;
   background-color: var(--body-background-color);
   justify-content: space-between;
@@ -8,33 +8,99 @@
   margin: 0 auto;
   border-radius: 15px;
   box-shadow: var(--box-shadow);
-  margin-top: 150px;
-  position: relative;
+  margin-top: 100px;
+  position:relative;
   overflow: hidden;
+  width: 80%;
+
 }
   .News-Box.active {
     top: 0;
-    justify-content: flex-end; /* Align to the right on smaller screens */
-    position: absolute;
+    position: relative;
     display: flex;
-    opacity: 1;
-    transition: opacity 0.5s ease-in-out;
+
   }
   .News-Box img{
     position: absolute;
     top: 0;
+    max-width: 450px;
     height: 300px;
+    overflow: hidden;
     left: 0;
     align-items: center;
-    display: block;
+    display: flex;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
     
   }
 
-  .Article-desc {
+  .Article-full {
+    height: 250px;
+    text-overflow: ellipsis;
     color: var(--second-color);
-     
-    top: 0;
     position: absolute;
+    padding: 10px;
+    font-size: large;
+    padding: 5px;
+    left: 450px;
+    align-items: center;
+    justify-content: center;
+    
+ 
+  }
+  .Article-title{
+    color: var(--second-color);
+    text-overflow: ellipsis;
+    justify-content: space-between;
+    font-size: 34px;
+    display: flex;
+    text-decoration: none;
+  }
+  .Article-desc{
+    
+    position: relative;
+    width: 1000px;
+    top: 45px;
+    font-weight: 200;
+    overflow: inherit;
+    text-overflow: ellipsis;
+  }
+  .Article-date{
+    position:relative;
+    width: 200px;
+    top: 25px;
+    font-weight: 100;
+  }
 
   
-  }
+
+
+  @media only screen and (max-width: 990px){
+    
+    .News-Box {
+   /* Align to the top on smaller screens */
+      max-width: 444px;
+    }
+    .Article-full {
+      left: 0;
+      background-color: var(--body-background-color);
+      top: 150px;
+      overflow: hidden;
+      width: 100%;
+    }
+    .Article-desc{
+      display: none;
+    }
+    .Article-title{
+      text-overflow:ellipsis ;
+      font-size: 20px;
+    }
+    .Article-date{
+      top: 70px;
+      left: 10px;
+      font-size: 15px;
+      position: absolute;
+    }
+    
+
+}

@@ -6,7 +6,6 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 const Navbar = () => {
   const [show, setShow] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
 
   const DDmenuClickHandler = () => {
     var dropdown = document.getElementById("myDropdown");
@@ -14,27 +13,7 @@ const Navbar = () => {
     console.log('Dropdown menu clicked!');
   };
 
-  const controlNavbar = () => {
-    if (typeof window !== 'undefined') { 
-      if (window.scrollY > lastScrollY) {
-        setShow(false); 
-      } else {
-        setShow(true);  
-      }
 
-      setLastScrollY(window.scrollY);
-    }
-  };
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.addEventListener('scroll', controlNavbar);
-
-      return () => {
-        window.removeEventListener('scroll', controlNavbar);
-      };
-    }
-  }, [lastScrollY]);
 
   return (
     <header>
@@ -49,9 +28,9 @@ const Navbar = () => {
             <div className="dd-navbar-links">
               <ul>
                 <li><Link to="/">Home</Link></li>
-                <li><Link to="/reviews">Reviews</Link></li>
-                <li><Link to="/movies">Movies</Link></li>
-                <li><Link to="/groups">Groups</Link></li>
+                <li><Link to="/Reviews">Reviews</Link></li>
+                <li><Link to="/Movies">Movies</Link></li>
+                <li><Link to="/Groups">Groups</Link></li>
               </ul>
             </div>
           </div>
@@ -62,15 +41,16 @@ const Navbar = () => {
         <div className="navbar-links">
           <ul>
             <li><Link to="/">Home</Link></li>
-            <li><Link to="/reviews">Reviews</Link></li>
-            <li><Link to="/movies">Movies</Link></li>
-            <li><Link to="/groups">Groups</Link></li>
+            <li><Link to="/Reviews">Reviews</Link></li>
+            <li><Link to="/Movies">Movies</Link></li>
+            <li><Link to="/Groups">Groups</Link></li>
             <li><Link to="/options/preferences">Options</Link></li>
           </ul>
         </div>
-        <button className="Sign-in" type="submit"><Link to="/Login">Sign In</Link></button>
+        <Link to="/Login" className="sign-in-button">Sign In</Link>
       </nav>
     </header>
+    
   );
 };
 
