@@ -50,7 +50,7 @@ useEffect(() =>{
       <p>Rating: </p>
       <h2>{movie.title}</h2>
       <p>{movie.overview}</p>
-      <p>{movie.release_date}</p>
+      <p className='movie-release-date'>{'Release date : '}{'\n'}{movie.release_date}</p>
       </div>
       </li>
       
