@@ -12,6 +12,7 @@
   position:relative;
   overflow: hidden;
   width: 80%;
+  margin-bottom: 80px;
 
 }
   .News-Box.active {
@@ -52,7 +53,7 @@
     color: var(--second-color);
     text-overflow: ellipsis;
     justify-content: space-between;
-    font-size: 34px;
+    font-size: 25px;
     display: flex;
     text-decoration: none;
   }

@@ -1,0 +1,6 @@
+.Movie-Container
+{
+    background-color: var(--body-background-color);;
+    display: flex;
+    padding: 10px;
+}

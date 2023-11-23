@@ -40,7 +40,7 @@ useEffect(() =>{
       {movie.map((movie) => (
           <li className='Movie-Box' key={movie.id}>
       <img  src={`${apiImageBaseUrl}${movie.poster_path}`}
-            style={{ maxWidth: '80%' }}/>
+            style={{ maxWidth: '50%' }}/>
 
       <div className='Movie-Desc'>
       <h2>{movie.title}</h2>
