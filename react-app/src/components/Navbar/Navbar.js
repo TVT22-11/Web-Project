@@ -50,6 +50,7 @@ const Navbar = () => {
         <Link to="/Login" className="sign-in-button">Sign In</Link>
       </nav>
     </header>
+    
   );
 };
 

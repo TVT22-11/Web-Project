@@ -18,20 +18,17 @@ import Movies from './components/Movies/Movies';
 function App() {
   return (
     <Router>
+      <div className='app-navbar'>
+      <Navbar />
+      </div>
       <div className="main-container">
-        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-
-
-
-
           <Route path="/Login" element={<Login />} />
-
-
-
           <Route path="/groups/*" element={<GroupRoutes />} />
+
           <Route path= "/Movies/*" element={<Movies/>} />
+
           <Route path="/options/*" element={<Options />} />
           <Route path="/login/*" element={<Login />} />
           <Route path="/SignUp/*" element={<SignUp />} />
