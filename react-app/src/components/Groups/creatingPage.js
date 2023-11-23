@@ -48,13 +48,14 @@ function CreatingPage() {
         <div className='checkbox-container'>
         <label>
         Group Is Private:
+        </label>
           <input
             type="checkbox"
             checked={isOptionalFeatureEnabled}
             onChange={handleCheckboxChange}
           />
           
-        </label>
+       
 </div>
 <button>Create</button>
 
