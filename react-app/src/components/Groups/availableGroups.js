@@ -6,7 +6,7 @@ function availableGroups (){
     return (
 <div className="groups flex-container">
         <div className="groups-list">
-          <h3>Available Groups:</h3>
+        <h3>Available Groups:</h3>
           <table>
             <thead>
               <tr>
@@ -30,9 +30,10 @@ function availableGroups (){
                 <td><img src="/images/popcorn.png"/>Group 3</td>
                 <td>7/20</td>
                 <td><button><Link to="/Groups/ChatPage">Join Group</Link></button></td>
-              </tr>
+                </tr>
             </tbody>
           </table>
+          
         </div>
       </div>
     );

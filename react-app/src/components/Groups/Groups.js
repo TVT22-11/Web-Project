@@ -3,14 +3,8 @@ import React from 'react';
 import './Groups.css';
 import YourGroups from './YourGroups';
 import SearchBar from '../Searchbar/searchbar';
-
-
-
-
-
-
 import AvailableGroups from './AvailableGroups';
-import CreateGroup from './createGroup';
+import CreateGroup from './CreateGroup';
 
 
 function Groups() {
