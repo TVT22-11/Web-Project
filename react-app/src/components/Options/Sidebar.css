@@ -5,10 +5,13 @@
     background-color: var(--sidebar-first-color);
     height: 100vh;
   }
+.dark-mode .sidebar {
+    background-color: var(--sidebar-second-color);
+}
+  
 .sidebar a {
     font-size: xx-large;
     text-decoration: none;
-    color: var(--second-color);
     margin-left: 20px;
 
 }

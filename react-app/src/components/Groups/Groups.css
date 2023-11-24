@@ -9,15 +9,20 @@
      }
 .your-groups-list, h3{
     text-decoration: underline;
-    color: white;
+    color: var(--dark-first-color);
 }
+.dark-mode .your-groups-list, h3{
+    color: var(--light-mode-text-color);
+    color: var(--second-color);
+}
+
 .your-groups-list, ul li a{
     text-decoration: none, underline;  
-    color: white;
+    color: var(--second-color);
  }
 
  .your-groups-list, ul li a:hover{
-    color: rgb(192, 192, 192);
+    color: var(--dark-first-color);
  }
 
 .your-groups-list, ul li {
@@ -34,11 +39,14 @@
 }
 
 .groups-list {
-    background-color: #4e4e4e;
+    background-color: var(--dark-first-color);
     width: 400px;
     height: 400px;
     border-radius: 30px;
 }
+.dark-mode .groups-list {
+    background-color: var(--first-color);
+  }
 
 .groups-list img {
     height: 25px;
@@ -56,24 +64,33 @@
 .groups-list td {
     padding: 15px;
     padding-bottom: 5px;
-    color: white;
+    color: var(--second-color);
 }
+.dark-mode .groups-list td {
+    color: var(--light-mode-text-color);
+  }
 
 .groups-list th{
     padding: 20px;
-    color: white;
+    color: var(--second-color);
 }
+.dark-mode .groups-list th {
+    color: var(--light-mode-text-color);
+  }
 
 
 .groups-list h3 {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: var(--second-color);
 }
+.dark-mode .groups-list h3 {
+    color: var(--light-mode-text-color);
+  }
 .groups-list button {
-    background-color: black;
-    color: #ffffff; 
+    background-color: var(--hover-backround-color);
+    color: var(--second-color); 
     padding: 8px 16px;
     border: none; 
     border-radius: 4px; 
@@ -83,10 +100,12 @@
 .groups-list button:hover {
     background-color: #6B56E9; }
 
+
     .groups-list a{
         text-decoration: none;
-        color: white;
+        color: var(--second-color);
     }
+
 
 /*CREATING-GROUP-CSS*/
 
@@ -101,14 +120,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #3f3f3f;
+    background-color: var(--sidebar-first-color);
     width: 300px;
     height: 300px;
     border-radius: 30px;
     padding-top: 10px;  
   }
+  .dark-mode .creating-form-container {
+    background-color: var(--first-color);
+  }
   .creating-form-container label{
-    color: white;
+    color: var(--second-color);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -131,32 +153,31 @@ margin-bottom: 10px;
 margin-bottom: 10px;
 }
 
-
-  
-
   .creating-form-container ::placeholder{
-    color: var(--placeholder-color);
-    padding-left: 10px;
+    color: white;
   }
 
 
-
 /*CHATPAGE-CSS*/
-
 
 
 .chat{
 display: flex;
 align-items: center;
 justify-content: center;
+
 color: white;
+padding-top: 200px;
+
+color: var(--second-color);
 padding-top: 100px;
+
 }
 
 .chat h1{
     display: flex;
     justify-content: center;
- color: white;
+ color: var(--second-color);
 }
 
 .chat button{
@@ -166,14 +187,22 @@ width: fit-content;
 }
 
 .chat-backround{
+
 background-color: #3f3f3f;
+width: 350px;
+height: 400px;
+
+background-color: var(--dark-first-color);
 width: 80%;
 height: 800px;
+
 border-radius: 20px;
 }
 
-
 .chat ::placeholder{
+
+    color: white;
+
     color: var(--placeholder-color);
     padding-left: 10px;
 }
@@ -182,9 +211,10 @@ border-radius: 20px;
     display: flex;
     flex-direction: column;
     height: 100vh;
+    padding-top: 670px;
     
-}
 
+}
 
 /*CREATE-GROUP-BUTTON-CSS*/
 
@@ -211,7 +241,7 @@ border-radius: 20px;
   }
   
   .create-button button a{
-    color: white;
+    color: var(--second-color);
     text-decoration: none;
   }
 
