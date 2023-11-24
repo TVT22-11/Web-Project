@@ -2,20 +2,16 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import ReactDOM from "react-dom";
+import {jwtToken} from './signals';
+
 
 import "./Login.css";
 
 import "./SignUp.css";
 
 function SignUp() {
-
   const navigate = useNavigate();
-
-  // React States
-  const [errorMessages, setErrorMessages] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
-
-  // User Login info
   const [state, setState] = useState({
     username: "",
     pw: "",
@@ -41,28 +37,26 @@ function SignUp() {
       lname: state.lname
     };
 
-    
-
-    axios.post("http://localhost:3001/auth/register", userData).then((response) => {
+    axios.post("http://localhost:3001/auth/register", userData)
+    .then((response) => {
       console.log(response.status, response.data);
       setIsSubmitted(true);
-      navigate('/login');
+      // You might want to handle token and redirect here based on response
     })
 
-    .catch((error) => {
-      if (error.response) {
-        console.log(error.response);
-        console.log("Server responded with an error");
-      } else if (error.request) {
-        console.log("network error");
-      } else {
-        console.log(error);
-      }
-    });
-
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response);
+          console.log("Server responded with an error");
+        } else if (error.request) {
+          console.log("network error");
+        } else {
+          console.log(error);
+        }
+      });
   }
 
-    // JSX code for SignUp form
+   
     const renderForm = (
       <div className="form">
         <form onSubmit={handleSubmit}>
