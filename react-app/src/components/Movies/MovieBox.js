@@ -1,6 +1,5 @@
 import React from 'react';
 import Movie from '../Reviews/Movie'
-import './MovieBox.css';
 
 function MovieBox(){
     return(

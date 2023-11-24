@@ -41,7 +41,7 @@ function Preferences() {
         <ul>
           <li>
             <label>
-              Dark Mode
+              Light Mode
               <input
                 type="checkbox"
                 checked={isDarkMode}

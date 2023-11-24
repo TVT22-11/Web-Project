@@ -12,15 +12,12 @@
   position:relative;
   overflow: hidden;
   width: 80%;
-  margin-bottom: 80px;
-  
 
 }
   .News-Box.active {
     top: 0;
     position: relative;
     display: flex;
-    
 
   }
   .News-Box img{
@@ -38,7 +35,6 @@
   }
 
   .Article-full {
-
     height: 250px;
     text-overflow: ellipsis;
     color: var(--second-color);
@@ -53,11 +49,10 @@
  
   }
   .Article-title{
-    
     color: var(--second-color);
     text-overflow: ellipsis;
     justify-content: space-between;
-    font-size: 25px;
+    font-size: 34px;
     display: flex;
     text-decoration: none;
   }
@@ -76,12 +71,6 @@
     top: 25px;
     font-weight: 100;
   }
-
-  .Article-title a{
-    text-decoration: none;
-    color: var(--second-color);
-}
-
 
   
 

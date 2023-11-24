@@ -83,6 +83,11 @@
 .groups-list button:hover {
     background-color: #6B56E9; }
 
+    .groups-list a{
+        text-decoration: none;
+        color: white;
+    }
+
 /*CREATING-GROUP-CSS*/
 
 .creating-form{
@@ -126,12 +131,18 @@ margin-bottom: 10px;
 margin-bottom: 10px;
 }
 
+
+  
+
   .creating-form-container ::placeholder{
-    color: white;
+    color: var(--placeholder-color);
+    padding-left: 10px;
   }
 
 
+
 /*CHATPAGE-CSS*/
+
 
 
 .chat{
@@ -139,7 +150,7 @@ display: flex;
 align-items: center;
 justify-content: center;
 color: white;
-padding-top: 200px;
+padding-top: 100px;
 }
 
 .chat h1{
@@ -156,14 +167,24 @@ width: fit-content;
 
 .chat-backround{
 background-color: #3f3f3f;
-width: 350px;
-height: 400px;
+width: 80%;
+height: 800px;
 border-radius: 20px;
 }
 
+
 .chat ::placeholder{
-    color: white;
+    color: var(--placeholder-color);
+    padding-left: 10px;
 }
+
+.chat Form{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    
+}
+
 
 /*CREATE-GROUP-BUTTON-CSS*/
 
