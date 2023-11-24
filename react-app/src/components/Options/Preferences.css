@@ -29,6 +29,6 @@ select::-moz-focus-inner {
   margin: 0;
 }
 .dark-mode {
-  background-color: var(--dark-first-color);
+  background-color: var(--dark-second-color);
 }
 

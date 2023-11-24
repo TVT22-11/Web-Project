@@ -1,0 +1,22 @@
+require('dotenv').config();
+const cors = require('cors');
+const express = require('express');
+const app = express();
+const user = require('./routes/user');
+const auth = require('./routes/authorization');
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(cors());
+app.use(express.static('public'));
+
+app.use('/users', user);
+app.use('/auth', auth);
+
+const port = process.env.PG_PORT || 3001;
+app.listen(port, function () {
+  console.log(`Server running on port ${port}`);
+});
+
+
+module.exports = app;
