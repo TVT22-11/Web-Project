@@ -16,7 +16,7 @@
     --light-mode-text-color: black;
     --purple-color: #6B56E9;
 
-
+    --placeholder-color:rgba(255, 253, 253, 0.700);
 
     --hover-color: rgb(167, 164, 164);
 
@@ -37,6 +37,7 @@
     --scroll-bar-color: #4d4d4d;
     --scroll-thumb-color: #585a5e;
     --scroll-thumb-hover-color: #5f6069;
+
 }
 
 @media only screen and (max-width: 990px){

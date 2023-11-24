@@ -76,7 +76,7 @@
   }
 
   .input-color::placeholder{
-    color: rgba(255, 253, 253, 0.700);
+    color: var(--placeholder-color);
     padding-left: 10px;
   }
 
