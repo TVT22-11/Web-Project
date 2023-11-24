@@ -27,7 +27,7 @@ useEffect(() =>{
       }
 
       const data = await response.json();
-      setMovies(data.results.slice(0, 4)); 
+      setMovies(data.results.slice(0, 5)); 
     } catch (error) {
       console.error('Error fetching data:', error);
     }
