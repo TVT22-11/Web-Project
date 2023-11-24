@@ -13,5 +13,11 @@ position: relative;
     color: var(--second-color);
     font-size: 35px;
     text-decoration: underline;
+
     background-color: var(--body-background-color);
+
+}
+.dark-mode .Top-Movie{
+    color: var(--light-mode-text-color);
+
 }

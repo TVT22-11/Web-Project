@@ -1,15 +1,19 @@
-// components/options/Preferences.js
 import React, { useState, useEffect } from 'react';
 import './Options.css';
 import './Preferences.css';
 import Clock from './Clock';
 import moment from 'moment-timezone';
 import Sidebar from './Sidebar';
+import { useDarkMode } from './DarkModeContext'; 
 
 function Preferences() {
-  const storedTimezone = localStorage.getItem('selectedTimezone') || 'Europe/Helsinki';
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
 
-  const [isDarkMode, setIsDarkMode] = useState(false); // Set initial dark mode state
+  useEffect(() => {
+    // Add any other initialization code here
+  }, []); // Empty dependency array to run the effect only once on mount
+
+  const storedTimezone = localStorage.getItem('selectedTimezone') || 'Europe/Helsinki';
   const [selectedTimezone, setSelectedTimezone] = useState(storedTimezone);
   const [allTimezones, setAllTimezones] = useState([]);
 
@@ -21,12 +25,6 @@ function Preferences() {
 
     setAllTimezones(timeZoneList);
   }, []);
-
-  const handleDarkModeToggle = () => {
-    const newDarkMode = !isDarkMode;
-    setIsDarkMode(newDarkMode);
-    localStorage.setItem('darkMode', JSON.stringify(newDarkMode));
-  };
 
   const handleTimezoneChange = (e) => {
     const newTimezone = e.target.value;
@@ -41,11 +39,11 @@ function Preferences() {
         <ul>
           <li>
             <label>
-              Dark Mode
+              Light Mode
               <input
                 type="checkbox"
                 checked={isDarkMode}
-                onChange={handleDarkModeToggle}
+                onChange={toggleDarkMode}
               />
             </label>
           </li>

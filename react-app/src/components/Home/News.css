@@ -12,8 +12,14 @@
   position:relative;
   overflow: hidden;
   width: 80%;
+
   margin-bottom: 80px;
   
+
+
+}
+.dark-mode .News-Box {
+  background-color: var(--first-color);
 
 }
   .News-Box.active {
@@ -51,6 +57,9 @@
     justify-content: center;
     
  
+  }
+  .dark-mode .Article-full {
+    color: var(--light-mode-text-color);
   }
   .Article-title{
     

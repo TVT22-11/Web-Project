@@ -28,12 +28,21 @@
 .Movie-Image{
     width: 50%;
 }
+
+
+.dark-mode .Movie-Container
+{
+    background-color: var(--first-color);
+}
+
+
 .Movie-Desc{
     
     margin-top: 15px;
     color: var(--second-color);
     width: 100%;
     text-align: center;
+
     padding: 5px;
     text-overflow:ellipsis ;
     overflow: hidden;
@@ -44,4 +53,9 @@
     
     position: absolute;
     font-weight: 100;
+
+}
+.dark-mode .Movie-Desc{
+    color: var(--light-mode-text-color);
+
 }
