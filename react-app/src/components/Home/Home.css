@@ -5,13 +5,12 @@ position: relative;
 }
 
 .Top-Movie{
-    padding-top: 25px;
-    padding-bottom: 25px;
+    padding-top: 80px;
+    padding-bottom: 80px;
     align-items: center;
     justify-content: center;
     display: flex;
     color: var(--second-color);
-    font-size: 35px;
+    font-size: 55px;
     text-decoration: underline;
-    background-color: var(--body-background-color);
 }
