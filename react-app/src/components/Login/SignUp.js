@@ -1,94 +1,137 @@
 import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import ReactDOM from "react-dom";
 
-import './Login.css';
+import "./Login.css";
 
 import "./SignUp.css";
 
-
 function SignUp() {
 
+  const navigate = useNavigate();
 
   // React States
   const [errorMessages, setErrorMessages] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   // User Login info
-  const database = [
-    {
-      username: "user1",
-      password: "pass1",
-    },
-    {
-      username: "user2",
-      password: "pass2",
-    },
-  ];
+  const [state, setState] = useState({
+    username: "",
+    pw: "",
+    fname: "",
+    lname: ""
+  });
 
-  const errors = {
-    uname: "invalid username",
-    pass: "invalid password",
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setState({
+      ...state,
+      [e.target.name]: value,
+    });
   };
 
-  const handleSubmit = (event) => {
-    //Prevent page reload
-    event.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-    var { uname, pass } = document.forms[0];
+    const userData = {
+      username: state.username,
+      pw: state.pw,
+      fname: state.fname,
+      lname: state.lname
+    };
 
-    // Find user login info
-    const userData = database.find((user) => user.username === uname.value);
+    
 
-    // Compare user info
-    if (userData) {
-      if (userData.password !== pass.value) {
-        // Invalid password
-        setErrorMessages({ name: "pass", message: errors.pass });
+    axios.post("http://localhost:3001/auth/register", userData).then((response) => {
+      console.log(response.status, response.data);
+      setIsSubmitted(true);
+      navigate('/login');
+    })
+
+    .catch((error) => {
+      if (error.response) {
+        console.log(error.response);
+        console.log("Server responded with an error");
+      } else if (error.request) {
+        console.log("network error");
       } else {
-        setIsSubmitted(true);
+        console.log(error);
       }
-    } else {
-      // Username not found
-      setErrorMessages({ name: "uname", message: errors.uname });
-    }
-  };
+    });
 
-  // Generate JSX code for error message
-  const renderErrorMessage = (name) =>
-    name === errorMessages.name && (
-      <div className="error">{errorMessages.message}</div>
+  }
+
+    // JSX code for SignUp form
+    const renderForm = (
+      <div className="form">
+        <form onSubmit={handleSubmit}>
+          <div className="input-container">
+            <label>Username </label>
+            <input
+              className="input-color"
+              placeholder="Username"
+              type="text"
+              name="username"
+              value={state.username}
+              onChange={handleChange}
+              autoComplete="off"
+              required
+            />
+
+          </div>
+          <div className="input-container">
+            <label>Password </label>
+            <input
+              className="input-color"
+              placeholder="Password"
+              type="password"
+              name="pw"
+              value={state.pw}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="input-container">
+            <label>first name </label>
+            <input
+              className="input-color"
+              placeholder="first name"
+              type="text"
+              name="fname"
+              value={state.fname}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="input-container">
+            <label>last name </label>
+            <input
+              className="input-color"
+              placeholder="last name"
+              type="text"
+              name="lname"
+              value={state.lname}
+              onChange={handleChange}
+              required
+            />
+
+          </div>
+          <div className="button-container">
+            <input type="submit" />
+          </div>
+        </form>
+      </div>
     );
 
-  // JSX code for login form
-  const renderForm = (
-    <div className="form">
-      <form onSubmit={handleSubmit}>
-        <div className="input-container">
-          <label>Username </label>
-          <input  className="input-color" placeholder="Username" type="text" name="uname" autoComplete="off" required />
-          {renderErrorMessage("uname")}
+    return (
+      <div className="app">
+        <div className="login-form">
+          <div className="title">REGISTER</div>
+          {isSubmitted ? <div>User is successfully registered</div> : renderForm}
         </div>
-        <div className="input-container">
-          <label>Password </label>
-          <input className="input-color" placeholder="Password" type="password" name="pass" required />
-          {renderErrorMessage("pass")}
-        </div>
-        <div className="button-container">
-          <input type="submit" />
-        </div>
-      </form>
-    </div>
-  );
-
-  return (
-    <div className="app">
-      <div className="login-form">
-        <div className="title">REGISTER</div>
-        {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
       </div>
-    </div>
-  );
-};
+    );
+  };
 
 export default SignUp;
