@@ -16,8 +16,15 @@
     display: flex;
     padding: 10px;
 }
+.dark-mode .Movie-Container
+{
+    background-color: var(--first-color);
+}
 
 .Movie-Desc{
     color: var(--second-color);
     text-align: center;
+}
+.dark-mode .Movie-Desc{
+    color: var(--light-mode-text-color);
 }
