@@ -15,7 +15,7 @@ input[type="checkbox"]{
 select {
   margin: 30px 0px 30px 23px;
   padding: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--purple-color);
   border-radius: 20px;
   appearance: none;
   background-color: var(--fourth-color);
@@ -28,7 +28,5 @@ select::-moz-focus-inner {
   padding: 0;
   margin: 0;
 }
-.dark-mode {
-  background-color: var(--dark-second-color);
-}
+
 

@@ -9,9 +9,12 @@
     --second-color: #ffffff;
     --third-color: #f5f5f5;
     --fourth-color: #d8d8d8;
-    --dark-first-color: #818181;
-    --dark-second-color: #d4d4d4;
+    --dark-first-color: #ffffff;
+    --dark-second-color: rgb(235, 235, 235);
     --sidebar-first-color: #3b3b3bf8;
+    --sidebar-second-color: #b2b2b2f8;
+    --light-mode-text-color: black;
+    --purple-color: #6B56E9;
 
 
 
@@ -24,6 +27,7 @@
 */
     --body-background-color: #202020f8;
     --navbar-background-color: #202020f8;
+    --navbar-background-color-light: #b0b0b0f8;
     --hover-background-color: rgba(0, 0, 0, 0.205);
 
     --small-font-size: 0.9em;
@@ -75,8 +79,12 @@ body {
   padding: 0;
   display: flex;
   flex-direction: column;
-
+  color: var(--second-color);
   background-color: var(--body-background-color);
+}
+.dark-mode {
+  background-color: var(--dark-second-color);
+  color: var(--light-mode-text-color);
 }
 
 .main-container {
@@ -89,5 +97,13 @@ body {
   z-index: 1000;
 }
 
+a {
+  text-decoration: none;
+  color: var(--second-color);
+}
+.dark-mode a {
+  text-decoration: none;
+  color: var(--light-mode-text-color);
+}
 
 

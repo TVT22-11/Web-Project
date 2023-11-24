@@ -11,12 +11,14 @@ import Login from './components/Login/Login';
 import Options from './components/Options/Options';
 import SignUp from './components/Login/SignUp';
 import Movies from './components/Movies/Movies';
+import { DarkModeProvider } from './components/Options/DarkModeContext';
 
 
 
 function App() {
   return (
     <Router>
+      <DarkModeProvider>
       <div className='app-navbar'>
       <Navbar />
       </div>
@@ -34,6 +36,7 @@ function App() {
         </Routes>
       </div>
       <Footer />
+      </DarkModeProvider>
     </Router>
   );
 }
