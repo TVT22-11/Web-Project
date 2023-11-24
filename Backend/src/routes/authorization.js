@@ -9,18 +9,19 @@ const { createToken } = require('../auth/auth');
 
 
 router.post('/register', upload.none(), async (req, res) => {
-    const fname = body.fname;
-    const lname = body.lname;
-    const username = body.username;
-    const pw = body.pw;
+    const fname = req.body.fname;
+    const lname = req.body.lname;
+    const username = req.body.username;
+    const pw = req.body.pw;
 
     try {
         const pwHash = await bcrypt.hash(pw, 10);
         await register(fname, lname, username, pwHash);
         const token = createToken(username);
-        res.status(200).json({jwtToken: token});
-    }  catch(err) {
-        res.status(500).json({ error: err.message });
+        res.status(200).json({ jwtToken: token });
+    } catch (err) {
+        console.error(err); // Log the error for debugging purposes
+        res.status(500).json({ error: 'Internal Server Error' });
     }
 });
 

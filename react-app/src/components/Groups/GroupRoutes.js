@@ -1,6 +1,6 @@
 import React from 'react';
 import CreatingPage from './creatingPage';
-import ChatPage from './Chatpage'
+import ChatPage from './chatpage'
 import Groups from './Groups';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
