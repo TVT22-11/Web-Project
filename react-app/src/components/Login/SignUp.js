@@ -83,6 +83,7 @@ function SignUp() {
               name="pw"
               value={state.pw}
               onChange={handleChange}
+              autoComplete="off"
               required
             />
           </div>
@@ -95,6 +96,7 @@ function SignUp() {
               name="fname"
               value={state.fname}
               onChange={handleChange}
+              autoComplete="off"
               required
             />
           </div>
@@ -107,6 +109,7 @@ function SignUp() {
               name="lname"
               value={state.lname}
               onChange={handleChange}
+              autoComplete="off"
               required
             />
 
