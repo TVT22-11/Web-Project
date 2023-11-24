@@ -1,9 +1,9 @@
  /*SIDEBAR LIST*/
- .your-groups-list{
+.your-groups-list{
     padding-left: 30px;
     padding-top: 10px;
     }
-    .your-groups-list img{
+.your-groups-list img{
         height: 25px;
         margin-right: 5px;
      }
@@ -11,9 +11,9 @@
     text-decoration: underline;
     color: var(--dark-first-color);
 }
+
 .dark-mode .your-groups-list, h3{
     color: var(--light-mode-text-color);
-    color: var(--second-color);
 }
 
 .your-groups-list, ul li a{
@@ -39,7 +39,7 @@
 }
 
 .groups-list {
-    background-color: var(--dark-first-color);
+    background-color: var(--first-color);
     width: 400px;
     height: 400px;
     border-radius: 30px;
