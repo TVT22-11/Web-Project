@@ -98,7 +98,8 @@
 }
 
 .groups-list button:hover {
-    background-color: #6B56E9; }
+    background-color: var(--purple-color);
+   }
 
 
     .groups-list a{
@@ -162,14 +163,12 @@ margin-bottom: 10px;
 
 
 .chat{
+
 display: flex;
 align-items: center;
 justify-content: center;
-
-color: white;
 padding-top: 200px;
-
-color: var(--second-color);
+color: var(--light-mode-text-color);
 padding-top: 100px;
 
 }
