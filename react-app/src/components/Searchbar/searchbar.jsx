@@ -1,17 +1,44 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './search.css';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-const SearchBar = ({ onSearch }) => {
+import axios from 'axios';
+
+const apiKey = process.env.REACT_APP_IMDB_API_BEARER_TOKEN;
+const apiUrl = process.env.REACT_APP_IMDB_API_URL;
+
+const SearchBar = () => {
   const [query, setQuery] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+  const [showResults, setShowResults] = useState(false);
+  const history = useNavigate();
+  const searchResultsRef = useRef(null);
 
   const handleInputChange = (e) => {
     setQuery(e.target.value);
+    setSearchResults([]);
+    setShowResults(false);
   };
 
-  const handleSearch = () => {
-    onSearch(query);
+  const handleSearch = async () => {
+    const searchResults = await axios.get(
+      `${apiUrl}/search/movie?query=${query}`,
+      {
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+
+    setSearchResults(searchResults.data.results);
+    setShowResults(true);
+  };
+
+  const handleResultClick = (movieId) => {
+    history(`/movie/${movieId}`);
+    setShowResults(false);
   };
 
   const handleKeyPress = (e) => {
@@ -20,16 +47,42 @@ const SearchBar = ({ onSearch }) => {
     }
   };
 
+  const handleClickOutside = (e) => {
+    if (searchResultsRef.current && !searchResultsRef.current.contains(e.target)) {
+      setShowResults(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+
   return (
     <div className="Search-bar">
-      <input className="Search-Input"
+      <input
+        className="Search-Input"
         type="text"
         placeholder="Search..."
         value={query}
         onChange={handleInputChange}
         onKeyPress={handleKeyPress}
       />
-      <button onClick={handleSearch}><FontAwesomeIcon icon={faMagnifyingGlass} /></button>
+      <button onClick={handleSearch}>
+        <FontAwesomeIcon icon={faMagnifyingGlass} />
+      </button>
+
+      {showResults && (
+        <ul ref={searchResultsRef} className="Search-Results">
+          {searchResults.map((result) => (
+            <li key={result.id} onClick={() => handleResultClick(result.id)}>
+              {result.title}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

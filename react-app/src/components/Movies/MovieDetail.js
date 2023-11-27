@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 const apiKey = process.env.REACT_APP_IMDB_API_BEARER_TOKEN;
-const apiUrl = process.env.REACT_APP_IMDB_MOVIE_DETAILS_URL;
+const apiUrl = process.env.REACT_APP_IMDB_API_URL;
 const apiImageBaseUrl = process.env.REACT_APP_IMDB_IMAGE_API_URL;
 
 function MovieDetail() {
@@ -14,7 +14,7 @@ function MovieDetail() {
     const fetchMovieDetails = async () => {
       try {
         const response = await axios.get(
-          `https://api.themoviedb.org/3/movie/${id}`,
+          `${apiUrl}/movie/${id}`,
           {
             headers: {
               Authorization: `Bearer ${apiKey}`,

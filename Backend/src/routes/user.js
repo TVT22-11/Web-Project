@@ -1,7 +1,7 @@
 require('dotenv').config()
 const router = require('express').Router();
 const {getUser} = require('../database_tools/user_db');
-const {auth} = require('../auth/auth');
+const {authenticateToken} = require('../auth/auth');
 
 
 router.get('/' , async (req, res) => {
@@ -18,7 +18,7 @@ router.get('/' , async (req, res) => {
     }
 });
 
-router.get('/personal', auth, async (req, res) => {
+router.get('/personal', authenticateToken, async (req, res) => {
     try{
         const username = res.locals.username;
         res.status(200).json({username: username, personalData: "This is your personal data"});
