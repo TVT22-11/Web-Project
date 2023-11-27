@@ -1,0 +1,37 @@
+.movie-box-container
+{
+    display: flex;
+    margin: 50px;
+    justify-content: center;
+    align-items: center;
+
+}
+
+@media only screen and (max-width: 990px){
+    
+    .Movie-Image{
+
+
+    }
+    .Movie-Box{
+        width: 100%;
+        overflow: hidden;
+        flex-direction:column;
+    }
+
+    .Movie-Container{       
+        flex-direction: column;
+        align-items: center;
+        overflow: hidden;
+}
+
+    .Movie-Desc{
+        
+       max-height: 200px;
+       text-overflow:ellipsis;
+       overflow: hidden;
+    }
+    .movie-release-date{
+        display: none;
+    }
+}

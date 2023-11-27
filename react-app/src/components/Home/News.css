@@ -13,11 +13,20 @@
   overflow: hidden;
   width: 80%;
 
+  margin-bottom: 80px;
+  
+
+
+}
+.dark-mode .News-Box {
+  background-color: var(--first-color);
+
 }
   .News-Box.active {
     top: 0;
     position: relative;
     display: flex;
+    
 
   }
   .News-Box img{
@@ -35,6 +44,7 @@
   }
 
   .Article-full {
+
     height: 250px;
     text-overflow: ellipsis;
     color: var(--second-color);
@@ -48,11 +58,15 @@
     
  
   }
+  .dark-mode .Article-full {
+    color: var(--light-mode-text-color);
+  }
   .Article-title{
+    
     color: var(--second-color);
     text-overflow: ellipsis;
     justify-content: space-between;
-    font-size: 34px;
+    font-size: 25px;
     display: flex;
     text-decoration: none;
   }
@@ -71,6 +85,12 @@
     top: 25px;
     font-weight: 100;
   }
+
+  .Article-title a{
+    text-decoration: none;
+    color: var(--second-color);
+}
+
 
   
 

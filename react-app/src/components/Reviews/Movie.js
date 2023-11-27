@@ -26,7 +26,9 @@ useEffect(() =>{
       }
 
       const data = await response.json();
-      setMovie(data.results.slice(0, 3)); 
+      
+      setMovie(data.results.slice(0, 3));  // Näyttää vain 3 TOP elokuvista.
+
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -40,11 +42,15 @@ useEffect(() =>{
       {movie.map((movie) => (
           <li className='Movie-Box' key={movie.id}>
       <img  src={`${apiImageBaseUrl}${movie.poster_path}`}
-            style={{ maxWidth: '80%' }}/>
+            className='Movie-Image'
+            alt={movie.title}
+            />
 
       <div className='Movie-Desc'>
+      <p>Rating: </p>
       <h2>{movie.title}</h2>
-      <p>{movie.release_date}</p>
+      <p>{movie.overview}</p>
+      <p className='movie-release-date'>{'Release date : '}{'\n'}{movie.release_date}</p>
       </div>
       </li>
       

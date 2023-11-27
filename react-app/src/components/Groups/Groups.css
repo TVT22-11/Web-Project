@@ -1,16 +1,21 @@
  /*SIDEBAR LIST*/
- .your-groups-list{
+.your-groups-list{
     padding-left: 30px;
     padding-top: 10px;
     }
-    .your-groups-list img{
+.your-groups-list img{
         height: 25px;
         margin-right: 5px;
      }
 .your-groups-list, h3{
     text-decoration: underline;
-    color: var(--second-color);
+    color: var(--dark-first-color);
 }
+
+.dark-mode .your-groups-list, h3{
+    color: var(--light-mode-text-color);
+}
+
 .your-groups-list, ul li a{
     text-decoration: none, underline;  
     color: var(--second-color);
@@ -34,11 +39,14 @@
 }
 
 .groups-list {
-    background-color: var(--dark-first-color);
+    background-color: var(--first-color);
     width: 400px;
     height: 400px;
     border-radius: 30px;
 }
+.dark-mode .groups-list {
+    background-color: var(--first-color);
+  }
 
 .groups-list img {
     height: 25px;
@@ -58,11 +66,17 @@
     padding-bottom: 5px;
     color: var(--second-color);
 }
+.dark-mode .groups-list td {
+    color: var(--light-mode-text-color);
+  }
 
 .groups-list th{
     padding: 20px;
     color: var(--second-color);
 }
+.dark-mode .groups-list th {
+    color: var(--light-mode-text-color);
+  }
 
 
 .groups-list h3 {
@@ -71,6 +85,9 @@
     align-items: center;
     color: var(--second-color);
 }
+.dark-mode .groups-list h3 {
+    color: var(--light-mode-text-color);
+  }
 .groups-list button {
     color: var(--second-color); 
     padding: 8px 16px;
@@ -80,12 +97,15 @@
 }
 
 .groups-list button:hover {
-    background-color: #6B56E9; }
+    background-color: var(--purple-color);
+   }
+
 
     .groups-list a{
         text-decoration: none;
         color: var(--second-color);
     }
+
 
 /*CREATING-GROUP-CSS*/
 
@@ -105,6 +125,9 @@
     height: 300px;
     border-radius: 30px;
     padding-top: 10px;  
+  }
+  .dark-mode .creating-form-container {
+    background-color: var(--first-color);
   }
   .creating-form-container label{
     color: var(--second-color);
@@ -130,26 +153,23 @@ margin-bottom: 10px;
 margin-bottom: 10px;
 }
 
-
-  
-
   .creating-form-container ::placeholder{
-    color: var(--placeholder-color);
-    padding-left: 10px;
+    color: white;
   }
-
 
 
 /*CHATPAGE-CSS*/
 
 
-
 .chat{
+
 display: flex;
 align-items: center;
 justify-content: center;
-color: var(--second-color);
+padding-top: 200px;
+color: var(--light-mode-text-color);
 padding-top: 100px;
+
 }
 
 .chat h1{
@@ -165,14 +185,22 @@ width: fit-content;
 }
 
 .chat-backround{
+
+background-color: #3f3f3f;
+width: 350px;
+height: 400px;
+
 background-color: var(--dark-first-color);
 width: 80%;
 height: 800px;
+
 border-radius: 20px;
 }
 
-
 .chat ::placeholder{
+
+    color: white;
+
     color: var(--placeholder-color);
     padding-left: 10px;
 }
@@ -183,8 +211,8 @@ border-radius: 20px;
     height: 100vh;
     padding-top: 670px;
     
-}
 
+}
 
 /*CREATE-GROUP-BUTTON-CSS*/
 
