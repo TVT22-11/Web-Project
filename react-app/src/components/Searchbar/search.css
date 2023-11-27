@@ -47,16 +47,17 @@
     border-radius: 4px 0 0 4px;
     font-size: 20px; 
     display: flex;
+    padding: 15px;
     height: 100%;
     width: 100%;
-    background-color: var(--body-background-color);
+    background-color: var(--yellow-color);
   }
   
   button {
-    padding: 17px 15px;
-    margin-left: 10px;
-    border: none;
-    border-radius: 5px;
+    padding: 15px 15px;
+    margin-left: 2px;
+    border: 1px solid #ccc;
+    border-radius: 0 4px 4px 0;
     background-color: black;
     color: var(--second-color);
     cursor: pointer;
@@ -67,7 +68,7 @@
   }
   
   button:hover {
-    background-color: #6B56E9;
+    background-color: var(--yellow-color);
   }
 
   .Search-bar ::placeholder{

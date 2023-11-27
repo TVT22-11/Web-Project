@@ -11,6 +11,10 @@
     align-items: center;
     display: flex;
 }
+.dark-mode .Movies-Box{
+    background-color: var(--first-color);
+    color: var(--light-mode-text-color);
+}
 
 .Movies-Container
 {   

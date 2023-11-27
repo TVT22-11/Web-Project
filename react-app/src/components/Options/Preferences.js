@@ -39,6 +39,7 @@ function Preferences({ selectedTimezone, setSelectedTimezone }) {
       <div className={`content ${isDarkMode ? 'dark-mode' : ''}`}>
         <ul>
           <li>
+          <h2>Preferences</h2>
             <label>
               Light Mode
               <input
