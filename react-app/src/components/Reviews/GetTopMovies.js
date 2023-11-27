@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import './Movie.css';
+import './GetTopMovies.css';
 const apiKey = process.env.REACT_APP_IMDB_API_BEARER_TOKEN;
 const apiUrl = process.env.REACT_APP_IMDB_API_URL;
 const apiImageBaseUrl= process.env.REACT_APP_IMDB_IMAGE_API_URL
 
 
 
-const Movie = ({language, page}) => {
+const GetTopMovies = ({language, page}) => {
   const [movie, setMovie] = useState([]);
 
 useEffect(() =>{
@@ -58,4 +58,4 @@ useEffect(() =>{
     </div>
   );
 }
-export default Movie;
+export default GetTopMovies;

@@ -1,6 +1,6 @@
 require ('dotenv').config()
 const router = require('express').Router();
-const {register, getPw} = require('../database_tools/auth_db');
+const {register, getpassword} = require('../database_tools/auth_db');
 const multer = require('multer');
 const upload = multer({dest: 'uploads/'});
 const bcrypt = require('bcrypt');
@@ -12,29 +12,30 @@ router.post('/register', upload.none(), async (req, res) => {
     const fname = req.body.fname;
     const lname = req.body.lname;
     const username = req.body.username;
-    const pw = req.body.pw;
+    const password = req.body.password;
 
     try {
-        const pwHash = await bcrypt.hash(pw, 10);
-        await register(fname, lname, username, pwHash);
+        const passwordHash = await bcrypt.hash(password, 10);
+        await register(fname, lname, username, passwordHash);
         const token = createToken(username);
         res.status(200).json({ jwtToken: token });
-    } catch (err) {
-        console.error(err); // Log the error for debugging purposes
-        res.status(500).json({ error: 'Internal Server Error' });
-    }
+} catch (err) {
+    console.error(err); // Log the entire error object
+    res.status(500).json({ error: 'Internal Server Error' });
+}
+
 });
 
 router.post('/login', upload.none(), async (req, res) => {
 
     const username = req.body.username;
-    const pw = req.body.pw;
+    const password = req.body.password;
 
     try {
-        const db_pw = await getPw(username);
+        const db_password = await getpassword(username);
 
-        if (db_pw) {
-            const isAuth = await bcrypt.compare(pw, db_pw);
+        if (db_password) {
+            const isAuth = await bcrypt.compare(password, db_password);
             if (isAuth) {
                 const token = createToken(username);
                 res.status(200).json({jwtToken: token});

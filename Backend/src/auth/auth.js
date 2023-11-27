@@ -15,4 +15,4 @@ function createToken(username) {
     return jwt.sign({ username: username }, process.env.JWT_SECRET_KEY);
 }
 
-module.exports = { auth, createToken };
+module.exports = { auth, createToken }; 

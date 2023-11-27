@@ -14,7 +14,7 @@ function SignUp() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [state, setState] = useState({
     username: "",
-    pw: "",
+    password: "",
     fname: "",
     lname: ""
   });
@@ -32,16 +32,16 @@ function SignUp() {
 
     const userData = {
       username: state.username,
-      pw: state.pw,
+      password: state.password,
       fname: state.fname,
       lname: state.lname
     };
 
-    axios.post("http://localhost:3001/auth/register", userData)
+    axios.post("http://localhost:5432/auth/register", userData)
     .then((response) => {
       console.log(response.status, response.data);
       setIsSubmitted(true);
-      // You might want to handle token and redirect here based on response
+
     })
 
       .catch((error) => {
@@ -80,8 +80,8 @@ function SignUp() {
               className="input-color"
               placeholder="Password"
               type="password"
-              name="pw"
-              value={state.pw}
+              name="password"
+              value={state.password}
               onChange={handleChange}
               autoComplete="off"
               required

@@ -12,6 +12,7 @@
     background-color: var(--body-background-color);
     border-radius: 35px;
     box-shadow: var(--box-shadow);
+     position: relative;
     
 
 }
@@ -21,7 +22,8 @@
   text-decoration: none;
   
   display: flex;
-  
+  align-items: center;
+  justify-content: center;
   padding: 20px;
   
 }
