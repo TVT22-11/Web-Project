@@ -49,7 +49,7 @@ function Login() {
 
   // JSX code for login form
   const renderForm = (
-    <div className="form">
+    <div className="loginform">
       <form onSubmit={handleSubmit}>
         <div className="input-container">
           <label>Username </label>

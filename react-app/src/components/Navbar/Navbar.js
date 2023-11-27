@@ -44,12 +44,11 @@ const Navbar = ({ selectedTimezone, setSelectedTimezone }) => {
             <li><Link to="/Movies">Movies</Link></li>
             <li><Link to="/Groups">Groups</Link></li>
             <li><Link to="/options/preferences">Options</Link></li>
+            <Link to="/Login" className="sign-in-button">Sign In</Link>
           </ul>
         </div>
         
-
-        <Link to="/Login" className="sign-in-button">Sign In</Link>
-        <Clock timezone={selectedTimezone} />
+          <Clock timezone={selectedTimezone} />
       </nav>
     </header>
   );

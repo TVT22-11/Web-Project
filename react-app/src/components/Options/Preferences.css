@@ -25,10 +25,15 @@ input[type="checkbox"]{
 select {
   margin: 10px 0px 10px 10px;
   padding: 5px;
-  border: 1px solid var(--purple-color);
+  border: 1px solid var(--yellow-color);
   border-radius: 20px;
   appearance: none;
-  background-color: var(--fourth-color);
+  background-color: var(--darker-color);
+  color: var(--second-color);
+}
+.dark-mode select{
+  background-color: var(--sidebar-second-color);
+  color: var(--light-mode-text-color);
 }
 
 
