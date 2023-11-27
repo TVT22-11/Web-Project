@@ -1,8 +1,8 @@
 const pgPool = require('./pg_connection');
 
 const sql = {
-    GET_USER: 'SELECT fname, lname, username FROM users WHERE username = $1',
-    GET_ALL_USERS: 'SELECT fname, lname, username FROM users',
+    GET_USER: 'SELECT fname, lname, username FROM account WHERE username = $1',
+    GET_ALL_account: 'SELECT fname, lname, username FROM account',
 }
 
 async function getUser(username) {
@@ -12,7 +12,7 @@ async function getUser(username) {
         return result.rows.length > 0 ? result.rows : null;
         }
 
-    let result = await pgPool.query(sql.GET_ALL_USERS);
+    let result = await pgPool.query(sql.GET_ALL_account);
         return result.rows;
 }
 

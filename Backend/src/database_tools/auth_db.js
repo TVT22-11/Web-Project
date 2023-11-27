@@ -1,25 +1,25 @@
 const pgPool = require('./pg_connection');
 
 const sql = {
-    REGISTER: 'INSERT INTO users (fname, lname, username, pw) VALUES ($1, $2, $3, $4)',
-    GET_PW: 'SELECT pw FROM users WHERE username = $1',
+    REGISTER: 'INSERT INTO account (fname, lname, username, password) VALUES ($1, $2, $3, $4)',
+    GET_password: 'SELECT password FROM account WHERE username = $1',
 }
 
-async function register(fname, lname, username, pw) {
+async function register(fname, lname, username, password) {
     const client = await pgPool.connect();
     try {
-        await client.query(sql.REGISTER, [fname, lname, username, pw]);
+        await client.query(sql.REGISTER, [fname, lname, username, password]);
     } finally {
         client.release();
     }
 }
 
-async function getPw(username) {
+async function getpassword(username) {
     const client = await pgPool.connect();
     try {
-        const result = await client.query(sql.GET_PW, [username]);
+        const result = await client.query(sql.GET_password, [username]);
         if (result.rows.length > 0) {
-            return result.rows[0].pw;
+            return result.rows[0].password;
         } else {
             return null;
         }
@@ -28,4 +28,4 @@ async function getPw(username) {
     }
 }
 
-module.exports = { register, getPw };
+module.exports = { register, getpassword };

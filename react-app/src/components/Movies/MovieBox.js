@@ -1,11 +1,11 @@
 import React from 'react';
-import Movie from '../Reviews/Movie'
+import GetTop from '../Reviews/GetTopMovies'
 import './MovieBox.css';
 
 function MovieBox(){
     return(
         <div className="movie-box-container">
-        <Movie />
+        <GetTop />
         </div>
         );
     };
