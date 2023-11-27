@@ -17,6 +17,9 @@
     
 
 }
+.dark-mode .Movie-Box{
+    background-color: var(--first-color);
+}
 .Movie-Container
 {   
     position: relative;

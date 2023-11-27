@@ -19,5 +19,5 @@ position: relative;
 }
 .dark-mode .Top-Movie{
     color: var(--light-mode-text-color);
-
+    background-color: var(--first-color);
 }
