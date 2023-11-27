@@ -7,6 +7,7 @@ import axios from 'axios';
 
 const apiKey = process.env.REACT_APP_IMDB_API_BEARER_TOKEN;
 const apiUrl = process.env.REACT_APP_IMDB_API_URL;
+const apiImageBaseUrl = process.env.REACT_APP_IMDB_IMAGE_API_URL;
 
 const SearchBar = () => {
   const [query, setQuery] = useState('');
@@ -78,7 +79,15 @@ const SearchBar = () => {
         <ul ref={searchResultsRef} className="Search-Results">
           {searchResults.map((result) => (
             <li key={result.id} onClick={() => handleResultClick(result.id)}>
-              {result.title}
+              <img src={`${apiImageBaseUrl}${result.poster_path}`}
+              
+            className='Movie-Image-SearchBar'
+            alt={result.title}
+            />
+            <div className='results-description-container'>
+             <h1 className='result-title'>{result.title}</h1> 
+              <h2 className='result-release-date'>{result.release_date}</h2>
+              </div>
             </li>
           ))}
         </ul>
