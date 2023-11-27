@@ -58,7 +58,7 @@ function SignUp() {
 
    
     const renderForm = (
-      <div className="form">
+      <div className="signupform">
         <form onSubmit={handleSubmit}>
           <div className="input-container">
             <label>Username </label>

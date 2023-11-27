@@ -9,12 +9,12 @@
     font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   }
   
-  input[type="text"],
-  input[type="password"] {
+  .loginform input[type="text"],
+  .loginform input[type="password"] {
     height: 35px;
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 5px;
-    background-color: #6c56e9;
+    background-color: var(--yellow-color);
   }
   
   input[type="submit"], [type="button"] {
