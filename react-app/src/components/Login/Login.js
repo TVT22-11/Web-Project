@@ -1,68 +1,51 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import ReactDOM from "react-dom";
-import './Login.css';
+import "./Login.css";
 import "./SignUp.css";
 
 function Login() {
-
   const navigate = useNavigate();
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const [state, setState] = useState({
+    username: "",
+    pw: "",
+  });
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setState({
+      ...state,
+      [e.target.name]: value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const userData = {
+      username: state.username,
+      pw: state.pw,
+    };
+
+    axios
+      .post("http://localhost:3001/auth/register", userData)
+      .then((response) => {
+        console.log(response.status, response.data.token);
+        // You might want to handle token and redirect here based on response
+      });
+  };
 
   const handleRegisterClick = () => {
     // Add any additional logic you need before navigating
-    navigate('/signup');
+    navigate("/signup");
   };
 
   // React States
   const [errorMessages, setErrorMessages] = useState({});
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
-  // User Login info
-  const database = [
-    {
-      username: "user1",
-      password: "pass1",
-    },
-    {
-      username: "user2",
-      password: "pass2",
-    },
-  ];
-
-  const errors = {
-    uname: "invalid username",
-    pass: "invalid password",
-  };
-
-  const handleSubmit = (event) => {
-    //Prevent page reload
-    event.preventDefault();
-
-    var { uname, pass } = document.forms[0];
-
-    // Find user login info
-    const userData = database.find((user) => user.username === uname.value);
-
-    // Compare user info
-    if (userData) {
-      if (userData.password !== pass.value) {
-        // Invalid password
-        setErrorMessages({ name: "pass", message: errors.pass });
-      } else {
-        setIsSubmitted(true);
-      }
-    } else {
-      // Username not found
-      setErrorMessages({ name: "uname", message: errors.uname });
-    }
-  };
-
-  // Generate JSX code for error message
-  const renderErrorMessage = (name) =>
-    name === errorMessages.name && (
-      <div className="error">{errorMessages.message}</div>
-    );
 
   // JSX code for login form
   const renderForm = (
@@ -70,18 +53,33 @@ function Login() {
       <form onSubmit={handleSubmit}>
         <div className="input-container">
           <label>Username </label>
-          <input  className="input-color" placeholder="Username" type="text" name="uname" autoComplete="off" required />
-          {renderErrorMessage("uname")}
+          <input
+            className="input-color"
+            placeholder="Username"
+            type="text"
+            name="username"
+            value={state.username}
+              onChange={handleChange}
+            autoComplete="off"
+            required
+          />
         </div>
         <div className="input-container">
           <label>Password </label>
-          <input className="input-color" placeholder="Password" type="password" name="pass" required />
-          {renderErrorMessage("pass")}
+          <input
+            className="input-color"
+            placeholder="Password"
+            type="password"
+            name="pw"
+            value={state.pw}
+            onChange={handleChange}
+            required
+          />
         </div>
         <div className="button-container">
           <input type="submit" />
           <label> OR </label>
-          <input type="button" value="Register" onClick={handleRegisterClick} /> 
+          <input type="button" value="Register" onClick={handleRegisterClick} />
         </div>
       </form>
     </div>
@@ -95,6 +93,6 @@ function Login() {
       </div>
     </div>
   );
-};
+}
 
 export default Login;
