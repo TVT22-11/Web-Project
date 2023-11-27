@@ -7,11 +7,12 @@ import "./SignUp.css";
 
 function Login() {
   const navigate = useNavigate();
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+ const [errorMessages, setErrorMessages] = useState({});
 
   const [state, setState] = useState({
     username: "",
-    pw: "",
+    password: "",
   });
 
   const handleChange = (e) => {
@@ -27,28 +28,39 @@ function Login() {
 
     const userData = {
       username: state.username,
-      pw: state.pw,
+      password: state.password,
     };
 
     axios
-      .post("http://localhost:3001/auth/register", userData)
+      .post("http://localhost:5432/auth/login", userData)
       .then((response) => {
-        console.log(response.status, response.data.token);
+        console.log(response.status, response.data);
+        setIsLoggedIn(true);
+       /* navigate("/");*/
         // You might want to handle token and redirect here based on response
+
+      })
+
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response);
+          console.log("Server responded with an error");
+        } else if (error.request) {
+          console.log("network error");
+        } else {
+          console.log(error);
+        }
       });
   };
+
 
   const handleRegisterClick = () => {
     // Add any additional logic you need before navigating
     navigate("/signup");
   };
 
-  // React States
-  const [errorMessages, setErrorMessages] = useState({});
-
-
   // JSX code for login form
-  const renderForm = (
+  const renderLoginForm = (
     <div className="form">
       <form onSubmit={handleSubmit}>
         <div className="input-container">
@@ -70,8 +82,8 @@ function Login() {
             className="input-color"
             placeholder="Password"
             type="password"
-            name="pw"
-            value={state.pw}
+            name="password"
+            value={state.password}
             onChange={handleChange}
             required
           />
@@ -85,11 +97,20 @@ function Login() {
     </div>
   );
 
+  const renderLoggedInState = (
+    <div>
+      <div>User is successfully logged in</div>
+      {/* Display the username or any other information you want */}
+      <div>Welcome,  {state.username}!</div>
+    </div>
+  );
+
   return (
     <div className="app">
       <div className="login-form">
         <div className="title">SIGN IN</div>
-        {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
+        {errorMessages.server && <div>{errorMessages.server}</div>}
+        {isLoggedIn ? renderLoggedInState : renderLoginForm}
       </div>
     </div>
   );
