@@ -78,7 +78,7 @@ const SearchBar = () => {
       {showResults && (
         <ul ref={searchResultsRef} className="Search-Results">
           {searchResults.map((result) => (
-            <li key={result.id} onClick={() => handleResultClick(result.id)}>
+            <li className='search-result-container' key={result.id} onClick={() => handleResultClick(result.id)}>
               <img src={`${apiImageBaseUrl}${result.poster_path}`}
               
             className='Movie-Image-SearchBar'
