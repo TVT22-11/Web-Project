@@ -6,12 +6,15 @@ import Alerts from './Alerts';
 import Appearance from './Appearance';
 import Other from './Other';
 
-function Options() {
+function Options({ selectedTimezone, setSelectedTimezone }) {
   return (
     <Routes>
       {/* Redirect to /options/preferences by default */}
       <Route path="/" element={<Navigate to="preferences" />} />
-      <Route path="preferences" element={<Preferences />} />
+      <Route
+        path="preferences"
+        element={<Preferences selectedTimezone={selectedTimezone} setSelectedTimezone={setSelectedTimezone} />}
+      />
       <Route path="alerts" element={<Alerts />} />
       <Route path="appearance" element={<Appearance />} />
       <Route path="other" element={<Other />} />
