@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(cors());
 app.use(express.static('public'));
 
-app.use('/users', user);
+app.use('/account', user);
 app.use('/auth', auth);
 
 app.get('/test', (req, res) => {

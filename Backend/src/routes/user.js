@@ -7,9 +7,9 @@ const {auth} = require('../auth/auth');
 router.get('/' , async (req, res) => {
 
     try{
-        const users = await getUser(req.query.username);
-        if (users) {
-            res.status(200).json(users.length === 1 ? users[0] : users);
+        const account = await getUser(req.query.username);
+        if (account) {
+            res.status(200).json(account.length === 1 ? account[0] : account);
         } else {
             res.status(404).send('User not found');
         }
