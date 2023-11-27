@@ -12,6 +12,7 @@ import Options from './components/Options/Options';
 import SignUp from './components/Login/SignUp';
 import Movies from './components/Movies/Movies';
 import { DarkModeProvider } from './components/Options/DarkModeContext';
+import Reviews from './components/Reviews/Reviews';
 
 
 
@@ -29,6 +30,7 @@ function App() {
           <Route path="/groups/*" element={<GroupRoutes />} />
 
           <Route path= "/Movies/*" element={<Movies/>} />
+          <Route path= "/Reviews" element={<Reviews/>} />
 
           <Route path="/options/*" element={<Options />} />
           <Route path="/login/*" element={<Login />} />
