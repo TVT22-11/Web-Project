@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './GetTopMovies.css';
 const apiKey = process.env.REACT_APP_IMDB_API_BEARER_TOKEN;
 const apiUrl = process.env.REACT_APP_IMDB_API_URL;
@@ -38,9 +39,12 @@ useEffect(() =>{
 }, []);
   
   return (
+    
     <div className='Movie-Container' >
+      
       {movie.map((movie) => (
           <li className='Movie-Box' key={movie.id}>
+           <Link to={`/movie/${movie.id}`}>
       <img  src={`${apiImageBaseUrl}${movie.poster_path}`}
             className='Movie-Image'
             alt={movie.title}
@@ -52,8 +56,9 @@ useEffect(() =>{
       <p>{movie.overview}</p>
       <p className='movie-release-date'>{'Release date : '}{'\n'}{movie.release_date}</p>
       </div>
+      </Link>
       </li>
-      
+       
         ))}
     </div>
   );

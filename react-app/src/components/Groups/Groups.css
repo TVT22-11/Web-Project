@@ -89,7 +89,6 @@
     color: var(--light-mode-text-color);
   }
 .groups-list button {
-    background-color: var(--hover-backround-color);
     color: var(--second-color); 
     padding: 8px 16px;
     border: none; 
