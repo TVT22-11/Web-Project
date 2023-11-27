@@ -1,7 +1,7 @@
 
 .logo-name{
     display: flex;
-    background-color: #6B56E9;
+    background-color: var(--yellow-color);
     padding: 10px;
     border-radius: 20px;
     display:flex;
@@ -94,15 +94,11 @@
 
 
 .sign-in-button {
-  position: absolute;
   display: flex;
-  right: 15px;
-  color: #6B56E9 !important;
+  color:  var(--yellow-color) !important;
   border-radius: 10px;
   background: none;
-  padding: 12px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 5px;
   border: none;
   font-weight: 500;
   text-decoration: none; /* Remove default underline on the link */

@@ -1,38 +1,34 @@
   .Movies-Box{
-    width: 50%;
-    height: 100vh;
+    width: 500px;
     margin: 25px;
-    display: grid;
-    flex-direction: column;
-    align-items: center;
-    top: 0;
     padding: 30px;
-    max-width: fit-content;
     margin-bottom: 25px;
     background-color: var(--body-background-color);
     border-radius: 35px;
     box-shadow: var(--box-shadow);
-     position: relative;
-    
-
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+.dark-mode .Movies-Box{
+    background-color: var(--first-color);
+    color: var(--light-mode-text-color);
 }
 
 .Movies-Container
 {   
   text-decoration: none;
-  
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   padding: 20px;
-  
+  flex-wrap: wrap;
 }
 
 .Movies-Desc{
     margin-top: 15px;
-  
+    width: fit-content;
     color: var(--second-color);
-    width: 100%;
     text-align: center;
     padding: 5px;
     text-overflow:ellipsis ;
@@ -42,3 +38,6 @@
 .dark-mode .Movies-Desc{
     color: var(--text-color-light);
 }
+
+
+
