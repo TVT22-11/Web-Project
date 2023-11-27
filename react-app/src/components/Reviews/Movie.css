@@ -12,11 +12,16 @@
     background-color: var(--body-background-color);
     border-radius: 35px;
     box-shadow: var(--box-shadow);
+    justify-content: center;
+    position: relative;
     
 
 }
 .Movie-Container
 {   
+    position: relative;
+    justify-content: center;
+    align-items: center;
     text-decoration: none;
     flex-direction: row;
     display: flex;
@@ -42,7 +47,7 @@
     color: var(--second-color);
     width: 100%;
     text-align: center;
-
+    
     padding: 5px;
     text-overflow:ellipsis ;
     overflow: hidden;

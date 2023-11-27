@@ -41,7 +41,7 @@ function SignUp() {
     .then((response) => {
       console.log(response.status, response.data);
       setIsSubmitted(true);
-      // You might want to handle token and redirect here based on response
+
     })
 
       .catch((error) => {
