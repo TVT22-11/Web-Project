@@ -27,7 +27,7 @@ useEffect(() =>{
       }
 
       const data = await response.json();
-      setMovies(data.results.slice(0, 6)); 
+      setMovies(data.results.slice(0, 25)); 
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -43,9 +43,9 @@ useEffect(() =>{
 
       <div className='Movies-Container' >
           {movie.map((movie) => (
-          <li className='Movie-Box' key={movie.id}>
+          <li className='Movies-Box' key={movie.id}>
               <img  src={`${apiImageBaseUrl}${movie.poster_path}`}
-                style={{ maxWidth: '80%' }}
+                style={{ maxWidth: '100%' }}
               alt={movie.title}
               />
 
