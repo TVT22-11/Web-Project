@@ -1,27 +1,26 @@
-.Movie-Box{
-    width: 50%;
-    height: 100%;
+.Movie-Box {
+    width: 450px;
+    height: 750px;
     margin: 25px;
-    display: flex;
-    flex-direction: column;
+    list-style: none;
     align-items: center;
-    top: 0;
+    justify-content: center;
+    display: flex;
+    flex-direction: column; /* Set the flex-direction to column */
     padding: 25px;
     margin-bottom: 25px;
     background-color: var(--body-background-color);
     border-radius: 35px;
     box-shadow: var(--box-shadow);
-    justify-content: center;
-    position: relative;
-    
-
+    overflow: hidden;
 }
+
 .dark-mode .Movie-Box{
     background-color: var(--first-color);
 }
 .Movie-Container
 {   
-    position: relative;
+    
     justify-content: center;
     align-items: center;
     text-decoration: none;
@@ -29,33 +28,51 @@
     display: flex;
     padding: 10px;
     border-radius: 20px;
-    max-width: 80%;
+   
     
 }
 .Movie-Image{
-    width: 50%;
+    width:  300px;
+    height: 400px;
+    align-items: center;
+    justify-content: center;
+ 
+  
 }
 
-
-
+.Movie-Link{
+    width: 450px;
+    height: 750px;
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
 
 .Movie-Desc{
-    
+    height: 100%;
     margin-top: 15px;
     color: var(--second-color);
     width: 100%;
     text-align: center;
-    
+    position: relative;
     padding: 5px;
     text-overflow:ellipsis ;
     overflow: hidden;
 }
-
+.movie-overview{
+    height: 150px;
+    overflow: hidden;
+}
 .movie-release-date{
     bottom: 0;
-    
+    left: 0;
     position: absolute;
     font-weight: 100;
+    display: flex;
+    margin-top: 25px;
 
 }
 .dark-mode .Movie-Desc{
