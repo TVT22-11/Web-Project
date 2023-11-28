@@ -19,6 +19,7 @@ function App() {
     <Router>
       <DarkModeProvider>
 
+
              <div className='app-navbar'>
           <Navbar selectedTimezone={selectedTimezone} />
         </div>
@@ -28,7 +29,7 @@ function App() {
           <Route path="/Login" element={<Login />} />
           <Route path="/groups/*" element={<GroupRoutes />} />
 
-          <Route path= "/Movies/*" element={<Movies/>} />
+
 
           <Route
               path="/options/*"
@@ -40,6 +41,7 @@ function App() {
         </Routes>
       </div>
       <Footer />
+
 
       </DarkModeProvider>
     </Router>
