@@ -62,6 +62,7 @@ const SearchBar = () => {
   }, []);
 
   return (
+   
     <div className="Search-bar">
       <input
         className="Search-Input"
@@ -93,6 +94,7 @@ const SearchBar = () => {
         </ul>
       )}
     </div>
+
   );
 };
 
