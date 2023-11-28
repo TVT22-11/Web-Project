@@ -1,19 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './Navbar.css';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import Clock from '../Options/Clock';  // Import the Clock component
 
-const Navbar = () => {
-  const [show, setShow] = useState(true);
+const Navbar = ({ selectedTimezone, setSelectedTimezone }) => {
+  const [show, setShow] = React.useState(true);
 
   const DDmenuClickHandler = () => {
     var dropdown = document.getElementById("myDropdown");
     dropdown.classList.toggle("show");
     console.log('Dropdown menu clicked!');
   };
-
-
 
   return (
     <header>
@@ -47,10 +46,12 @@ const Navbar = () => {
             <li><Link to="/options/preferences">Options</Link></li>
           </ul>
         </div>
+        
+
         <Link to="/Login" className="sign-in-button">Sign In</Link>
+        <Clock timezone={selectedTimezone} />
       </nav>
     </header>
-    
   );
 };
 
