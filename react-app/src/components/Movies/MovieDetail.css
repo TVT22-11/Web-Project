@@ -3,10 +3,6 @@
 .Movie-Container {
   display: flex;
   align-items: center;
-  background-color: var(--first-color);
-  padding: 15px;
-  border: 1px solid var(--third-color);
-  border-radius: 8px;
   }
   
   .Movie-Image {
@@ -19,6 +15,10 @@
     flex: 1; /* Grow to fill available space */
     display: flex;
     flex-direction: column;
+    background-color: var(--first-color);
+  padding: 15px;
+  border: 1px solid var(--third-color);
+  border-radius: 8px;
   }
   
   h1, h2 {
