@@ -2,44 +2,51 @@
 import React, { useState,useEffect } from "react";
 import { Form, FormGroup, Input, Label, Button } from "reactstrap";
 import { Rating } from "react-simple-star-rating";
-import SearchBar from '../Searchbar/searchbar';
 import { Container} from 'react-bootstrap';
 import './Reviews.css';
+import { useParams } from "react-router-dom";
 
 const apiUrl = process.env.REACT_APP_IMDB_API_URL;
 const apiKey = process.env.REACT_APP_IMDB_API_BEARER_TOKEN;
 const apiImageBaseUrl= process.env.REACT_APP_IMDB_IMAGE_API_URL;
 const token = process.env.JWT_SECRET_KEY;
+const movieReviewsUrl= process.env.RACT_APP_IMDB_MOVIE_REVIEWS_URL;
 
 
-    const Reviews = () => {
+    export function Reviews(){
         
+        const {id} = useParams();
+        const [movie, setMovie] = useState();
         const [isReviewAdded, setIsReviewAdded] = useState(false);
-        const [review, setReview] = useState({ stars: 0 }); // Initialize as an object with stars property
-        
+        const [review, setReview] = useState([]);
+        const [rating, setRating] = useState(0);
 
-        const handleRating = (newRating) => {
-          // Implement logic for handling rating
-          setReview({ ...review, stars: newRating });
+        const handleRating = (rate: number) => {
+          setRating(rate)  
+        };
+        const handleReset = () => {
+          
+          console.log("Reset:", review);
+          setRating(0)
         };
       
         const handleReviewText = (event) => {
-          // Implement logic for handling review text
-          setReview({ ...review, text: event.target.value });
+         
+          setReview({text: event.target.value });
         };
       
         const handleSubmit = () => {
-          // Implement logic for handling form submission
+          
           console.log("Submitted:", review);
-          // Add logic to send the review data to the server
+          
           setIsReviewAdded(true);
         };
 
 
         useEffect(() =>{
-          const fetchData = async () =>{
+          const fetchReviews = async () =>{
             try{
-              const response = await fetch( `${apiUrl}/movie/movie_id/reviews?language=en-US&page=1`,
+              const response = await fetch( `${apiUrl}/movie/${id}/reviews`,
               {
                 method: 'GET',
                 headers: {
@@ -52,8 +59,16 @@ const token = process.env.JWT_SECRET_KEY;
               if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
               }
-              const data = await response.json();
-              setReview(data.results.slice(0, 2)); 
+              const data = await response.json(
+                
+                {
+                  headers: {
+                    Authorization: `Bearer ${apiKey}`,
+                    'Content-Type': 'application/json',
+                  },
+                }
+              );
+              setReview(data); 
             }
             catch (error) {
               console.error('Error fetching data:', error);
@@ -63,37 +78,35 @@ const token = process.env.JWT_SECRET_KEY;
           };
 
 
-          fetchData();
-        }, []);
+          fetchReviews();
+        }, [id]);
+
 
     return (
         <div>
-            <SearchBar />
             <div className="Reviews-box">
               <Container>
                  <h2>Reviews</h2>
+                
+                  <div className="Review-Text">
+                  <p>{review.text}</p>
+                  </div>
 
-                 {review.map((review) => (
-          <li className='Movies-Box' key={review.id}>
-              <img  src={`${apiImageBaseUrl}${review.avatar_path}`}
-                style={{ maxWidth: '100%' }}
-              alt={review.username}
-              />
+                  <div className="Reviews">
+                    <h3>Movie Reviews</h3>
+                    <ul>
+                      {review.map((result) => (
+                        <li key={result.id}>
+                          {result.author}
+                          {result.content}
+                          {result.updated_at}
+                        </li>
 
-            <div className='Movies-Desc'>
-              <h2>{review.author}</h2>
-              <p>content:{review.content}</p>
-              
-            </div>
-          </li>
-        
-          ))}
-             
-
+                      ))}
+                    </ul>
+                  </div>
               </Container>
-            </div>
-            
-            
+            </div>                      
             <div className="Review-container">
             <h2>Create review:</h2>
             <Form>
@@ -102,7 +115,7 @@ const token = process.env.JWT_SECRET_KEY;
                     <div>
                         <Rating
                             onClick={handleRating}
-                            initialValue={review.stars}
+                            initialValue={rating}
                             size={24}
                          />   
                     </div>
@@ -114,11 +127,14 @@ const token = process.env.JWT_SECRET_KEY;
                         name="reviewText"
                         id="reviewText"
                         onChange={handleReviewText}
-                     />   
+                     />
+                        
                 </FormGroup>
                 <Button color="info" onClick={handleSubmit}>
                     Submit
                 </Button>
+                <Button onClick={handleReset}>Reset
+                     </Button>
             </Form>
             </div>
         </div>
