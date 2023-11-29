@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './GetTopMovies.css';
 const apiKey = process.env.REACT_APP_IMDB_API_BEARER_TOKEN;
 const apiUrl = process.env.REACT_APP_IMDB_API_URL;
@@ -9,6 +9,7 @@ const apiImageBaseUrl= process.env.REACT_APP_IMDB_IMAGE_API_URL
 
 const GetTopMovies = ({language, page}) => {
   const [movie, setMovie] = useState([]);
+  const history = useNavigate();
 
 useEffect(() =>{
   const fetchData = async () => {
@@ -37,12 +38,14 @@ useEffect(() =>{
 
   fetchData();
 }, []);
-  
+  const movieClickHandler = (movieid) => {
+history(`/movie/${movieid}`);
+}
 return (
-  <div className='Movie-Container'>
+  <div className='HomeMovie-Container'>
     {movie.map((movie) => (
-      <li className='Movie-Box' key={movie.id}>
-        <Link to={`/movie/${movie.id}`} className='Movie-Link'>
+      <li className='Movie-Box' key={movie.id} onClick={() => movieClickHandler(movie.id)}>
+      
           <img
             src={`${apiImageBaseUrl}${movie.poster_path}`}
             className='Movie-Image'
@@ -54,7 +57,6 @@ return (
             <p className='movie-overview'>{movie.overview}</p>
             <p className='movie-release-date'>{'Release date : '}{'\n'}{movie.release_date}</p>
           </div>
-        </Link>
       </li>
     ))}
   </div>
