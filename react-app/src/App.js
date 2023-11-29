@@ -30,7 +30,7 @@ function App() {
           <Route path="/groups/*" element={<GroupRoutes />} />
 
           <Route path= "/Movies/*" element={<Movies/>} />
-          <Route path= "/Reviews" element={<Reviews/>} />
+          <Route path= "/Reviews/*" element={<Reviews/>} />
 
           <Route path="/options/*" element={<Options />} />
           <Route path="/login/*" element={<Login />} />

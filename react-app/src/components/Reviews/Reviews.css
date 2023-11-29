@@ -1,9 +1,21 @@
-.Review-box{
-
-    width: 500px;
-    background-color: aqua;
-    display: flex;
+.Reviews-box{
+    background-color: rgb(23, 121, 206);
+    position: center;
+    content: center;
 }
+
+
+
+.Review-container{
+    
+    background-color: var(--body-background-color);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+    
+
 .Movies-Box{
     width: 500px;
     margin: 25px;
