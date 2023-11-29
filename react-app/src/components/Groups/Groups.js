@@ -1,33 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Groups.css';
 import YourGroups from './yourGroups';
 import SearchBar from '../Searchbar/searchbar';
 import AvailableGroups from './availableGroups';
 import CreateGroup from './createGroup';
-import { useUser } from '../User/UserContext';
-
+import { useUser } from '../User/UserContext'; // Replace 'path-to-your-user-context' with the actual path
 
 function Groups() {
-  const [isSignedIn, setIsSignedIn] = useState(false);
-
- 
-  const handleSignIn = () => {
-    // Implement your sign-in logic here
-    // For example, set isSignedIn to true when the user signs in
-
-    setIsSignedIn(true);
-  };
+  const { isLoggedIn } = useUser();
 
   return (
     <div>
       {/* Navbar element */}
       <div>
         {/* Display sign-in message if not signed in */}
-        {!isSignedIn && <p >Sign in to access groups</p>}
+        {!isLoggedIn && <p>Sign in to access groups</p>}
         {/* SearchBar component always displayed */}
         <SearchBar />
         {/* YourGroups, AvailableGroups, and CreateGroup components */}
-        {isSignedIn && (
+        {isLoggedIn && (
           <>
             <YourGroups />
             <AvailableGroups />
