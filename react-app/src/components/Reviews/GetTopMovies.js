@@ -39,7 +39,7 @@ useEffect(() =>{
 }, []);
   
 return (
-  <div className='Movie-Container'>
+  <div className='HomeMovie-Container'>
     {movie.map((movie) => (
       <li className='Movie-Box' key={movie.id}>
         <Link to={`/movie/${movie.id}`} className='Movie-Link'>
