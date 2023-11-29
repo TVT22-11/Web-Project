@@ -12,6 +12,7 @@ import Movies from './components/Movies/Movies';
 import { DarkModeProvider } from './components/Options/DarkModeContext';
 import Reviews from './components/Reviews/Reviews';
 import MovieDetail from './components/Movies/MovieDetail';
+import SeriesDetail from './components/Movies/SeriesDetail';
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
           <Route path="/login/*" element={<Login />} />
           <Route path="/SignUp/*" element={<SignUp />} />
           <Route path="/movie/:id" Component={MovieDetail} />
+          <Route path="/series/:id" Component={SeriesDetail} />
         </Routes>
       </div>
       <Footer />
