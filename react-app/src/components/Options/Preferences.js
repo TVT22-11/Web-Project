@@ -3,28 +3,29 @@
 import React, { useState, useEffect } from 'react';
 import './Options.css';
 import './Preferences.css';
-import Clock from './Clock';
 import moment from 'moment-timezone';
+import 'moment-timezone/data/packed/latest.json';
 import Sidebar from './Sidebar';
 import { useDarkMode } from './DarkModeContext';
 
 function Preferences({ selectedTimezone, setSelectedTimezone }) {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
 
-  useEffect(() => {
-    // Add any other initialization code here
-  }, []); // Empty dependency array to run the effect only once on mount
+  useEffect(() => {}, []);
 
-  const storedTimezone = localStorage.getItem('selectedTimezone') || 'Europe/Helsinki';
   const [allTimezones, setAllTimezones] = useState([]);
 
   useEffect(() => {
-    const timeZoneList = moment.tz.names().map((timezone) => ({
-      value: timezone,
-      label: timezone,
-    }));
+    try {
+      const timeZoneList = moment.tz.names().map((timezone) => ({
+        value: timezone,
+        label: timezone,
+      }));
 
-    setAllTimezones(timeZoneList);
+      setAllTimezones(timeZoneList);
+    } catch (error) {
+      console.error('Error loading timezone data:', error);
+    }
   }, []);
 
   const handleTimezoneChange = (e) => {
@@ -39,7 +40,7 @@ function Preferences({ selectedTimezone, setSelectedTimezone }) {
       <div className={`content ${isDarkMode ? 'dark-mode' : ''}`}>
         <ul>
           <li>
-          <h2>Preferences</h2>
+            <h2>Preferences</h2>
             <label>
               Light Mode
               <input
@@ -52,7 +53,10 @@ function Preferences({ selectedTimezone, setSelectedTimezone }) {
           <li>
             <label>
               Timezone
-              <select value={selectedTimezone} onChange={(e) => handleTimezoneChange(e)}>
+              <select
+                value={selectedTimezone}
+                onChange={(e) => handleTimezoneChange(e)}
+              >
                 {allTimezones.map((timezone) => (
                   <option key={timezone.value} value={timezone.value}>
                     {timezone.label}
@@ -62,6 +66,8 @@ function Preferences({ selectedTimezone, setSelectedTimezone }) {
             </label>
           </li>
         </ul>
+
+
       </div>
     </div>
   );

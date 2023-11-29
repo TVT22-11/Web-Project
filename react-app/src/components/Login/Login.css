@@ -1,3 +1,4 @@
+
 .app {
     font-family: sans-serif;
     display: flex;
@@ -49,12 +50,26 @@
     border-radius: 15px;
     border: 1px solid rgba(34,36,38,.15);
   }
+
+  .Welcome{
+    margin: 5px;
+    text-align: center;
+  }
+
+  .loggedIn{
+    font-weight: 600;
+  }
   
   .list-container {
     display: flex;
   }
   
   .error {
+    color: red;
+    font-size: 12px;
+  }
+
+  .notification{
     color: red;
     font-size: 12px;
   }
@@ -76,9 +91,7 @@
   }
 
 .button {
-    background-color: #202020f8 !important;
-    
-    
+    background-color: #202020f8 !important;  
 }
 
 
@@ -90,4 +103,26 @@
 
   label{
     margin-bottom: 5px !important;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-top: 4px solid #e8a406;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin-right: 10px; /* Adjust as needed for spacing */
+  }
+
+  .error-message{
+    color: red;
+    text-align: center;
+    font-weight: 600;
+    font-size: large;
   }

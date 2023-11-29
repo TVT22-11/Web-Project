@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import moment from 'moment-timezone';
 import './Clock.css';
 
-function Clock({ timezone }) {
+function Clock({ timezone, defaultTimezone }) {
   const [currentTime, setCurrentTime] = useState(new Date());
 
   useEffect(() => {
@@ -17,7 +17,7 @@ function Clock({ timezone }) {
 
   const formattedTime = timezone
     ? moment(currentTime).tz(timezone).format('HH:mm')
-    : '';
+    : moment(currentTime).tz(defaultTimezone).format('HH:mm');
 
   return (
     <div className="Clock">
