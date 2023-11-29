@@ -1,0 +1,54 @@
+.Reviews-box{
+    background-color: rgb(23, 121, 206);
+    position: center;
+    content: center;
+}
+
+
+
+.Review-container{
+    
+    background-color: var(--body-background-color);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+    
+
+.Movies-Box{
+    width: 500px;
+    margin: 25px;
+    padding: 30px;
+    margin-bottom: 25px;
+    background-color: var(--body-background-color);
+    border-radius: 35px;
+    box-shadow: var(--box-shadow);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.Movies-Container
+{   
+  text-decoration: none;
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  flex-wrap: wrap;
+}
+
+.Movies-Desc{
+    margin-top: 15px;
+    width: fit-content;
+    color: var(--second-color);
+    text-align: center;
+    padding: 5px;
+    text-overflow:ellipsis ;
+    overflow: hidden;
+
+}
+.dark-mode .Movies-Desc{
+    color: var(--text-color-light);
+}
