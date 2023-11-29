@@ -2,7 +2,6 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Preferences from './Preferences';
-import Alerts from './Alerts';
 import Appearance from './Appearance';
 import Other from './Other';
 
@@ -15,7 +14,6 @@ function Options({ selectedTimezone, setSelectedTimezone }) {
         path="preferences"
         element={<Preferences selectedTimezone={selectedTimezone} setSelectedTimezone={setSelectedTimezone} />}
       />
-      <Route path="alerts" element={<Alerts />} />
       <Route path="appearance" element={<Appearance />} />
       <Route path="other" element={<Other />} />
     </Routes>

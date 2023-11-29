@@ -15,8 +15,10 @@ import MovieDetail from './components/Movies/MovieDetail';
 import SeriesDetail from './components/Movies/SeriesDetail';
 
 
+
 function App() {
-  const [selectedTimezone, setSelectedTimezone] = useState('Your/Default/Timezone');
+  const [selectedTimezone, setSelectedTimezone] = useState('Europe/Helsinki');
+
 
   return (
     <Router>
