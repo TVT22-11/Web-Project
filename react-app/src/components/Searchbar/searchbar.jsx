@@ -74,12 +74,6 @@ const SearchBar = () => {
     setSelectedType(e.target.value);
   };
 
-  const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
-      handleSearch();
-    }
-  };
-
   const handleClickOutside = (e) => {
     if (searchResultsRef.current && !searchResultsRef.current.contains(e.target)) {
       setShowResults(false);
@@ -113,13 +107,14 @@ const getGenreNames = (genreIds) => {
    
     <div className="Search-bar">
       <input
-      
+        onKeyUp={handleSearch}
         className="Search-Input"
         type="text"
         placeholder="Search..."
         value={query}
         onChange={handleInputChange}
-        onKeyPress={handleKeyPress}
+        
+        
       />
       <button onClick={handleSearch}>
         <FontAwesomeIcon icon={faMagnifyingGlass} />
