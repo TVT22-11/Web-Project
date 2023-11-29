@@ -53,6 +53,8 @@ function App() {
       </DarkModeProvider>
     </Router>
   );
+
+  
 }
 
 export default App;
