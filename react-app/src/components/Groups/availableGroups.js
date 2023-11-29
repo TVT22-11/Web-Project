@@ -1,16 +1,18 @@
-// availableGroups.js
 import React from 'react';
 import './Groups.css';
+import { Link } from 'react-router-dom';
 
-function AvailableGroups({ groups }) {
-  return (
-    <div className="groups flex-container">
-      <div className="groups-list">
+function availableGroups (){
+    return (
+<div className="groups flex-container">
+        <div className="groups-list">
         <h3>Available Groups:</h3>
-        {/* Render groups here */}
+         
+          
+        </div>
       </div>
-    </div>
-  );
+    );
 }
+export default availableGroups;
+                                        
 
-export default AvailableGroups;
