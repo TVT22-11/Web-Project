@@ -66,19 +66,7 @@ function Login() {
     navigate("/signup");
   };
 
-    // Display logout notification when isLoggedOut changes
-    React.useEffect(() => {
-      console.log('isLoggedOut value:', isLoggedOut);
-      if (isLoggedOut) {
-        console.log('Setting showLogoutNotification to true');
-        setShowLogoutNotification(true);
-      }
-    }, [isLoggedOut]);
 
-      // Callback to close the notification
-  const closeNotification = () => {
-    setShowLogoutNotification(false);
-  };
 
   // JSX code for login form
 
@@ -134,9 +122,6 @@ function Login() {
     <div className="app">
       <div className="login-form">
         <div className="title">SIGN IN</div>
-        {showLogoutNotification && (
-          <Notification message="You have successfully logged out" onClose={closeNotification} />
-        )}
         {errorMessages.server && (
           <div className="error-message">{errorMessages.server}</div>
         )}
