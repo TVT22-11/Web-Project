@@ -1,10 +1,10 @@
-// Clock.jsx
+// Clock.js
 
 import React, { useState, useEffect } from 'react';
 import moment from 'moment-timezone';
 import './Clock.css';
 
-function Clock({ selectedTimezone, onTimezoneChange }) {
+function Clock({ timezone }) {
   const [currentTime, setCurrentTime] = useState(new Date());
 
   useEffect(() => {
@@ -13,15 +13,15 @@ function Clock({ selectedTimezone, onTimezoneChange }) {
     }, 1000);
 
     return () => clearInterval(intervalId);
-  }, []); 
+  }, []);
 
-  const formattedTime = moment(currentTime).tz(selectedTimezone).format('HH:mm:ss');
+  const formattedTime = timezone
+    ? moment(currentTime).tz(timezone).format('HH:mm')
+    : '';
 
   return (
     <div className="Clock">
       <div className="time">{formattedTime}</div>
-
-      {}
     </div>
   );
 }

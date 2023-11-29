@@ -1,6 +1,4 @@
-
-// App.js
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
@@ -13,35 +11,43 @@ import SignUp from './components/Login/SignUp';
 import Movies from './components/Movies/Movies';
 import { DarkModeProvider } from './components/Options/DarkModeContext';
 import Reviews from './components/Reviews/Reviews';
-
+import MovieDetail from './components/Movies/MovieDetail';
 
 
 function App() {
+  const [selectedTimezone, setSelectedTimezone] = useState('Your/Default/Timezone');
+
   return (
     <Router>
       <DarkModeProvider>
-      <div className='app-navbar'>
-      <Navbar />
-      </div>
+
+
+             <div className='app-navbar'>
+          <Navbar selectedTimezone={selectedTimezone} />
+        </div>
       <div className="main-container">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/groups/*" element={<GroupRoutes />} />
-
           <Route path= "/Movies/*" element={<Movies/>} />
           <Route path= "/Reviews/*" element={<Reviews/>} />
+          <Route
+              path="/options/*"
+              element={<Options selectedTimezone={selectedTimezone} setSelectedTimezone={setSelectedTimezone} />}
+            />
 
-          <Route path="/options/*" element={<Options />} />
           <Route path="/login/*" element={<Login />} />
           <Route path="/SignUp/*" element={<SignUp />} />
+          <Route path="/movie/:id" Component={MovieDetail} />
         </Routes>
       </div>
       <Footer />
+
+
       </DarkModeProvider>
     </Router>
   );
 }
 
 export default App;
-
