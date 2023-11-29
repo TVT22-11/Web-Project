@@ -4,9 +4,11 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import Clock from '../Options/Clock';  // Import the Clock component
+import { useUser } from '../User/UserContext';
 
 const Navbar = ({ selectedTimezone, setSelectedTimezone }) => {
   const [show, setShow] = React.useState(true);
+  const { isLoggedIn, logout } = useUser();
 
   const DDmenuClickHandler = () => {
     var dropdown = document.getElementById("myDropdown");
@@ -44,7 +46,11 @@ const Navbar = ({ selectedTimezone, setSelectedTimezone }) => {
             <li><Link to="/Movies">Movies</Link></li>
             <li><Link to="/Groups">Groups</Link></li>
             <li><Link to="/options/preferences">Options</Link></li>
-            <Link to="/Login" className="sign-in-button">Sign In</Link>
+            {isLoggedIn ? (
+          <button onClick={logout} className="log-out-button">Logout</button>
+        ) : (
+          <Link to="/Login" className="sign-in-button">Sign In</Link>
+        )}
           </ul>
         </div>
         
