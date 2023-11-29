@@ -12,8 +12,10 @@ import Movies from './components/Movies/Movies';
 import { DarkModeProvider } from './components/Options/DarkModeContext';
 import MovieDetail from './components/Movies/MovieDetail';
 
+
 function App() {
-  const [selectedTimezone, setSelectedTimezone] = useState('Your/Default/Timezone');
+  const [selectedTimezone, setSelectedTimezone] = useState('Europe/Helsinki');
+
 
   return (
     <Router>
