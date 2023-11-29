@@ -65,6 +65,7 @@ const SearchBar = () => {
   };
 
  const handleResultClick = (movieId) => {
+  
     history(`/movie/${movieId}`);
     setShowResults(false);
   };
