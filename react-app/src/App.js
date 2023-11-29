@@ -10,6 +10,7 @@ import Options from './components/Options/Options';
 import SignUp from './components/Login/SignUp';
 import Movies from './components/Movies/Movies';
 import { DarkModeProvider } from './components/Options/DarkModeContext';
+import { UserProvider } from './components/User/UserContext';
 import Reviews from './components/Reviews/Reviews';
 import MovieDetail from './components/Movies/MovieDetail';
 import SeriesDetail from './components/Movies/SeriesDetail';
@@ -23,6 +24,7 @@ function App() {
   return (
     <Router>
       <DarkModeProvider>
+      <UserProvider>
 
 
              <div className='app-navbar'>
@@ -47,8 +49,7 @@ function App() {
         </Routes>
       </div>
       <Footer />
-
-
+      </UserProvider>
       </DarkModeProvider>
     </Router>
   );
