@@ -11,6 +11,7 @@ import SignUp from './components/Login/SignUp';
 import Movies from './components/Movies/Movies';
 import { DarkModeProvider } from './components/Options/DarkModeContext';
 import MovieDetail from './components/Movies/MovieDetail';
+import SeriesDetail from './components/Movies/SeriesDetail';
 
 function App() {
   const [selectedTimezone, setSelectedTimezone] = useState('Your/Default/Timezone');
@@ -36,6 +37,7 @@ function App() {
           <Route path="/login/*" element={<Login />} />
           <Route path="/SignUp/*" element={<SignUp />} />
           <Route path="/movie/:id" Component={MovieDetail} />
+          <Route path="/series/:id" Component={SeriesDetail} />
         </Routes>
       </div>
       <Footer />
