@@ -1,3 +1,5 @@
+// Navbar.js
+
 import React from 'react';
 import './Navbar.css';
 import { Link } from 'react-router-dom';
@@ -5,8 +7,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import Clock from '../Options/Clock';  // Import the Clock component
 import { useUser } from '../User/UserContext';
+import Clock from '../Options/Clock';
 
-const Navbar = ({ selectedTimezone, setSelectedTimezone }) => {
+const Navbar = ({ selectedTimezone, defaultTimezone }) => {
   const [show, setShow] = React.useState(true);
   const { isLoggedIn, logout } = useUser();
 
@@ -15,6 +18,7 @@ const Navbar = ({ selectedTimezone, setSelectedTimezone }) => {
     dropdown.classList.toggle("show");
     console.log('Dropdown menu clicked!');
   };
+
 
   return (
     <header>
@@ -54,7 +58,8 @@ const Navbar = ({ selectedTimezone, setSelectedTimezone }) => {
           </ul>
         </div>
         
-          <Clock timezone={selectedTimezone} />
+        <Clock timezone={selectedTimezone || defaultTimezone} defaultTimezone={defaultTimezone} />
+
       </nav>
     </header>
   );

@@ -38,29 +38,27 @@ useEffect(() =>{
   fetchData();
 }, []);
   
-  return (
-    
-    <div className='Movie-Container' >
-      
-      {movie.map((movie) => (
-          <li className='Movie-Box' key={movie.id}>
-           <Link to={`/movie/${movie.id}`}>
-      <img  src={`${apiImageBaseUrl}${movie.poster_path}`}
+return (
+  <div className='Movie-Container'>
+    {movie.map((movie) => (
+      <li className='Movie-Box' key={movie.id}>
+        <Link to={`/movie/${movie.id}`} className='Movie-Link'>
+          <img
+            src={`${apiImageBaseUrl}${movie.poster_path}`}
             className='Movie-Image'
             alt={movie.title}
-            />
-
-      <div className='Movie-Desc'>
-      <p>Rating: </p>
-      <h2>{movie.title}</h2>
-      <p>{movie.overview}</p>
-      <p className='movie-release-date'>{'Release date : '}{'\n'}{movie.release_date}</p>
-      </div>
-      </Link>
+          />
+          <div className='Movie-Desc'>
+            <p>Rating: TBA</p>
+            <h2>{movie.title}</h2>
+            <p className='movie-overview'>{movie.overview}</p>
+            <p className='movie-release-date'>{'Release date : '}{'\n'}{movie.release_date}</p>
+          </div>
+        </Link>
       </li>
-       
-        ))}
-    </div>
-  );
-}
+    ))}
+  </div>
+);
+};
+
 export default GetTopMovies;

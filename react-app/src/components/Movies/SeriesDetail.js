@@ -1,25 +1,25 @@
-// MovieDetail.js
-
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import './MovieDetail.css';
+import './SeriesDetail.css';
 
 const apiKey = process.env.REACT_APP_IMDB_API_BEARER_TOKEN;
 const apiUrl = process.env.REACT_APP_IMDB_API_URL;
 const apiImageBaseUrl = process.env.REACT_APP_IMDB_IMAGE_API_URL;
-const movieCreditsUrl = process.env.REACT_APP_IMDB_MOVIE_CREDITS_URL;
+const seriesCreditsUrl = process.env.REACT_APP_IMDB_SERIES_CREDITS_URL;
 
-function MovieDetail() {
+function SeriesDetail() {
   const { id } = useParams();
-  const [movie, setMovie] = useState(null);
+  console.log('Series ID:', id); 
+  const [series, setSeries] = useState(null);
   const [credits, setCredits] = useState(null);
 
   useEffect(() => {
-    const fetchMovieDetails = async () => {
+    console.log('Series ID:', id); 
+    const fetchSeriesDetails = async () => {
       try {
-        const movieResponse = await axios.get(
-          `${apiUrl}/movie/${id}`,
+        const seriesResponse = await axios.get(
+          `${apiUrl}/tv/${id}`,
           {
             headers: {
               Authorization: `Bearer ${apiKey}`,
@@ -27,10 +27,10 @@ function MovieDetail() {
             },
           }
         );
-        setMovie(movieResponse.data);
+        setSeries(seriesResponse.data);
 
         const creditsResponse = await axios.get(
-          movieCreditsUrl.replace('{movie_id}', id),
+          seriesCreditsUrl.replace('{series_id}', id),
           {
             headers: {
               Authorization: `Bearer ${apiKey}`,
@@ -44,26 +44,26 @@ function MovieDetail() {
       }
     };
 
-    fetchMovieDetails();
+    fetchSeriesDetails();
   }, [id]);
 
-  if (!movie || !credits) {
+  if (!series || !credits) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div className='Movie-Container'>
+    <div className='Series-Container'>
       <img
-        src={`${apiImageBaseUrl}${movie.poster_path}`}
-        className='Movie-Image'
-        alt={movie.title}
+        src={`${apiImageBaseUrl}${series.poster_path}`}
+        className='Series-Image'
+        alt={series.name}
       />
-      <div className="Movie-Text">
-        <h1>{movie.title}</h1>
-        <p>{movie.overview}</p>
+      <div className="Series-Text">
+        <h1>{series.name}</h1>
+        <p>{series.overview}</p>
       </div>
-      <div className='Movie-Info'>
-        <h2>Movie Credits</h2>
+      <div className='Series-Info'>
+        <h2>Series Credits</h2>
         <ul>
           {credits.cast.map((actor) => (
             <li key={actor.id}>{actor.name} as {actor.character}</li>
@@ -74,4 +74,4 @@ function MovieDetail() {
   );
 }
 
-export default MovieDetail;
+export default SeriesDetail;
