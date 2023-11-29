@@ -1,4 +1,5 @@
 import React,{ useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Movies.css';
 import Searchbar from '../Searchbar/searchbar';
 const apiKey = process.env.REACT_APP_IMDB_API_BEARER_TOKEN;
@@ -8,7 +9,8 @@ const apiImageBaseUrl= process.env.REACT_APP_IMDB_IMAGE_API_URL
 
 const Movies = ({language, page}) => {
   const [movie, setMovies] = useState([]);
-
+  const history = useNavigate();
+  
 useEffect(() =>{
   const fetchData = async () => {
     try {
@@ -36,6 +38,10 @@ useEffect(() =>{
   fetchData();
 }, []);
   
+const movieClickHandler = (movieid) => {
+history(`/movie/${movieid}`);
+}
+
   return (
     <div>
 
@@ -43,13 +49,13 @@ useEffect(() =>{
 
       <div className='Movies-Container' >
           {movie.map((movie) => (
-          <li className='Movies-Box' key={movie.id}>
+          <li className='Movies-Box' key={movie.id} onClick={() => movieClickHandler(movie.id)}>
               <img  src={`${apiImageBaseUrl}${movie.poster_path}`}
                 style={{ maxWidth: '100%' }}
               alt={movie.title}
               />
 
-            <div className='Movies-Desc'>
+            <div className='Movies-Desc' >
               <h2>{movie.title}</h2>
               <p>Release:{movie.release_date}</p>
               <p>Avarage vote: {movie.vote_average}</p>
