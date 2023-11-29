@@ -7,7 +7,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import Clock from '../Options/Clock';  // Import the Clock component
 import { useUser } from '../User/UserContext';
-import Clock from '../Options/Clock';
 
 const Navbar = ({ selectedTimezone, defaultTimezone }) => {
   const [show, setShow] = React.useState(true);
