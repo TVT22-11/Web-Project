@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import ReactDOM from "react-dom";
 import "./Login.css";
 import "./SignUp.css";
-import { useUser } from '../User/UserContext';
-import Notification from '../Notification/Notification'
+import { useUser } from "../User/UserContext";
 
 function Login() {
   const navigate = useNavigate();
@@ -13,7 +12,7 @@ function Login() {
   const [errorMessages, setErrorMessages] = useState({});
   const [loading, setLoading] = useState(false);
   const { login, isLoggedOut, logout } = useUser();
-  const [showLogoutNotification, setShowLogoutNotification] = useState(false);
+  const [redirectTimeout, setRedirectTimeout] = useState(null);
 
   const [state, setState] = useState({
     username: "",
@@ -42,7 +41,6 @@ function Login() {
         console.log(response.status, response.data);
         login();
         setIsLoggedIn(true);
-        /* navigate("/");*/
         // You might want to handle token and redirect here based on response
       })
 
@@ -62,10 +60,26 @@ function Login() {
   };
 
   const handleRegisterClick = () => {
-    // Add any additional logic you need before navigating
     navigate("/signup");
   };
 
+    // Set up timeout for navigation after successful login
+    useEffect(() => {
+      let timeoutId;
+  
+      if (isLoggedIn) {
+        timeoutId = setTimeout(() => {
+          navigate("/");
+        }, 3000);
+      }
+  
+      return () => {
+        // Clear the timeout if the component unmounts or the user takes an action
+        if (timeoutId) {
+          clearTimeout(timeoutId);
+        }
+      };
+    }, [isLoggedIn, navigate]);
 
 
   // JSX code for login form
