@@ -1,6 +1,7 @@
-.Movie-Box {
+.TopMovie-Box {
     width: 450px;
-    height: 750px;
+    min-height: 900px;
+    height: fit-content;
     margin: 25px;
     list-style: none;
     align-items: center;
@@ -65,13 +66,12 @@
     overflow: hidden;
 }
 .movie-overview{
-    height: 150px;
+    height:fit-content;
     overflow: hidden;
 }
-.movie-release-date{
+.Topmovie-release-date{
     bottom: 0;
     left: 0;
-    position: absolute;
     font-weight: 600;
     display: flex;
     margin-top: 25px;
@@ -80,4 +80,52 @@
 .dark-mode .Movie-Desc{
     color: var(--light-mode-text-color);
 
+}
+
+@media screen and (max-width: 990px){
+    .TopMovie-Box{
+    min-height: fit-content;
+    height:100%;
+    width: 300px;
+    margin: 25px;
+    padding: 30px;
+    margin-bottom: 25px;
+    background-color: var(--body-background-color);
+    border-radius: 35px;
+    box-shadow: var(--box-shadow);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    }
+    .Movie-Image{
+        display: flex;
+        flex-direction: column;
+        width:  200px;
+        height: 300px;
+    }
+    .Movie-Link{
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+        height: 500px;
+    }
+    .movie-overview{
+        height: fit-content;
+    }
+    .Topmovie-release-date{
+    bottom: 0;
+    left: 0;
+    font-weight: 600;
+    display: flex;
+    margin-top: 25px;
+    }
+    .Movie-Desc{
+        font-size: 12px;
+    }
+    .HomeMovie-Container{   
+
+    flex-direction: column;
+    display: flex;    
+}
 }

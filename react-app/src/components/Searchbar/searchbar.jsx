@@ -119,18 +119,20 @@ const getGenreNames = (genreIds) => {
       <button onClick={handleSearch}>
         <FontAwesomeIcon icon={faMagnifyingGlass} />
       </button>
+      
 
-      <select value={selectedGenre} onChange={handleGenreChange}>
-      <option value="">All Genres</option>
-      {genres.map((genre) => (
-        <option key={genre.id} value={genre.id}>
-          {genre.name}
-        </option>
-        
-      ))}
-    </select>
+      <div className="Combined-dropdown">
+        <select value={selectedGenre} onChange={handleGenreChange}>
+          <option value="">All Genres</option>
+          {genres.map((genre) => (
+            <option key={genre.id} value={genre.id}>
+              {genre.name}
+            </option>
+          ))}
+        </select>
+
       <select value={selectedType} onChange={handleTypeChange}>
-        <option value="/search/movie">All-Movies</option>
+        <option value="/search/movie">All Movies</option>
         <option value="/search/tv">TV-Series</option>
         <option value="/search/multi">Multi</option>
         <option value="/search/person">People</option>
@@ -165,8 +167,8 @@ const getGenreNames = (genreIds) => {
       )}
       
     </div>
-
+    </div>
   );
-};
+}
 
 export default SearchBar;

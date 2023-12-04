@@ -38,6 +38,7 @@ function Preferences({ selectedTimezone, setSelectedTimezone }) {
     <div className="page-container">
       <Sidebar />
       <div className={`content ${isDarkMode ? 'dark-mode' : ''}`}>
+      <div className = "preference-container">
         <ul>
           <li>
             <h2>Preferences</h2>
@@ -66,8 +67,7 @@ function Preferences({ selectedTimezone, setSelectedTimezone }) {
             </label>
           </li>
         </ul>
-
-
+        </div>
       </div>
     </div>
   );

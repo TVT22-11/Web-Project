@@ -24,6 +24,8 @@
     margin-left: auto;
     margin-right: auto;
     height: calc(4rem + 1rem);
+    text-align: center;
+    min-width: 395px;
   
 }
 

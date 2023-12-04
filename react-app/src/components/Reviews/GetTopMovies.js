@@ -44,18 +44,18 @@ history(`/movie/${movieid}`);
 return (
   <div className='HomeMovie-Container'>
     {movie.map((movie) => (
-      <li className='Movie-Box' key={movie.id} onClick={() => movieClickHandler(movie.id)}>
+      <li className='TopMovie-Box' key={movie.id} onClick={() => movieClickHandler(movie.id)}>
       
           <img
             src={`${apiImageBaseUrl}${movie.poster_path}`}
             className='Movie-Image'
             alt={movie.title}
           />
-          <div className='Movie-Desc'>
+          <div className='TopMovie-Desc'>
             <p>Rating: TBA</p>
             <h2>{movie.title}</h2>
             <p className='movie-overview'>{movie.overview}</p>
-            <p className='movie-release-date'>{'Release date : '}{'\n'}{movie.release_date}</p>
+            <p className='Topmovie-release-date'>{'Release date : '}{'\n'}{movie.release_date}</p>
           </div>
       </li>
     ))}
