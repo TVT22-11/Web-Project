@@ -1,3 +1,4 @@
+
 const router = express.Router();
 
 router.get('/preferences/:userID', async (req, res) => {
@@ -13,8 +14,13 @@ router.get('/preferences/:userID', async (req, res) => {
     }catch(error){
         console.error(error);
         res.status(500).json(error);
+
     }
+  } catch (error) {
+    handleErrors(res, error);
+  }
 });
+
 
 router.add('/preferences/:userID', async (req, res) => {
     try{
@@ -49,3 +55,4 @@ router.delete('/preferences/:userID', async (req, res) => {
 });
 
 module.exports = router;
+

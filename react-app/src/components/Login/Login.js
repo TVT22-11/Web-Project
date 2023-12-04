@@ -41,9 +41,16 @@ function Login() {
         console.log(response.status, response.data);
         login();
         setIsLoggedIn(true);
-        // You might want to handle token and redirect here based on response
-      })
 
+        const token = response.data.jwtToken;
+        console.log('Token from server:', token);
+    
+        // Set the token in sessionStorage
+        sessionStorage.setItem('jwtToken', token);
+        console.log('Token stored in sessionStorage:', sessionStorage.getItem('jwtToken'));
+
+        // You might want to handle token and redirect here based on the response
+      })
       .catch((error) => {
         if (error.response) {
           console.log(error.response);
