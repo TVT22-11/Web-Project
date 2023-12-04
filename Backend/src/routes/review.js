@@ -8,13 +8,13 @@ const upload = multer({dest: 'uploads/'});
 
 
 router.post('/post', upload.none(), async (req, res) => {
-    const account_id = req.body.account_id;
+    const id_account = req.body.id_account;
     const stars = req.body.stars;
     const comment = req.body.comment;
     const movie_id = req.body.movie_id;
   
     try {
-      await Review(account_id, stars, comment, movie_id);
+      await Review(id_account, stars, comment, movie_id);
       res.status(200).json({ message: 'Review posted successfully' });
     } catch (err) {
       console.error(err);

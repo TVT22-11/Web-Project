@@ -3,6 +3,7 @@ const pgPool = require('./pg_connection');
 const sql = {
     REGISTER: 'INSERT INTO account (fname, lname, username, password) VALUES ($1, $2, $3, $4)',
     GET_password: 'SELECT password FROM account WHERE username = $1',
+    DELETE_account: 'DELETE FROM account WHERE username = $1 OR id_account = $2',
 }
 
 async function register(fname, lname, username, password) {
@@ -27,5 +28,16 @@ async function getpassword(username) {
         client.release();
     }
 }
-
-module.exports = { register, getpassword };
+async function deleteAccount(username, id_account) {
+    const client = await pgPool.connect();
+  
+    try {
+      const result = await pgPool.query(sql.DELETE_account, [username, id_account]);
+      return result.rowCount; 
+    } catch (err) {
+      throw err;
+    } finally {
+      client.release();
+    }
+  }
+module.exports = { register, getpassword, deleteAccount };

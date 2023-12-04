@@ -1,8 +1,9 @@
 const pgPool = require('./pg_connection');
 
 const sql = {
-    Review : 'INSERT INTO review (account_id, stars, comment, movie_id) VALUES ($1, $2, $3, $4)',
+    Review : 'INSERT INTO review (id_account, stars, comment, movie_id) VALUES ($1, $2, $3, $4)',
     GET_REVIEW_BY_ID: 'SELECT * FROM review WHERE movie_id = $1',
+    Delete_Review: 'DELETE FROM review WHERE id_account = $1'
 };
 
 async function getReview(movie_id) {
@@ -24,13 +25,23 @@ async function getReview(movie_id) {
   }
   
 
-async function Review(account_id, stars, comment, movie_id){
+async function Review(id_account, stars, comment, movie_id){
     const client = await pgPool.connect();
     try{
-        await client.query(sql.Review, [account_id, stars, comment, movie_id])
+        await client.query(sql.Review, [id_account, stars, comment, movie_id])
     }finally{
         client.release();
     }
 }
 
-module.exports = {getReview, Review};
+async function Delete_Review(id_account){
+    const client = await pgPool.connect();
+    try{
+        await client.query(sql.Delete_Review, [id_account])
+
+    }finally{
+        client.release();
+    }
+}
+
+module.exports = {getReview, Review, Delete_Review};
