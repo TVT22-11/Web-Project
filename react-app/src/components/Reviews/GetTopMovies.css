@@ -18,9 +18,9 @@
 .dark-mode .Movie-Box{
     background-color: var(--first-color);
 }
-.Movie-Container
+.HomeMovie-Container
 {   
-    
+
     justify-content: center;
     align-items: center;
     text-decoration: none;
@@ -28,6 +28,8 @@
     display: flex;
     padding: 10px;
     border-radius: 20px;
+
+    
    
     
 }
@@ -70,7 +72,7 @@
     bottom: 0;
     left: 0;
     position: absolute;
-    font-weight: 100;
+    font-weight: 600;
     display: flex;
     margin-top: 25px;
 

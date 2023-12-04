@@ -91,7 +91,7 @@ function SignUp() {
             <label>first name </label>
             <input
               className="input-color"
-              placeholder="first name"
+              placeholder="First name"
               type="text"
               name="fname"
               value={state.fname}
@@ -104,7 +104,7 @@ function SignUp() {
             <label>last name </label>
             <input
               className="input-color"
-              placeholder="last name"
+              placeholder="Last name"
               type="text"
               name="lname"
               value={state.lname}

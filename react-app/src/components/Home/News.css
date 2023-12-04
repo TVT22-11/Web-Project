@@ -75,7 +75,7 @@
     position: relative;
     width: 1000px;
     top: 45px;
-    font-weight: 200;
+    font-weight: 300;
     overflow: inherit;
     text-overflow: ellipsis;
   }
@@ -83,7 +83,7 @@
     position:relative;
     width: 200px;
     top: 25px;
-    font-weight: 100;
+    font-weight: 600;
   }
 
   .Article-title a{

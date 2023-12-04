@@ -66,17 +66,12 @@ const SearchBar = () => {
 
  const handleResultClick = (movieId) => {
     history(`/movie/${movieId}`);
+    history(`/series/${movieId}`);
     setShowResults(false);
   };
 
   const handleTypeChange = (e) => {
     setSelectedType(e.target.value);
-  };
-
-  const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
-      handleSearch();
-    }
   };
 
   const handleClickOutside = (e) => {
@@ -112,13 +107,14 @@ const getGenreNames = (genreIds) => {
    
     <div className="Search-bar">
       <input
-      
+        onKeyUp={handleSearch}
         className="Search-Input"
         type="text"
         placeholder="Search..."
         value={query}
         onChange={handleInputChange}
-        onKeyPress={handleKeyPress}
+        
+        
       />
       <button onClick={handleSearch}>
         <FontAwesomeIcon icon={faMagnifyingGlass} />

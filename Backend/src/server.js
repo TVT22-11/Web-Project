@@ -3,6 +3,7 @@ const express = require('express');
 const user = require('./routes/user');
 const auth = require('./routes/authorization');
 const app = express();
+const preferences = require('./routes/preferences');
 
 
 app.use(express.urlencoded({ extended: true }));
@@ -12,7 +13,7 @@ app.use(express.static('public'));
 
 
 app.use('/auth', auth);
-
+app.use('/preferences',  preferences); // Voici la ligne à ajouter
 
 app.use('/account',  user);
 
