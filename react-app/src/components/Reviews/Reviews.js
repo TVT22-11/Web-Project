@@ -1,144 +1,140 @@
 // Reviews.js
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, FormGroup, Input, Label, Button } from "reactstrap";
 import { Rating } from "react-simple-star-rating";
-import { Container} from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import './Reviews.css';
 import { useParams } from "react-router-dom";
 
 const apiUrl = process.env.REACT_APP_IMDB_API_URL;
 const apiKey = process.env.REACT_APP_IMDB_API_BEARER_TOKEN;
-const apiImageBaseUrl= process.env.REACT_APP_IMDB_IMAGE_API_URL;
-const token = process.env.JWT_SECRET_KEY;
-const movieReviewsUrl= process.env.RACT_APP_IMDB_MOVIE_REVIEWS_URL;
 
+// Fix the typo in the environment variable name
+const movieReviewsUrl = process.env.REACT_APP_IMDB_MOVIE_REVIEWS_URL;
 
-    export function Reviews(){
-        
-        const {id} = useParams();
-        const [movie, setMovie] = useState();
-        const [isReviewAdded, setIsReviewAdded] = useState(false);
-        const [review, setReview] = useState([]);
-        const [rating, setRating] = useState(0);
+export function Reviews() {
+  const { id } = useParams();
+  const [reviews, setReviews] = useState([]);
+  const [rating, setRating] = useState(0);
+  const [reviewText, setReviewText] = useState("");
 
-        const handleRating = (rate: number) => {
-          setRating(rate)  
-        };
-        const handleReset = () => {
-          
-          console.log("Reset:", review);
-          setRating(0)
-        };
-      
-        const handleReviewText = (event) => {
-         
-          setReview({text: event.target.value });
-        };
-      
-        const handleSubmit = () => {
-          
-          console.log("Submitted:", review);
-          
-          setIsReviewAdded(true);
-        };
+  const handleRating = (rate) => {
+    setRating(rate);
+  };
 
+  const handleReset = () => {
+    console.log("Reset:", reviewText);
+    setRating(0);
+  };
 
-        useEffect(() =>{
-          const fetchReviews = async () =>{
-            try{
-              const response = await fetch( `${apiUrl}/movie/${id}/reviews`,
-              {
-                method: 'GET',
-                headers: {
-                  accept: 'application/json',
-                  'Authorization': `Bearer ${apiKey}`,
-                 
-                }
-              });
+  const handleReviewText = (event) => {
+    setReviewText(event.target.value);
+  };
 
-              if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-              }
-              const data = await response.json(
-                
-                {
-                  headers: {
-                    Authorization: `Bearer ${apiKey}`,
-                    'Content-Type': 'application/json',
-                  },
-                }
-              );
-              setReview(data); 
-            }
-            catch (error) {
-              console.error('Error fetching data:', error);
-            }
-            
+  const handleSubmit = async () => {
+    try {
+      const response = await fetch(`${apiUrl}/movie/${id}/reviews`, {
+        method: 'POST', // Change to the appropriate HTTP method for submitting reviews
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${apiKey}`,
+        },
+        body: JSON.stringify({
+          rating: rating,
+          text: reviewText,
+        }),
+      });
 
-          };
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
 
+      const data = await response.json();
 
-          fetchReviews();
-        }, [id]);
+      console.log("Submitted:", data);
+      setReviews([...reviews, data]); // Assuming your API returns the new review
+    } catch (error) {
+      console.error('Error submitting review:', error);
+    }
+  };
 
+  const fetchReviews = async () => {
+    try {
+      const options = {
+        method: 'GET',
+        headers: {
+          'accept': 'application/json',
+          'Authorization': `Bearer ${apiKey}`,
+        },
+      };
 
-    return (
-        <div>
-            <div className="Reviews-box">
-              <Container>
-                 <h2>Reviews</h2>
-                
-                  <div className="Review-Text">
-                  <p>{review.text}</p>
-                  </div>
+      const response = await fetch(`${apiUrl}movie/${id}/reviews?`,);
 
-                  <div className="Reviews">
-                    <h3>Movie Reviews</h3>
-                    <ul>
-                      {review.map((result) => (
-                        <li key={result.id}>
-                          {result.author}
-                          {result.content}
-                          {result.updated_at}
-                        </li>
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
 
-                      ))}
-                    </ul>
-                  </div>
-              </Container>
-            </div>                      
-            <div className="Review-container">
-            <h2>Create review:</h2>
-            <Form>
-                <FormGroup>
-                    <Label for="exampleText">Overall rating</Label>
-                    <div>
-                        <Rating
-                            onClick={handleRating}
-                            initialValue={rating}
-                            size={24}
-                         />   
-                    </div>
-                </FormGroup>
-                <FormGroup>
-                    <Label for="reviewText">Leave your review here</Label>
-                    <Input
-                        type="textarea"
-                        name="reviewText"
-                        id="reviewText"
-                        onChange={handleReviewText}
-                     />
-                        
-                </FormGroup>
-                <Button color="info" onClick={handleSubmit}>
-                    Submit
-                </Button>
-                <Button onClick={handleReset}>Reset
-                     </Button>
-            </Form>
+      const data = await response.json();
+      setReviews(data.results); // Assuming your API response has a 'results' property
+
+    } catch (error) {
+      console.error('Error fetching reviews:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchReviews();
+  }, [id]);
+
+  return (
+    <div>
+      <div className="Reviews-box">
+        <Container>
+          <h2>Reviews</h2>
+          <div className="Reviews">
+            <h3>Movie Reviews</h3>
+            <ul>
+              {reviews.map((result) => (
+                <li key={result.id}>
+                  <p>Author: {result.author}</p>
+                  <p>Content: {result.content}</p>
+                  <p>Updated at: {result.updated_at}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Container>
+      </div>
+      <div className="Review-container">
+        <h2>Create review:</h2>
+        <Form>
+          <FormGroup>
+            <Label for="exampleText">Overall rating</Label>
+            <div>
+              <Rating
+                onClick={handleRating}
+                initialValue={rating}
+                size={24}
+              />
             </div>
-        </div>
-        )};
-    
+          </FormGroup>
+          <FormGroup>
+            <Label for="reviewText">Leave your review here</Label>
+            <Input
+              type="textarea"
+              name="reviewText"
+              id="reviewText"
+              onChange={handleReviewText}
+            />
+          </FormGroup>
+          <Button color="info" onClick={handleSubmit}>
+            Submit
+          </Button>
+          <Button onClick={handleReset}>Reset</Button>
+        </Form>
+      </div>
+    </div>
+  );
+}
 
 export default Reviews;
