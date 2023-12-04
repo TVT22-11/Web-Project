@@ -4,6 +4,7 @@ const sql = {
     REGISTER: 'INSERT INTO account (fname, lname, username, password) VALUES ($1, $2, $3, $4)',
     GET_password: 'SELECT password FROM account WHERE username = $1',
     DELETE_account: 'DELETE FROM account WHERE username = $1 OR id_account = $2',
+
 }
 
 async function register(fname, lname, username, password) {

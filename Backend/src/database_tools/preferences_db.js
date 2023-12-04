@@ -1,3 +1,4 @@
+
 const pgPool = require('./pg_connection');
 
 const sql = {
@@ -19,3 +20,4 @@ async function updatePreferences(id_account_preference, preferences) {
 }
 
 module.exports = { getPreferences, updatePreferences };
+

@@ -1,39 +1,58 @@
-const router = require('express').Router();
-const { getPreferences, updatePreferences } = require('../database_tools/preferences_db');
-const { authenticateToken } = require('../auth/auth');
 
+const router = express.Router();
 
-const handleErrors = (res, error) => {
-  console.error(error);
-  res.status(500).json({ error: error.message || 'Internal Server Error' });
-};
+router.get('/preferences/:userID', async (req, res) => {
+    try{
+        const userID = req.params.userID;
+        const preferences = await getPreferences(userID);
+        res.status(200).json(preferences);
 
-router.get('/', async (req, res) => {
-  try {
-    const preferences = await getPreferences(req.query.username);
-    if (preferences) {
-      res.status(200).json(preferences.length === 1 ? preferences[0] : preferences);
-    } else {
-      res.status(404).send('User not found');
+        if (!userID) {
+            res.status(404).send('User not found');
+        }
+        res.json(user.Preference || {});
+    }catch(error){
+        console.error(error);
+        res.status(500).json(error);
+
     }
   } catch (error) {
     handleErrors(res, error);
   }
 });
 
-router.put('/', authenticateToken, async (req, res) => {
-  try {
-    const { username, preferences } = req.body;
 
-    if (!username || !preferences) {
-      return res.status(400).json({ error: 'Invalid request body' });
+router.add('/preferences/:userID', async (req, res) => {
+    try{
+        const userID = req.params.userID;
+        const preferences = await getPreferences(userID);
+        res.status(200).json(preferences);
+
+        if (!userID) {
+            res.status(404).send('User not found');
+        }
+        res.json(user.Preference || {});
+    }catch(error){
+        console.error(error);
+        res.status(500).json(error);
     }
+});
 
-    await updatePreferences(username, preferences);
-    res.status(200).send('Preferences updated');
-  } catch (error) {
-    handleErrors(res, error);
-  }
+router.delete('/preferences/:userID', async (req, res) => {
+    try{
+        const userID = req.params.userID;
+        const preferences = await getPreferences(userID);
+        res.status(200).json(preferences);
+
+        if (!userID) {
+            res.status(404).send('User not found');
+        }
+        res.json(user.Preference || {});
+    }catch(error){
+        console.error(error);
+        res.status(500).json(error);
+    }
 });
 
 module.exports = router;
+

@@ -247,3 +247,13 @@ border-radius: 20px;
     background-color: #6B56E9;
   }
 
+
+/*GROUP-BEFORE-SIGNIN-CSS*/
+
+.group-page {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: var(--second-color);
+    padding: 30px;
+}
