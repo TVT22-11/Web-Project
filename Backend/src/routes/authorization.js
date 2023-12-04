@@ -52,7 +52,7 @@ router.post('/login', upload.none(), async (req, res) => {
     }
     });
 
-    router.delete('/delete', upload.none(), async (req, res) => {
+router.delete('/delete', upload.none(), async (req, res) => {
         const { username, id_account } = req.body;
       
         try {
