@@ -3,6 +3,7 @@ const pgPool = require('./pg_connection');
 const sql = {
     REGISTER: 'INSERT INTO account (fname, lname, username, password) VALUES ($1, $2, $3, $4)',
     GET_password: 'SELECT password FROM account WHERE username = $1',
+
 }
 
 async function register(fname, lname, username, password) {

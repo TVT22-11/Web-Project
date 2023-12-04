@@ -1,31 +1,51 @@
-const router = require('express').Router();
-const {getPreferences, updatePreferences} = require('../database_tools/preferences_db');
+const router = express.Router();
 
-
-
-router.get('/' , async (req, res) => {
-
+router.get('/preferences/:userID', async (req, res) => {
     try{
-        const preferences = await getPreferences(req.query.username);
-        if (preferences) {
-            res.status(200).json(preferences.length === 1 ? preferences[0] : preferences);
-        } else {
+        const userID = req.params.userID;
+        const preferences = await getPreferences(userID);
+        res.status(200).json(preferences);
+
+        if (!userID) {
             res.status(404).send('User not found');
         }
+        res.json(user.Preference || {});
     }catch(error){
+        console.error(error);
         res.status(500).json(error);
     }
 });
 
-
-router.put('/', async (req, res) => {
-    const username = req.body.username;
-    const preferences = req.body.preferences;
-
+router.add('/preferences/:userID', async (req, res) => {
     try{
-        await updatePreferences(username, preferences);
-        res.status(200).send('Preferences updated');
+        const userID = req.params.userID;
+        const preferences = await getPreferences(userID);
+        res.status(200).json(preferences);
+
+        if (!userID) {
+            res.status(404).send('User not found');
+        }
+        res.json(user.Preference || {});
     }catch(error){
+        console.error(error);
         res.status(500).json(error);
     }
 });
+
+router.delete('/preferences/:userID', async (req, res) => {
+    try{
+        const userID = req.params.userID;
+        const preferences = await getPreferences(userID);
+        res.status(200).json(preferences);
+
+        if (!userID) {
+            res.status(404).send('User not found');
+        }
+        res.json(user.Preference || {});
+    }catch(error){
+        console.error(error);
+        res.status(500).json(error);
+    }
+});
+
+module.exports = router;

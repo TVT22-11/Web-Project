@@ -13,7 +13,7 @@ app.use(express.static('public'));
 
 
 app.use('/auth', auth);
-app.use('/preferences',  preferences); // Voici la ligne à ajouter
+app.use('/preferences',  preferences);
 
 app.use('/account',  user);
 

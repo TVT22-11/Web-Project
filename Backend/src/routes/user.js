@@ -4,6 +4,24 @@ const {getUser} = require('../database_tools/user_db');
 const {authenticateToken} = require('../auth/auth');
 
 
+router.get('/user/:userID', async (req, res) => {
+    try{
+        const userID = req.params.userID;
+        const user = await getUser(userID);
+        res.status(200).json(user);
+
+        if (!userID) {
+            res.status(404).send('User not found');
+        }
+        res.json(user || {});
+    }catch(error){
+        console.error(error);
+        res.status(500).json(error);
+    }
+});
+
+
+
 router.get('/' , async (req, res) => {
 
     try{
