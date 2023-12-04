@@ -60,10 +60,10 @@ router.post('/login', upload.none(), async (req, res) => {
             return res.status(400).json({ error: 'Either username or id_account must be provided' });
           }
       
-          // Delete associated reviews first
+       
           await Delete_Review(id_account);
       
-          // Now delete the account
+          
           const rowCount = await deleteAccount(username, id_account);
       
           if (rowCount === 1) {
