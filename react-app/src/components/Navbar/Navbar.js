@@ -35,6 +35,10 @@ const Navbar = ({ selectedTimezone, defaultTimezone }) => {
                 <li><Link to="/Reviews">Reviews</Link></li>
                 <li><Link to="/Movies">Movies</Link></li>
                 <li><Link to="/Groups">Groups</Link></li>
+                <li><Link to="/options/preferences">Options</Link></li>
+                <Link to="/Login" className="sign-in-button">Sign In</Link>
+
+
               </ul>
             </div>
           </div>

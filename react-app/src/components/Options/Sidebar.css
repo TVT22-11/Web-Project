@@ -23,3 +23,14 @@
     color: rgb(0, 0, 0);
     background-color: var(--hover-background-color);
 }
+
+@media screen and (max-width: 990px) {
+    .sidebar {
+        max-width: 130px;
+    }
+    .sidebar a {
+        font-size: 15px;
+        text-align: center;
+        margin:5px 5px 5px 5px;
+    }
+}
