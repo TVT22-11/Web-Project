@@ -1,4 +1,3 @@
-
 const router = express.Router();
 
 router.get('/preferences/:userID', async (req, res) => {
@@ -20,7 +19,7 @@ router.get('/preferences/:userID', async (req, res) => {
 });
 
 
-router.add('/preferences/:userID', async (req, res) => {
+router.post('/preferences/:userID', async (req, res) => {
     try{
         const userID = req.params.userID;
         const preferences = await getPreferences(userID);
