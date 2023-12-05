@@ -41,17 +41,25 @@ function Login() {
         console.log(response.status, response.data);
         login();
         setIsLoggedIn(true);
-        // You might want to handle token and redirect here based on response
+        setErrorMessages({}); // Clears error messages on successful login
+        // You might want to handle token and redirect here based on the response
       })
-
       .catch((error) => {
         if (error.response) {
-          console.log(error.response);
-          setErrorMessages({ server: "Server responded with an error" });
+          // The request was made, but the server responded with an error
+          if (error.response.status === 404 || 401) {
+            // Unauthorized - incorrect username or password
+            setErrorMessages({ server: "Incorrect username or password." });
+          } else {
+            // Other server errors
+            setErrorMessages({ server: "Server responded with an error" });
+          }
         } else if (error.request) {
+          // The request was made, but no response was received
           setErrorMessages({ server: "Network error" });
         } else {
-          console.log(error);
+          // Something happened in setting up the request that triggered an error
+          console.log("Error:", error);
         }
       })
       .finally(() => {

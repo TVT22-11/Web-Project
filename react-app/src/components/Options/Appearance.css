@@ -1,11 +1,15 @@
 /* Appearance.css */
 
-.page-container {
-    display: flex;
+.appearance-page-container {
+  display: flex;
+  height: 100%;
+  width: 100%;
   }
   
-  .content {
+  .Appearance-content {
     margin: 20px;
+    display: flex;
+    flex-direction: column;
   }
   
   h2 {
@@ -26,7 +30,7 @@
   }
   
   label > input {
-    width: 200px;
+    width: fit-content;
     margin-left: 10px;
     border-radius: 4px;
     background-color: var(--yellow-color);
@@ -54,7 +58,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 20px;
-    background-color: white;
+    background-color: var(--darker-color);
     border: 1px solid #ccc;
     z-index: 1000;
   }
@@ -93,4 +97,38 @@
     align-items: flex-start;
   }
   
+  @media screen and (max-width: 990px) {
+    h2 {
+      font-size: 20px;
+    }
+
+  label > button{
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  label > input{
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .avatar-modal{
+    width: fit-content;
+    height: fill;
+    margin-left:105px;
+    padding: 0;
+    top: 0;
+    left: 0;
+    transform: none;
+    border: none;
+    background-color: var(--darker-color);
+  }
+  .avatar-modal img {
+    width: 80px;
+    height: 80px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+  }
+    
+  }
   

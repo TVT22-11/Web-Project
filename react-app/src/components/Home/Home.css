@@ -19,3 +19,12 @@ position: relative;
     color: var(--light-mode-text-color);
     background-color: var(--first-color);
 }
+
+
+
+@media screen and (max-width: 990px){
+    .Top-Movie{
+        font-size: 25px;
+    }
+    
+}

@@ -10,13 +10,12 @@ function Groups() {
   const { isLoggedIn } = useUser();
 
   return (
-    <div>
+    <div className='group-page'>
       {/* Navbar element */}
       <div>
         {/* Display sign-in message if not signed in */}
         {!isLoggedIn && <p>Sign in to access groups</p>}
         {/* SearchBar component always displayed */}
-        <SearchBar />
         {/* YourGroups, AvailableGroups, and CreateGroup components */}
         {isLoggedIn && (
           <>
