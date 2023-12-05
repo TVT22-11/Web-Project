@@ -14,8 +14,6 @@ function Login() {
   const { login, isLoggedOut, logout } = useUser();
   const [redirectTimeout, setRedirectTimeout] = useState(null);
 
-  
-
   const [state, setState] = useState({
     username: "",
     password: "",
@@ -32,7 +30,6 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
-
     const userData = {
       username: state.username,
       password: state.password,
@@ -44,9 +41,6 @@ function Login() {
         console.log(response.status, response.data);
         login();
         setIsLoggedIn(true);
-        setErrorMessages({}); // Clears error messages on successful login
-        // You might want to handle token and redirect here based on response
-      })
 
         const token = response.data.jwtToken;
         console.log('Token from server:', token);
@@ -59,20 +53,12 @@ function Login() {
       })
       .catch((error) => {
         if (error.response) {
-          // The request was made, but the server responded with an error
-          if (error.response.status === 404 || 401) {
-            // Unauthorized - incorrect username or password
-            setErrorMessages({ server: "Incorrect username or password." });
-          } else {
-            // Other server errors
-            setErrorMessages({ server: "Server responded with an error" });
-          }
+          console.log(error.response);
+          setErrorMessages({ server: "Server responded with an error" });
         } else if (error.request) {
-          // The request was made, but no response was received
           setErrorMessages({ server: "Network error" });
         } else {
-          // Something happened in setting up the request that triggered an error
-          console.log("Error:", error);
+          console.log(error);
         }
       })
       .finally(() => {
@@ -84,23 +70,24 @@ function Login() {
     navigate("/signup");
   };
 
-  // Set up timeout for navigation after successful login
-  useEffect(() => {
-    let timeoutId;
-
-    if (isLoggedIn) {
-      timeoutId = setTimeout(() => {
-        navigate("/");
-      }, 3000);
-    }
-
-    return () => {
-      // Clear the timeout if the component unmounts or the user takes an action
-      if (timeoutId) {
-        clearTimeout(timeoutId);
+    // Set up timeout for navigation after successful login
+    useEffect(() => {
+      let timeoutId;
+  
+      if (isLoggedIn) {
+        timeoutId = setTimeout(() => {
+          navigate("/");
+        }, 3000);
       }
-    };
-  }, [isLoggedIn, navigate]);
+  
+      return () => {
+        // Clear the timeout if the component unmounts or the user takes an action
+        if (timeoutId) {
+          clearTimeout(timeoutId);
+        }
+      };
+    }, [isLoggedIn, navigate]);
+
 
   // JSX code for login form
 
