@@ -9,7 +9,6 @@ import { useParams } from "react-router-dom";
 const apiUrl = process.env.REACT_APP_IMDB_API_URL;
 const apiKey = process.env.REACT_APP_IMDB_API_BEARER_TOKEN;
 
-// Fix the typo in the environment variable name
 const movieReviewsUrl = process.env.REACT_APP_IMDB_MOVIE_REVIEWS_URL;
 
 export function Reviews() {
@@ -17,6 +16,12 @@ export function Reviews() {
   const [reviews, setReviews] = useState([]);
   const [rating, setRating] = useState(0);
   const [reviewText, setReviewText] = useState("");
+  const [state, setState] = useState({
+    id_account: "",
+    stars: "",
+    comment: "",
+    movie_id: ""
+  });
 
   const handleRating = (rate) => {
     setRating(rate);
@@ -30,14 +35,18 @@ export function Reviews() {
   const handleReviewText = (event) => {
     setReviewText(event.target.value);
   };
-
+  const reviewData = {
+    id_account: state.id_account,
+    stars: state.stars,
+    comment: state.comment,
+    movie_id: state.movie_id
+  };
   const handleSubmit = async () => {
     try {
-      const response = await fetch(`${apiUrl}/movie/${id}/reviews`, {
-        method: 'POST', // Change to the appropriate HTTP method for submitting reviews
+      const response = await fetch(`http://localhost:5432/review/post`, {
+        method: 'POST', 
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${apiKey}`,
+          //'Authorization': `Bearer ${apiKey}`,
         },
         body: JSON.stringify({
           rating: rating,
@@ -52,13 +61,13 @@ export function Reviews() {
       const data = await response.json();
 
       console.log("Submitted:", data);
-      setReviews([...reviews, data]); // Assuming your API returns the new review
+      setReviews([...reviews, data]); 
     } catch (error) {
       console.error('Error submitting review:', error);
     }
   };
 
-  const fetchReviews = async () => {
+  /*const fetchReviews = async () => {
     try {
       const options = {
         method: 'GET',
@@ -75,7 +84,7 @@ export function Reviews() {
       }
 
       const data = await response.json();
-      setReviews(data.results); // Assuming your API response has a 'results' property
+      setReviews(data.results); 
 
     } catch (error) {
       console.error('Error fetching reviews:', error);
@@ -85,6 +94,7 @@ export function Reviews() {
   useEffect(() => {
     fetchReviews();
   }, [id]);
+  */
 
   return (
     <div>
