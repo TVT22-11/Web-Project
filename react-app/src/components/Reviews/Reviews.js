@@ -134,6 +134,7 @@ export function Reviews() {
               type="textarea"
               name="reviewText"
               id="reviewText"
+              comment="comment"
               onChange={handleReviewText}
             />
           </FormGroup>
