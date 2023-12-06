@@ -65,8 +65,12 @@ const SearchBar = () => {
   };
 
  const handleResultClick = (movieId) => {
-    history(`/movie/${movieId}`);
+ 
+    if(selectedType == "/search/tv"){
     history(`/series/${movieId}`);
+  }
+  else
+    history(`/movie/${movieId}`);
     setShowResults(false);
   };
 
