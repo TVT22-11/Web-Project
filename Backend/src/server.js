@@ -5,7 +5,7 @@ const auth = require('./routes/authorization');
 const app = express();
 const preferences = require('./routes/preferences');
 const review = require('./routes/review');
-
+const group = require('./routes/group');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -17,6 +17,7 @@ app.use('/auth', auth);
 app.use('/review', review);
 app.use('/preferences',  preferences);
 app.use('/account',  user);
+app.use('/group', group);
 
 app.get('/test', (req, res) => {
   res.json({ message: 'Server is running successfully!' });

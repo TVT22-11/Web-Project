@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Groups.css';
+import axios from 'axios';
 
 function CreatingPage() {
   // Declare state variables for input values
@@ -7,7 +8,6 @@ function CreatingPage() {
   const [additionalInfo, setAdditionalInfo] = useState('');
   const [isOptionalFeatureEnabled, setIsOptionalFeatureEnabled] = useState(false);
 
-  // Create functions to handle changes in the inputs
   const handleGroupNameChange = (e) => {
     setGroupName(e.target.value);
   };
@@ -23,23 +23,17 @@ function CreatingPage() {
   const handleCreateGroup = async () => {
     // Create a new group object with the input values
     const newGroup = {
-      groupName: groupName,
-      additionalInfo: additionalInfo,
-      isPrivate: isOptionalFeatureEnabled,
+      name: groupName,
+      description: additionalInfo,
+      isprivate: isOptionalFeatureEnabled,
     };
 
     try {
       // Send a POST request to your server endpoint that adds the group to the database
-      const response = await fetch('http://your-server-endpoint/create-group', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newGroup),
-      });
+      const response = await axios.post('http://localhost:5432/group/post', newGroup);
 
       // Check if the request was successful (you may want to add more error handling)
-      if (response.ok) {
+      if (response.status === 201) {
         console.log('Group created successfully!');
         // Optionally, you can reset the form after successful creation
         setGroupName('');
