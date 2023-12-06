@@ -119,26 +119,26 @@ const getGenreNames = (genreIds) => {
       <button onClick={handleSearch}>
         <FontAwesomeIcon icon={faMagnifyingGlass} />
       </button>
-      
 
-      <div className="Combined-dropdown">
-        <select value={selectedGenre} onChange={handleGenreChange}>
-          <option value="">All Genres</option>
-          {genres.map((genre) => (
-            <option key={genre.id} value={genre.id}>
-              {genre.name}
-            </option>
-          ))}
-        </select>
-
+<div className='search-filters'>
+      <select value={selectedGenre} onChange={handleGenreChange}>
+      <option value="">All Genres</option>
+      {genres.map((genre) => (
+        <option key={genre.id} value={genre.id}>
+          {genre.name}
+        </option>
+        
+      ))}
+    </select>
+   
       <select value={selectedType} onChange={handleTypeChange}>
-        <option value="/search/movie">All Movies</option>
+        <option value="/search/movie">All-Movies</option>
         <option value="/search/tv">TV-Series</option>
         <option value="/search/multi">Multi</option>
         <option value="/search/person">People</option>
       </select>
 
-
+      </div>
       {showResults && (
         
         <ul ref={searchResultsRef} className="Search-Results">
@@ -156,19 +156,18 @@ const getGenreNames = (genreIds) => {
                   alt={result.title}
                 />
               )}
-            <div className='results-description-container'>
+            
              <h1 className='result-title'>{result.title}{result.name}</h1> 
               <h2 className='result-release-date'>{result.release_date}</h2>
               
-              </div>
+             
             </li>
           ))}
         </ul>
       )}
-      
     </div>
-    </div>
+
   );
-}
+};
 
 export default SearchBar;
