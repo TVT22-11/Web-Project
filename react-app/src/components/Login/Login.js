@@ -12,14 +12,9 @@ function Login() {
   const [errorMessages, setErrorMessages] = useState({});
   const [loading, setLoading] = useState(false);
   const { login, isLoggedOut, logout } = useUser();
+  axios.defaults.withCredentials = true;
 
 
-  const token = response.data.jwtToken;
-  console.log('Token from server:', token);
-
-  // Set the token in sessionStorage
-  sessionStorage.setItem('jwtToken', token);
-  console.log('Token stored in sessionStorage:', sessionStorage.getItem('jwtToken'));
 
   const [state, setState] = useState({
     username: "",
@@ -43,24 +38,23 @@ function Login() {
     };
 
     axios
-      .post("http://localhost:5432/auth/login", userData)
+      .post("http://localhost:3001/auth/login", userData)
       .then((response) => {
         console.log(response.status, response.data);
+        const { jwtToken } = response.data; // Destructure token from the response
         login();
         setIsLoggedIn(true);
-
-
-        const token = response.data.jwtToken;
-        console.log('Token from server:', token);
-    
-        // Set the token in sessionStorage
-        sessionStorage.setItem('jwtToken', token);
-        console.log('Token stored in sessionStorage:', sessionStorage.getItem('jwtToken'));
-
-
         setErrorMessages({}); // Clears error messages on successful login
 
-        // You might want to handle token and redirect here based on the response
+
+      // Store the token in an HttpOnly cookie
+      document.cookie = `jwtToken=${jwtToken}; path=/; HttpOnly; SameSite=Lax`;
+
+      // Set the token in Axios headers for subsequent requests
+      axios.defaults.headers.common['Authorization'] = `Bearer ${jwtToken}`;
+
+
+
       })
       .catch((error) => {
         if (error.response) {
@@ -143,13 +137,28 @@ function Login() {
     </div>
   );
 
+  const handleLogout = () => {
+    // Clear the token from the cookie
+    document.cookie = 'jwtToken=; expires=Thu, 01 Jan 2025 00:00:00 UTC; path=/; HttpOnly; SameSite=Lax';
+    
+    // Remove the token from Axios headers
+    delete axios.defaults.headers.common['Authorization'];
+  
+    // Other logout logic
+    logout();
+    setIsLoggedIn(false);
+  };
+
   const renderLoggedInState = (
     <div className="loggedIn">
       <div>User is successfully logged in</div>
       {/* Display the username or any other information you want */}
       <div className="Welcome">Welcome, {state.username}!</div>
+      <button onClick={handleLogout}>Logout</button>
     </div>
   );
+
+
 
   return (
     <div className="app">

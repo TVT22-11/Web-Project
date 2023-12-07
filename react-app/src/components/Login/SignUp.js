@@ -88,7 +88,7 @@ function SignUp() {
             />
           </div>
           <div className="input-container">
-            <label>first name </label>
+            <label>First name </label>
             <input
               className="input-color"
               placeholder="First name"
@@ -101,7 +101,7 @@ function SignUp() {
             />
           </div>
           <div className="input-container">
-            <label>last name </label>
+            <label>Last name </label>
             <input
               className="input-color"
               placeholder="Last name"
