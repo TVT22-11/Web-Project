@@ -51,24 +51,20 @@ function Login() {
         // Set the token in sessionStorage
         sessionStorage.setItem('jwtToken', token);
         console.log('Token stored in sessionStorage:', sessionStorage.getItem('jwtToken'));
-
-
         setErrorMessages({}); // Clears error messages on successful login
-
-
-          
-
-
 
       })
       .catch((error) => {
         if (error.response) {
-          console.log(error.response);
-          setErrorMessages({ server: "Server responded with an error" });
+          if (error.response.status === 404 ) {
+            setErrorMessages({ server: "Incorrect username or password." });
+          } else {
+            setErrorMessages({ server: "Server responded with an error" });
+          }
         } else if (error.request) {
           setErrorMessages({ server: "Network error" });
         } else {
-          console.log(error);
+          console.log("Error:", error.message);
         }
       })
       .finally(() => {
