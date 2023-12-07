@@ -3,59 +3,62 @@ import './Groups.css';
 import axios from 'axios';
 
 function AvailableGroups() {
-  // Declare state variable for storing the fetched groups
   const [groups, setGroups] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    // Fetch the available groups from the server when the component mounts
     const fetchGroups = async () => {
       try {
-        // Send a GET request to your server endpoint that retrieves the groups from the database
         const response = await axios.get('http://localhost:5432/group');
-
-        // Check if the request was successful (you may want to add more error handling)
-        if (response.status === 200) {
-          // Ensure that the response data is an array before updating the state
-          if (Array.isArray(response.data)) {
-            // Update the state with the fetched groups
-            setGroups(response.data);
-          } else {
-            console.error('Invalid data structure received from the server');
-          }
+        if (response.status === 200 && response.data && response.data.GroupDataData) {
+          setGroups(response.data.GroupDataData);
         } else {
-          console.error('Error fetching groups:', response.statusText);
+          console.error('Invalid data structure received from the server');
         }
       } catch (error) {
         console.error('Error fetching groups:', error);
       }
     };
 
-    // Call the fetchGroups function
     fetchGroups();
-  }, []); // The empty dependency array ensures that this effect runs only once, equivalent to componentDidMount
+  }, []);
 
-  return (
-    <div className="groups flex-container">
-      <div className="groups-list">
-        <h3>Available Groups:</h3>
-        
-        {/* Render the fetched groups if it's an array */}
-        {Array.isArray(groups) ? (
-          <ul>
-            {groups.map((group) => (
-              <li key={group.id}>
-                <p>Group Name: {group.groupName}</p>
-                <p>Additional Info: {group.additionalInfo}</p>
-                <p>Is Private: {group.isPrivate ? 'Yes' : 'No'}</p>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>No groups available</p>
-        )}
+  const handleNextSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % groups.length);
+  };
+
+  const handlePrevSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + groups.length) % groups.length);
+  };
+
+  // ... (previous JSX code)
+
+return (
+  <div className="groups flex-container">
+    <div className="groups-list">
+      <h3>Available Groups:</h3>
+      <div className="slider-container">
+        <ul className="slider" style={{ transform: `translateY(-${currentIndex * 100}%)` }}>
+          {groups.map((group) => (
+            <li key={group.id}>
+              <div className="group-info">
+                <h4>Group Name: {group.name}</h4>
+                <p>Additional Info: {group.description}</p>
+                <p>Private: {group.isprivate ? 'Yes' : 'No'}</p>
+                <button className="join-button">Join</button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="slider-controls">
+        <button onClick={handlePrevSlide}>Previous</button>
+        <button onClick={handleNextSlide}>Next</button>
       </div>
     </div>
-  );
+  </div>
+);
+
 }
 
 export default AvailableGroups;
