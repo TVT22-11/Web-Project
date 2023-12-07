@@ -84,3 +84,19 @@
 .join-button:hover {
   background-color: var(--dark-yellow-color);
 }
+
+.header{
+  display: flex;
+  justify-content: center;
+}
+
+.create-button{
+  display: flex;
+  justify-content: center;
+}
+
+.your-groups-list, h3{
+  display: flex;
+  justify-content: center;
+  text-decoration: underline;
+}

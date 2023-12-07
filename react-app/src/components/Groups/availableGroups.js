@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Groups.css';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function AvailableGroups() {
   const [groups, setGroups] = useState([]);
@@ -9,7 +10,7 @@ function AvailableGroups() {
   useEffect(() => {
     const fetchGroups = async () => {
       try {
-        const response = await axios.get('http://localhost:5432/group');
+        const response = await axios.get('http://localhost:3001/group');
         if (response.status === 200 && response.data && response.data.GroupDataData) {
           setGroups(response.data.GroupDataData);
         } else {
@@ -45,7 +46,9 @@ return (
                 <h4>Group Name: {group.name}</h4>
                 <p>Additional Info: {group.description}</p>
                 <p>Private: {group.isprivate ? 'Yes' : 'No'}</p>
-                <button className="join-button">Join</button>
+                <button className="join-button">
+                <Link to="/Groups/chatpage">Join</Link>
+                  </button>
               </div>
             </li>
           ))}
