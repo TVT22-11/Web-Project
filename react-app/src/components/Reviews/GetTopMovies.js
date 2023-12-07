@@ -48,7 +48,7 @@ return (
       
           <img
             src={`${apiImageBaseUrl}${movie.poster_path}`}
-            className='Movie-Image'
+            className='Top-Movie-Image'
             alt={movie.title}
           />
           <div className='TopMovie-Desc'>
