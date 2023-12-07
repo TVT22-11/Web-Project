@@ -51,7 +51,7 @@
     margin-bottom: 10px;
   }
   
-  @media screen and (max-width: 990px) {
+  @media screen and (max-width: 1200px) {
     .Movie-Container {
       display: flex;
       max-width: 80%;
