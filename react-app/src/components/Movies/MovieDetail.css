@@ -3,17 +3,20 @@
 .Movie-Container {
   display: flex;
   align-items: center;
-  flex-direction:column;
-  }
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 15px;
+}
   
   .Movie-Image {
-    max-width: 100%;
+    width: 20%;
+    height: 20%;
     margin: 15px 0 15px 0;
     border-radius: 8px;
   }
   
   .Movie-Text {
-    max-width: 800px;
+    max-width: 50%;
     background-color: var(--text-background-color);
     padding: 15px;
     border: 1px solid var(--third-color);
@@ -31,15 +34,16 @@
   }
   
   .Movie-Info {
-  max-width: 800px;
-  height: fit-content;
-  overflow-y: auto;
-  background-color: var(--text-background-color);
-  padding: 15px;
-  border: 1px solid var(--third-color);
-  border-radius: 8px;
-  text-align: center;
-  }
+    max-width: 800px;
+    height: -moz-fit-content;
+    height: 500px;
+    overflow-y: auto;
+    background-color: var(--text-background-color);
+    padding: 15px;
+    border: 1px solid var(--third-color);
+    border-radius: 8px;
+    text-align: center;
+}
   
   ul {
     list-style: none;
@@ -57,8 +61,10 @@
       max-width: 80%;
       text-align: center;
       margin: 30px auto;
-      
-    }
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+  }
   
     .Movie-Image {
       max-width: 100%;
