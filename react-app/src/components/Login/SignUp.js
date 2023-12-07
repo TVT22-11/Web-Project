@@ -37,7 +37,7 @@ function SignUp() {
       lname: state.lname
     };
 
-    axios.post("http://localhost:5432/auth/register", userData)
+    axios.post("http://localhost:3001/auth/register", userData)
     .then((response) => {
       console.log(response.status, response.data);
       setIsSubmitted(true);
