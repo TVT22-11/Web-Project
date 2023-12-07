@@ -1,3 +1,4 @@
+
 require ('dotenv').config()
 const router = require('express').Router();
 const {register, getpassword, deleteAccount} = require('../database_tools/auth_db');
