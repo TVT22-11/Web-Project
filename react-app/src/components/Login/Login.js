@@ -51,14 +51,7 @@ function Login() {
         // Set the token in sessionStorage
         sessionStorage.setItem('jwtToken', token);
         console.log('Token stored in sessionStorage:', sessionStorage.getItem('jwtToken'));
-
-
         setErrorMessages({}); // Clears error messages on successful login
-
-
-          
-
-
 
       })
       .catch((error) => {

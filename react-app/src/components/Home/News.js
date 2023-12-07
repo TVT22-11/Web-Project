@@ -81,12 +81,12 @@ function News({ area, categoryID, eventID }) {
 
   return (
     <div className='News-Box'>
-      {news.map((item, index) => (
-        <div
-          key={item.articleURL}
-          className={item.articleURL === news[currentNewsIndex].articleURL ? 'active' : ''}
-          style={{ opacity: index === currentNewsIndex ? 1 : 0 }}
-        >
+  {news.map((item, index) => (
+  <div
+    key={`${item.articleURL}_${index}`}  
+    className={item.title === news[currentNewsIndex].title ? 'active' : ''}
+    style={{ opacity: index === currentNewsIndex ? 1 : 0 }}
+  >
           <img src={item.imageURL} alt={`News ${index}`} />
           <div className='Article-full'>
             <strong className='Article-title'><Link to={item.articleURL}>{item.title}</Link></strong>
@@ -97,7 +97,9 @@ function News({ area, categoryID, eventID }) {
       ))}
 
     </div>
+    
   );
+  
 }
 
 export default News;
