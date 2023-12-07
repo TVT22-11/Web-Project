@@ -55,7 +55,19 @@ function Login() {
 
         setErrorMessages({}); // Clears error messages on successful login
 
+<<<<<<< Updated upstream
         // You might want to handle token and redirect here based on the response
+=======
+
+      // Store the token in an HttpOnly cookie
+     document.cookie = `jwtToken=${jwtToken}; path=/; HttpOnly; SameSite=Lax`;
+
+      // Set the token in Axios headers for subsequent requests
+      axios.defaults.headers.common['Authorization'] = `Bearer ${jwtToken}`;
+
+
+
+>>>>>>> Stashed changes
       })
       .catch((error) => {
         if (error.response) {
@@ -143,6 +155,10 @@ function Login() {
       <div>User is successfully logged in</div>
       {/* Display the username or any other information you want */}
       <div className="Welcome">Welcome, {state.username}!</div>
+<<<<<<< Updated upstream
+=======
+      { <button onClick={handleLogout}>Logout</button> }
+>>>>>>> Stashed changes
     </div>
   );
 
