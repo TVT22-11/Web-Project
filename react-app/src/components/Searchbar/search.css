@@ -140,10 +140,10 @@
   }
 
   .search-filters{
-    width: 10px;
+    width: 90px;
     
   }
-  @media only screen and (max-width: 990px){
+  @media only screen and (max-width: 1200px){
     .Combined-dropdown {
       flex-direction: column;
     }
@@ -155,14 +155,14 @@
     }
 
     .Search-bar select {
-      width: calc(100% + 20px);
+      width: 100%;
       height: 100%;
       font-size: 12px;
       border: 1px solid var(--yellow-color);
       border-radius: 20px;
       background-color: var(--dark-color);
-      display: block;
-      margin: 0px 0px 1px 0px; /* Adjust the bottom margin to 1px */
+      display: flex;
+      margin: 0px 0px 1px 0px;
       cursor: pointer;
       color: var(--second-color);
       text-align: center;
@@ -172,6 +172,17 @@
       flex-wrap: wrap;
       gap: 2px;
       margin-left: 10px;
+    }
+    .Search-Input {
+
+      border: 1px solid #ccc;
+      border-radius: 4px 0 0 4px;
+      font-size: 20px; 
+      display: flex;
+      padding: 15px;
+      height: 100%;
+      width: 80%;
+      background-color: var(--yellow-color);
     }
 
   }
