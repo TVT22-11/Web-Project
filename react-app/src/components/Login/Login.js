@@ -56,7 +56,7 @@ function Login() {
       })
       .catch((error) => {
         if (error.response) {
-          if (error.response.status === 404 ) {
+          if (error.response.status === 404 || 401 ) {
             setErrorMessages({ server: "Incorrect username or password." });
           } else {
             setErrorMessages({ server: "Server responded with an error" });
