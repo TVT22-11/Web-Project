@@ -31,7 +31,7 @@
   }
   
   .Movie-Info {
-  width: 800px;
+  max-width: 800px;
   height: fit-content;
   overflow-y: auto;
   background-color: var(--text-background-color);
