@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const UserContext = createContext();
@@ -9,10 +9,17 @@ export const UserProvider = ({ children }) => {
   const [isLoggedOut, setIsLoggedOut] = useState(false);
   const [showLogoutNotification, setShowLogoutNotification] = useState(false);
 
+  useEffect(() => {
+    const storedToken = sessionStorage.getItem('jwtToken');
+    if (storedToken) {
+      setIsLoggedIn(true);
+    }
+  }, []);
 
   const login = () => {
     setIsLoggedIn(true);
-    setIsLoggedOut(false); // Reset logout status when logging in
+    setIsLoggedOut(false);
+     // Reset logout status when logging in
     // You can add additional logic here based on your global user state needs
   };
 
@@ -21,6 +28,7 @@ export const UserProvider = ({ children }) => {
   const shouldLogout = window.confirm("Are you sure you want to log out?");
 
   if (shouldLogout) {
+    sessionStorage.removeItem('jwtToken');
     setIsLoggedIn(false);
     setIsLoggedOut(true); // Set logout status to true
     setShowLogoutNotification(true); // Show the notification before logging out
@@ -39,7 +47,7 @@ const contextValue = {
   };
 
   return (
-    <UserContext.Provider value={{ isLoggedIn, isLoggedOut, login, logout }}>
+    <UserContext.Provider value={contextValue}>
       {children}
     </UserContext.Provider>
   );
