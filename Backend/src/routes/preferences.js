@@ -1,3 +1,4 @@
+
 const router = require('express').Router();
 
 
@@ -16,9 +17,7 @@ router.get('/preferences/:userID', async (req, res) => {
         res.status(500).json(error);
 
     }
-
-  });
-
+});
 
 
 router.post('/preferences/:userID', async (req, res) => {

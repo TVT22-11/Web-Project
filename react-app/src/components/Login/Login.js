@@ -12,7 +12,14 @@ function Login() {
   const [errorMessages, setErrorMessages] = useState({});
   const [loading, setLoading] = useState(false);
   const { login, isLoggedOut, logout } = useUser();
-  const [redirectTimeout, setRedirectTimeout] = useState(null);
+
+
+  const token = response.data.jwtToken;
+  console.log('Token from server:', token);
+
+  // Set the token in sessionStorage
+  sessionStorage.setItem('jwtToken', token);
+  console.log('Token stored in sessionStorage:', sessionStorage.getItem('jwtToken'));
 
   const [state, setState] = useState({
     username: "",
@@ -91,6 +98,7 @@ function Login() {
         }
       };
     }, [isLoggedIn, navigate]);
+
 
 
   // JSX code for login form
