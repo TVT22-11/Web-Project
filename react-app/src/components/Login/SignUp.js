@@ -37,7 +37,7 @@ function SignUp() {
       lname: state.lname
     };
 
-    axios.post("http://localhost:5432/auth/register", userData)
+    axios.post("http://localhost:3001/auth/register", userData)
     .then((response) => {
       console.log(response.status, response.data);
       setIsSubmitted(true);
@@ -88,7 +88,7 @@ function SignUp() {
             />
           </div>
           <div className="input-container">
-            <label>first name </label>
+            <label>First name </label>
             <input
               className="input-color"
               placeholder="First name"
@@ -101,7 +101,7 @@ function SignUp() {
             />
           </div>
           <div className="input-container">
-            <label>last name </label>
+            <label>Last name </label>
             <input
               className="input-color"
               placeholder="Last name"

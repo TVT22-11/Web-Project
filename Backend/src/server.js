@@ -23,7 +23,7 @@ app.get('/test', (req, res) => {
   res.json({ message: 'Server is running successfully!' });
 });
 
-const port = process.env.PG_PORT || 3001;
+const port = process.env.PORT || 3001;
 app.listen(port, function () {
   console.log(`Server running on port ${port}`);
 });

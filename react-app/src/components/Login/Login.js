@@ -12,7 +12,9 @@ function Login() {
   const [errorMessages, setErrorMessages] = useState({});
   const [loading, setLoading] = useState(false);
   const { login, isLoggedOut, logout } = useUser();
-  const [redirectTimeout, setRedirectTimeout] = useState(null);
+
+
+
 
   const [state, setState] = useState({
     username: "",
@@ -36,7 +38,7 @@ function Login() {
     };
 
     axios
-      .post("http://localhost:5432/auth/login", userData)
+      .post("http://localhost:3001/auth/login", userData)
       .then((response) => {
         console.log(response.status, response.data);
         login();
@@ -53,7 +55,11 @@ function Login() {
 
         setErrorMessages({}); // Clears error messages on successful login
 
-        // You might want to handle token and redirect here based on the response
+
+          
+
+
+
       })
       .catch((error) => {
         if (error.response) {
@@ -91,6 +97,7 @@ function Login() {
         }
       };
     }, [isLoggedIn, navigate]);
+
 
 
   // JSX code for login form
@@ -140,6 +147,7 @@ function Login() {
       <div>User is successfully logged in</div>
       {/* Display the username or any other information you want */}
       <div className="Welcome">Welcome, {state.username}!</div>
+
     </div>
   );
 
