@@ -9,7 +9,6 @@ const Sidebar = () => {
   const menuItems = [
     { label: 'Appearance', path: '/options/appearance' },
     { label: 'Preferences', path: '/options/preferences' },
-    { label: 'Alerts', path: '/options/alerts' },
     { label: 'Other', path: '/options/other' }, // Update the path here
   ];
 
