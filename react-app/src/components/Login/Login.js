@@ -12,7 +12,14 @@ function Login() {
   const [errorMessages, setErrorMessages] = useState({});
   const [loading, setLoading] = useState(false);
   const { login, isLoggedOut, logout } = useUser();
-  const [redirectTimeout, setRedirectTimeout] = useState(null);
+
+
+  const token = response.data.jwtToken;
+  console.log('Token from server:', token);
+
+  // Set the token in sessionStorage
+  sessionStorage.setItem('jwtToken', token);
+  console.log('Token stored in sessionStorage:', sessionStorage.getItem('jwtToken'));
 
   const [state, setState] = useState({
     username: "",
@@ -42,6 +49,7 @@ function Login() {
         login();
         setIsLoggedIn(true);
         setErrorMessages({}); // Clears error messages on successful login
+
         // You might want to handle token and redirect here based on the response
       })
       .catch((error) => {
@@ -88,6 +96,7 @@ function Login() {
         }
       };
     }, [isLoggedIn, navigate]);
+
 
 
   // JSX code for login form
