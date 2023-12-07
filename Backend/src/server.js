@@ -7,6 +7,8 @@ const preferences = require('./routes/preferences');
 const review = require('./routes/review');
 const group = require('./routes/group');
 
+
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());

@@ -29,7 +29,6 @@ function SignUp() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const userData = {
       username: state.username,
       password: state.password,
@@ -37,12 +36,14 @@ function SignUp() {
       lname: state.lname
     };
 
+
     axios.post("http://localhost:3001/auth/register", userData)
     .then((response) => {
       console.log(response.status, response.data);
       setIsSubmitted(true);
-
+      window.location.href = '/login';
     })
+    
 
       .catch((error) => {
         if (error.response) {
@@ -54,6 +55,7 @@ function SignUp() {
           console.log(error);
         }
       });
+   
   }
 
    
@@ -125,7 +127,8 @@ function SignUp() {
       <div className="app">
         <div className="login-form">
           <div className="title">REGISTER</div>
-          {isSubmitted ? <div>User is successfully registered</div> : renderForm}
+          {isSubmitted ? <div>User is successfully registered</div> : renderForm }
+          
         </div>
       </div>
     );
