@@ -11,6 +11,7 @@ import "./SignUp.css";
 
 function SignUp() {
   const navigate = useNavigate();
+  const [errorMessages, setErrorMessages] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [state, setState] = useState({
     username: "",
@@ -41,19 +42,23 @@ function SignUp() {
     .then((response) => {
       console.log(response.status, response.data);
       setIsSubmitted(true);
+      setErrorMessages({});
       window.location.href = '/login';
     })
     
 
       .catch((error) => {
         if (error.response) {
-          console.log(error.response);
-          console.log("Server responded with an error");
-        } else if (error.request) {
-          console.log("network error");
-        } else {
-          console.log(error);
-        }
+          if (error.response.status === 500 ) {
+            setErrorMessages({ server: "Username already in use" });
+          }else{
+            setErrorMessages({ server: "Server responded with an error" });
+          }
+          } else if (error.request) {
+            setErrorMessages({ server: "Network error" });
+          } else {
+            console.log("Error:", error.message);
+          }
       });
    
   }
@@ -127,6 +132,9 @@ function SignUp() {
       <div className="app">
         <div className="login-form">
           <div className="title">REGISTER</div>
+          {errorMessages.server && (
+          <div className="error-message">{errorMessages.server}</div>
+        )}
           {isSubmitted ? <div>User is successfully registered</div> : renderForm }
           
         </div>
