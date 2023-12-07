@@ -8,7 +8,6 @@ import Other from './Other';
 function Options({ selectedTimezone, setSelectedTimezone }) {
   return (
     <Routes>
-      {/* Redirect to /options/preferences by default */}
       <Route path="/" element={<Navigate to="preferences" />} />
       <Route
         path="preferences"
