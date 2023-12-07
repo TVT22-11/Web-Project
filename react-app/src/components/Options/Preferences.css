@@ -47,7 +47,7 @@ select::-moz-focus-inner {
   margin: 0;
 }
 
-@media screen and (max-width: 990px) {
+@media screen and (max-width: 1200px) {
   .page-container label{
     width: 250px;;
     display: flex;
