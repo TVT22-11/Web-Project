@@ -36,7 +36,7 @@ function Login() {
     };
 
     axios
-      .post("http://localhost:5432/auth/login", userData)
+      .post("http://localhost:3001/auth/login", userData)
       .then((response) => {
         console.log(response.status, response.data);
         login();
