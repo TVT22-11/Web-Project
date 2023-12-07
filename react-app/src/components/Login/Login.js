@@ -14,12 +14,7 @@ function Login() {
   const { login, isLoggedOut, logout } = useUser();
 
 
-  const token = response.data.jwtToken;
-  console.log('Token from server:', token);
 
-  // Set the token in sessionStorage
-  sessionStorage.setItem('jwtToken', token);
-  console.log('Token stored in sessionStorage:', sessionStorage.getItem('jwtToken'));
 
   const [state, setState] = useState({
     username: "",
