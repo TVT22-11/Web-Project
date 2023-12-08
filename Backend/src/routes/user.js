@@ -4,7 +4,7 @@ const {getUser} = require('../database_tools/user_db');
 const {authenticateToken} = require('../auth/auth');
 
 
-router.get('/user/:userID', async (req, res) => {
+router.get('/user/:userID', authenticateToken, async (req, res) => {
     try{
         const userID = req.params.userID;
         const user = await getUser(userID);
@@ -22,10 +22,10 @@ router.get('/user/:userID', async (req, res) => {
 
 
 
-router.get('/' , async (req, res) => {
+router.get('/', authenticateToken, async (req, res) => {
 
     try{
-        const account = await getUser(req.query.username);
+        const account = await getUser(res.locals.username);
         if (account) {
             res.status(200).json(account.length === 1 ? account[0] : account);
         } else {
