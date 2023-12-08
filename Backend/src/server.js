@@ -22,7 +22,7 @@ app.use('/account',  user);
 app.use('/group', group);
 
 app.get('/test', (req, res) => {
-  res.json({ message: 'Server is running successfully!' });
+  res.status(200).send({ message: 'Server is running successfully!' });
 });
 
 const port = process.env.PORT || 3001;
