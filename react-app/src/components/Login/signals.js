@@ -1,3 +1,4 @@
+
 import { effect, signal } from "@preact/signals-react";
 import axios from "axios";
 
@@ -11,17 +12,17 @@ export const jwtToken = signal(getSessionToken());
 export const userInfo = signal(null);
 
 function getSessionToken(){
-    const t = sessionStorage.getItem('token');
+    const t = sessionStorage.getItem('jwtToken');
     return t===null || t==='null' ? '' : t;
 }
 
 //Every time the token changes, updating the session storage.
 //Also getting the userInfo with the token.
 effect(()=>{
-    sessionStorage.setItem('token', jwtToken.value);
+    sessionStorage.setItem('jwtToken', jwtToken.value);
 
     if(jwtToken.value.length !== 0){
-        axios.get('/student/personal', {headers: {Authorization: "Bearer " + jwtToken.value}})
+        axios.get('/account/personal', {headers: {Authorization: "Bearer " + jwtToken.value}})
             .then(resp => userInfo.value = resp.data)
             .catch(error => console.log(error.message))
     }else{

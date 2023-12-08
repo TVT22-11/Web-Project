@@ -13,7 +13,7 @@ return(
         <Route path="/" element={<Navigate to="Groups" />} />
         <Route path="groups" element={<Groups/>} />
         <Route path="CreatingPage" element={<CreatingPage />} />
-        <Route path="ChatPage" element={<ChatPage />} />
+        <Route path="ChatPage/:id_party" element={<ChatPage />} />
       </Routes>
     );  
     };
