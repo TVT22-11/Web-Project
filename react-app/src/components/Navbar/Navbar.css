@@ -147,11 +147,25 @@
   background-color: var(--body-background-color);
   height: calc(125vh);
   left: 0;
-  width: 50%;
+  width: 30%;
 }
 
 .dropdown-container {
   position: relative; /* Ensure the parent container is positioned relative */
+}
+.drop-sign-in-button {
+  color: var(--yellow-color);
+  display: flex;
+  position: fixed;
+  font-weight: 500;
+  justify-content: center;
+  align-items: center;
+  margin-left: 70%;
+}
+.dropdown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .dropdown-content.show {
@@ -180,4 +194,21 @@
   color: var(--hover-color);
   background-color: var(--hover-background-color);
   box-sizing: border-box;
+}
+
+@media screen and (min-width: 1200px)  {
+  .drop-sign-in-button {
+    display: none;
+  }
+  .navbar .show {
+    display: none;
+  }
+  .navbar .dropdown{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1200px)  {
+
+
 }
