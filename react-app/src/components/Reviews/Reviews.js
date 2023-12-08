@@ -5,6 +5,7 @@ import { Rating } from "react-simple-star-rating";
 import { Container } from 'react-bootstrap';
 import './Reviews.css';
 import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const apiUrl = process.env.REACT_APP_IMDB_API_URL;
 const apiKey = process.env.REACT_APP_IMDB_API_BEARER_TOKEN;
