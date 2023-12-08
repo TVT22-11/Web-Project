@@ -26,6 +26,7 @@
     height: calc(4rem + 1rem);
     text-align: center;
     min-width: 395px;
+    width: 100%;
   
 }
 
@@ -117,13 +118,13 @@
 .log-out-button{
   margin-left: 0px;
   height: 0px;
-  align-items: normal;
+  padding: 20px;
+  align-items: center;
   font-size: 20.8px;
   display: flex;
   color:  var(--yellow-color) !important;
   border-radius: 10px;
   background: none;
-  padding: 7px;
   border: none;
   font-weight: 500;
   text-decoration: none; /* Remove default underline on the link */
@@ -146,11 +147,25 @@
   background-color: var(--body-background-color);
   height: calc(125vh);
   left: 0;
-  width: 50%;
+  width: 30%;
 }
 
 .dropdown-container {
   position: relative; /* Ensure the parent container is positioned relative */
+}
+.drop-sign-in-button {
+  color: var(--yellow-color);
+  display: flex;
+  position: fixed;
+  font-weight: 500;
+  justify-content: center;
+  align-items: center;
+  margin-left: 70%;
+}
+.dropdown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .dropdown-content.show {
@@ -179,4 +194,21 @@
   color: var(--hover-color);
   background-color: var(--hover-background-color);
   box-sizing: border-box;
+}
+
+@media screen and (min-width: 1200px)  {
+  .drop-sign-in-button {
+    display: none;
+  }
+  .navbar .show {
+    display: none;
+  }
+  .navbar .dropdown{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1200px)  {
+
+
 }

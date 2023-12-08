@@ -5,6 +5,8 @@ const auth = require('./routes/authorization');
 const app = express();
 const preferences = require('./routes/preferences');
 const review = require('./routes/review');
+const group = require('./routes/group');
+
 
 
 app.use(express.urlencoded({ extended: true }));
@@ -17,12 +19,13 @@ app.use('/auth', auth);
 app.use('/review', review);
 app.use('/preferences',  preferences);
 app.use('/account',  user);
+app.use('/group', group);
 
 app.get('/test', (req, res) => {
   res.json({ message: 'Server is running successfully!' });
 });
 
-const port = process.env.PG_PORT || 3001;
+const port = process.env.PORT || 3001;
 app.listen(port, function () {
   console.log(`Server running on port ${port}`);
 });

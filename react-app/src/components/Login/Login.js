@@ -12,7 +12,9 @@ function Login() {
   const [errorMessages, setErrorMessages] = useState({});
   const [loading, setLoading] = useState(false);
   const { login, isLoggedOut, logout } = useUser();
-  const [redirectTimeout, setRedirectTimeout] = useState(null);
+
+
+
 
   const [state, setState] = useState({
     username: "",
@@ -36,30 +38,33 @@ function Login() {
     };
 
     axios
-      .post("http://localhost:5432/auth/login", userData)
+      .post("http://localhost:3001/auth/login", userData)
       .then((response) => {
         console.log(response.status, response.data);
         login();
         setIsLoggedIn(true);
+
+
+        const token = response.data.jwtToken;
+        console.log('Token from server:', token);
+    
+        // Set the token in sessionStorage
+        sessionStorage.setItem('jwtToken', token);
+        console.log('Token stored in sessionStorage:', sessionStorage.getItem('jwtToken'));
         setErrorMessages({}); // Clears error messages on successful login
-        // You might want to handle token and redirect here based on the response
+
       })
       .catch((error) => {
         if (error.response) {
-          // The request was made, but the server responded with an error
-          if (error.response.status === 404 || 401) {
-            // Unauthorized - incorrect username or password
+          if (error.response.status === 404 || 401 ) {
             setErrorMessages({ server: "Incorrect username or password." });
           } else {
-            // Other server errors
             setErrorMessages({ server: "Server responded with an error" });
           }
         } else if (error.request) {
-          // The request was made, but no response was received
           setErrorMessages({ server: "Network error" });
         } else {
-          // Something happened in setting up the request that triggered an error
-          console.log("Error:", error);
+          console.log("Error:", error.message);
         }
       })
       .finally(() => {
@@ -88,6 +93,7 @@ function Login() {
         }
       };
     }, [isLoggedIn, navigate]);
+
 
 
   // JSX code for login form
@@ -137,6 +143,7 @@ function Login() {
       <div>User is successfully logged in</div>
       {/* Display the username or any other information you want */}
       <div className="Welcome">Welcome, {state.username}!</div>
+
     </div>
   );
 

@@ -21,6 +21,7 @@ function App() {
   const [selectedTimezone, setSelectedTimezone] = useState('Europe/Helsinki');
 
 
+
   return (
     <Router>
       <DarkModeProvider>
@@ -46,6 +47,7 @@ function App() {
           <Route path="/SignUp/*" element={<SignUp />} />
           <Route path="/movie/:id" Component={MovieDetail} />
           <Route path="/series/:id" Component={SeriesDetail} />
+          <Route path="*" element={<p>There's nothing here: 404!</p>} />
         </Routes>
       </div>
       <Footer />
