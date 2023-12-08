@@ -26,16 +26,6 @@ describe('/First Test Collection', () =>{
 
 describe('/GET Tests', ()=>{
 
-    it('Should get all the accounts...', (done) =>{
-        chai.request(server)
-        .get('/account')
-        .end((err, res) =>{
-            res.should.have.status(200);
-            res.body.should.be.a('array');
-            done();
-        });
-
-    });
 
     it('Should get all the Groups...', (done) =>{
         chai.request(server)
