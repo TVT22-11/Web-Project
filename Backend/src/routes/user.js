@@ -1,31 +1,27 @@
 require('dotenv').config()
 const router = require('express').Router();
-const {getUser} = require('../database_tools/user_db');
+const {getUser, getUserByID} = require('../database_tools/user_db');
 const {authenticateToken} = require('../auth/auth');
 const session = require('express-session');
 
 
 
-router.get('/user/:userID', authenticateToken, async (req, res) => {
+router.get('/user',  async (req, res) => {
 
-    try{
-        const userID = req.params.userID;
-        const user = await getUser(userID);
-        res.status(200).json(user);
-
-        if (!userID) {
-            res.status(404).send('User not found');
-        }
-        res.json(user || {});
-    }catch(error){
-        console.error(error);
-        res.status(500).json(error);
+    const id_account = req.query.id_account;
+  
+    try {
+      const UserData = await getUserByID(id_account);
+      res.status(200).json({ id_account: id_account, UserData: UserData });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Internal server error' });
     }
-});
+  });
 
 
 
-router.get('/', authenticateToken, async (req, res) => {
+router.get('/', authenticateToken,  async (req, res) => {
 
     try{
         const account = await getUser(res.locals.username);
