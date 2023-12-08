@@ -30,7 +30,7 @@ function CreatingPage() {
 
     try {
       // Send a POST request to your server endpoint that adds the group to the database
-      const response = await axios.post('http://localhost:5432/group/post', newGroup);
+      const response = await axios.post('http://localhost:3001/group/post', newGroup);
 
       // Check if the request was successful (you may want to add more error handling)
       if (response.status === 201) {
