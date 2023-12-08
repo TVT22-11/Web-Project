@@ -2,7 +2,17 @@ require('dotenv').config()
 const router = require('express').Router();
 const {getUser} = require('../database_tools/user_db');
 const {authenticateToken} = require('../auth/auth');
+const session = require('express-session');
 
+
+
+router.use(
+    session({
+      secret: process.env.SESSION_SECRET,
+      resave: false,
+      saveUninitialized: false,
+    })
+  );
 
 router.get('/user/:userID', async (req, res) => {
     try{
@@ -37,13 +47,22 @@ router.get('/' , async (req, res) => {
 });
 
 router.get('/personal', authenticateToken, async (req, res) => {
-    try{
-        const username = res.locals.username;
-        res.status(200).json({username: username, personalData: "This is your personal data"});
-    }catch(err){
-        res.status(500).json({error: err.message});
+    try {
+      const username = res.locals.username;
+      const account_id = res.locals.account_id;
+  
+      req.session.id_account = account_id;
+  
+      res.status(200).json({
+        username: username,
+        account_id: account_id,
+        personalData: 'This is your personal data',
+      });
+    } catch (err) {
+      res.status(500).json({ error: err.message });
     }
-});
+  });
+  
 
 
 
