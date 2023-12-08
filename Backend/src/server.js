@@ -1,5 +1,6 @@
 const cors = require('cors');
 const express = require('express');
+
 const user = require('./routes/user');
 const auth = require('./routes/authorization');
 const app = express();
@@ -13,6 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 app.use(express.static('public'));
+
 
 
 app.use('/auth', auth);
@@ -29,5 +31,9 @@ const port = process.env.PORT || 3001;
 app.listen(port, function () {
   console.log(`Server running on port ${port}`);
 });
+
+
+
+
 
 module.exports = app;
