@@ -7,7 +7,8 @@ function AvailableGroups() {
   const [groups, setGroups] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  useEffect(() => {
+
+useEffect(() => {
     const fetchGroups = async () => {
       try {
         const response = await axios.get('http://localhost:3001/group');

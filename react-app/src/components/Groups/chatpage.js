@@ -1,66 +1,83 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
+import '/Users/ranta/Desktop/Websovellus_projekti/Web-Project/react-app/src/components/Home/News.css';
 
-const ChatPage = () => {
-  const [username, setUsername] = useState('');
-  const [message, setMessage] = useState('');
-  const [messages, setMessages] = useState([]);
+const apiUrl = process.env.REACT_APP_FINNKINO_API_URL;
 
-  useEffect(() => {
-    fetchMessages();
-  }, []);
+function ChatPage() {
+  const [currentNews, setCurrentNews] = useState(null);
 
-  const fetchMessages = async () => {
+  const fetchSingleNews = async () => {
     try {
-      const response = await axios.get('/api/messages');
-      setMessages(response.data);
+      const response = await fetch(apiUrl);
+      const xmlData = await response.text();
+      const parser = new DOMParser();
+      const xmlDoc = parser.parseFromString(xmlData, 'text/xml');
+      const newsNode = xmlDoc.querySelector('NewsArticle');
+
+      const rawPublishDate = newsNode.querySelector('PublishDate').textContent;
+      const trimmedPublishDate = trimTimeFromDate(rawPublishDate);
+
+      const newsData = {
+        title: newsNode.querySelector('Title').textContent,
+        publishDate: trimmedPublishDate,
+        articleURL: newsNode.querySelector('ArticleURL').textContent,
+        imageURL: newsNode.querySelector('ImageURL').textContent,
+        description: newsNode.querySelector('HTMLLead').textContent,
+      };
+
+      setCurrentNews(newsData);
     } catch (error) {
-      console.error('Error fetching messages:', error);
+      console.error('Error fetching news:', error);
     }
   };
 
-  const sendMessage = async () => {
-    try {
-      await axios.post('/api/messages', { username, message });
-      setUsername('');
-      setMessage('');
-      fetchMessages();
-    } catch (error) {
-      console.error('Error sending message:', error);
-    }
+  function trimTimeFromDate(dateString) {
+    const date = new Date(dateString);
+    const trimmedDate = date.toLocaleDateString('fi-FI', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+    return trimmedDate;
+  }
+
+  const handleAddUser = () => {
+    // Implement the logic for adding a user
+    console.log('Add User button clicked');
+  };
+
+  const handleDeleteUser = () => {
+    // Implement the logic for deleting a user
+    console.log('Delete User button clicked');
   };
 
   return (
     <div>
       <div>
-        <h1>Simple Chat</h1>
+        <button onClick={fetchSingleNews}>Fetch News Article</button>
+      </div>
+
+      {currentNews && (
         <div>
+          <img src={currentNews.imageURL} alt={`News`} />
           <div>
-            {messages.map((msg) => (
-              <div key={msg.id}>
-                <strong>{msg.username}:</strong> {msg.message}
-              </div>
-            ))}
-          </div>
-          <div>
-            <input
-              type="text"
-              placeholder="Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-            <input
-              type="text"
-              placeholder="Message"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-            />
-            <button onClick={sendMessage}>Send</button>
+            <strong>
+              <a href={currentNews.articleURL} target="_blank" rel="noopener noreferrer">
+                {currentNews.title}
+              </a>
+            </strong>
+            <p>{currentNews.publishDate}</p>
+            <p>{currentNews.description}</p>
           </div>
         </div>
+      )}
+
+      <div>
+        <button onClick={handleAddUser}>Add Member</button>
+        <button onClick={handleDeleteUser}>Delete Member</button>
       </div>
     </div>
   );
-};
+}
 
 export default ChatPage;

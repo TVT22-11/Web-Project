@@ -7,7 +7,7 @@ const app = express();
 const preferences = require('./routes/preferences');
 const review = require('./routes/review');
 const group = require('./routes/group');
-const message =require('./routes/message');
+
 
 
 
@@ -23,7 +23,7 @@ app.use('/review', review);
 app.use('/preferences',  preferences);
 app.use('/account',  user);
 app.use('/group', group);
-app.use('/message', message);
+
 
 app.get('/test', (req, res) => {
   res.json({ message: 'Server is running successfully!' });
