@@ -54,7 +54,7 @@ export const UserProvider = ({ children }) => {
       console.log(data);
       
       setUsername(data.username);
-      setIdAccount(data.id_account);
+      setAccountID(data.id_account);
     } catch (error) {
       console.error('Error:', error);
     }
@@ -68,7 +68,7 @@ export const UserProvider = ({ children }) => {
     showLogoutNotification,
     setShowLogoutNotification,
     username,
-    idAccout,
+    accountID,
   };
 
   return (
