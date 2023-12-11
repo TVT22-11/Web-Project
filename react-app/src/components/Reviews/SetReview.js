@@ -5,12 +5,16 @@ import './SetReview.css';
 import { jwtToken } from "../Login/signals";
 import axios from 'axios';
 import { useParams } from "react-router-dom";
+import { useUser } from "../User/UserContext";
 
 export function SetReviews(){
     const [reviews, setReviews] = useState([]);
     const [rating, setRating] = useState(0);
     const [reviewText, setReviewText] = useState("");
     const [state, setState] = useState({});
+    const {idAccount} = useUser();
+    const { id } = useParams();
+    console.log('account_id:', idAccount);
 
     const handleRating = (rate) => {
         setRating(rate);
@@ -28,10 +32,10 @@ export function SetReviews(){
       const handleSubmit = async () => {
        
         const reviewData = {
-            id_account: state.id_account,
+            id_account: {idAccount},
             stars: state.stars,
             comment: state.comment,
-            movie_id: state.movie_id
+            movie_id: {id}
         };
         try {
             const response = await axios.post(`http://localhost:3001/review/post`,reviewData,

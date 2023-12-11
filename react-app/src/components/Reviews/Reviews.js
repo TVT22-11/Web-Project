@@ -14,8 +14,23 @@ const movieReviewsUrl = process.env.REACT_APP_IMDB_MOVIE_REVIEWS_URL;
 
 export function Reviews() {
   const { id } = useParams();
+  const [reviews, setReviews] = useState([]);
+    const [rating, setRating] = useState(0);
+    const [reviewText, setReviewText] = useState("");
+    const [state, setState] = useState({});
+
+    const handleRating = (rate) => {
+      setRating(rate);
+    };
   
- 
+    const handleReset = () => {
+      console.log("Reset:", reviewText);
+      setRating(0);
+    };
+  
+    const handleReviewText = (event) => {
+      setReviewText(event.target.value);
+    };  
 
   
   const reviewData = {
