@@ -24,26 +24,49 @@ describe('/First Test Collection', () =>{
 
 })
 
-describe('/GET Tests', ()=>{
 
+describe('Käyttäjä testit', () => {
+  let createdUserId; 
 
-    it('Should get all the Groups...', (done) =>{
-        chai.request(server)
-        .get('/group')
-        .end((err, res) =>{
-            res.should.have.status(200);
-            res.body.should.be.a('object');
-            done();
-        });
-    });
-})
+  it('Should create a new user', (done) => {
+    chai.request(server)
+      .post('/auth/register') 
+      .send({
+        username: 'testuser',
+        password: 'testpassword',
+        fname: 'testfname',
+        lname: 'testlname',
+      })
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        res.body.should.have.property('jwtToken');
+        createdUserId = res.body.username;
+        done();
+      });
+  });
 
-// Basic testi testaus
-var assert = require('assert');
-describe('Array', function () {
-  describe('#indexOf()', function () {
-    it('should return -1 when the value is not present', function () {
-      assert.equal([1, 2, 3].indexOf(4), -1);
-    });
+  it('Should log in with the created user', (done) => {
+    chai.request(server)
+      .post('/auth/login')
+      .send({
+        username: 'testuser',
+        password: 'testpassword',
+      })
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        res.body.should.have.property('jwtToken');
+        done();
+      });
+  });
+
+  it('Should delete the created user', (done) => {
+    chai.request(server)
+      .delete(`/auth/delete/${createdUserId}`)
+      .end((err, res) => {
+        res.should.have.status(200);
+        done();
+      });
   });
 });

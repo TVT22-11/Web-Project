@@ -2,7 +2,12 @@ const pgPool = require('./pg_connection');
 
 const sql = {
     Review : 'INSERT INTO review (id_account, stars, comment, movie_id) VALUES ($1, $2, $3, $4)',
-    GET_REVIEW_BY_ID: 'SELECT * FROM review WHERE movie_id = $1',
+    GET_REVIEW_BY_ID: `
+    SELECT review.*, account.username
+    FROM review
+    JOIN account ON review.id_account = account.id_account
+    WHERE review.movie_id = $1
+  `,
     Delete_Review: 'DELETE FROM review WHERE id_account = $1'
 };
 
