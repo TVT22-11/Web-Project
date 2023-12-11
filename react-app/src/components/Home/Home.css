@@ -20,7 +20,11 @@ position: relative;
     background-color: var(--first-color);
 }
 
-
+.Welcome-Message{
+    display: flex;
+    justify-content: center;
+    padding-top: 25px;
+}
 
 @media screen and (max-width: 1200px){
     .Top-Movie{
