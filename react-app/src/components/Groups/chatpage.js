@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '/Users/ranta/Desktop/Websovellus_projekti/Web-Project/react-app/src/components/Home/News.css';
+import '../Home/News.css';
 
 const apiUrl = process.env.REACT_APP_FINNKINO_API_URL;
 
