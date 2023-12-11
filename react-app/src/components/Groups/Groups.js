@@ -14,16 +14,13 @@ function Groups() {
       {/* Navbar element */}
       <div>
         {/* Display sign-in message if not signed in */}
-        {!isLoggedIn && <p>Sign in to access groups</p>}
+        {!isLoggedIn && <p>Sign in to create a group</p>}
         {/* SearchBar component always displayed */}
-        {/* YourGroups, AvailableGroups, and CreateGroup components */}
-        {isLoggedIn && (
-          <>
-            <YourGroups />
-            <AvailableGroups />
-            <CreateGroup />
-          </>
-        )}
+        {/* YourGroups and AvailableGroups components */}
+        <YourGroups />
+        <AvailableGroups />
+        {/* Render CreateGroup only if user is logged in */}
+        {isLoggedIn && <CreateGroup />}
       </div>
     </div>
   );
