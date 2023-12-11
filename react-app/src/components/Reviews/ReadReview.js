@@ -6,35 +6,53 @@ import { useParams } from "react-router-dom";
 function ReadReview() {
     const [reviews, setReviews] = useState([]);
     const { id } = useParams();
-    const [user, setUser] = useState({});
+    const [usernames, setUsernames] = useState({});
     
 
     useEffect(() => {
         const fetchReview = async () => {
           try {
-            const reviewResponse = await 
-            axios.get(`http://localhost:3001/review?movie_id=${id}`);
-
-            setReviews(reviewResponse.data.ReviewData);    
-
-            const accountIds = reviewsResponse.data.ReviewData.map(review => review.id_account);
-            
-            const usernamesResponse = await axios.get(`http://localhost:3001/account/user`, {
-          params: {
-            id_account: accountIds.join(','), // Pass the account IDs as a query parameter
-          },
-        });
-
-        // Assuming usernamesResponse.data is an array of username details, extract usernames
-        const usernamesData = usernamesResponse.data.map(user => user.username);
-
-        setUsernames(usernamesData);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
+            // Fetch reviews
+            const reviewResponse = await axios.get(`http://localhost:3001/review?movie_id=${id}`);
+            const reviewsData = reviewResponse.data.ReviewData;
+            setReviews(reviewsData);
+        
+            // Fetch usernames
+            const accountIds = reviewsData.map(review => review.id_account);
+            const usernamePromises = accountIds.map(async id_account => {
+              try {
+                const userResponse = await axios.get(`http://localhost:3001/account/personal`);
+                console.log(`User Response Data for id_account ${id_account}:`, userResponse.data);
+        
+                const userData = userResponse.data;
+                const username = userData.username;
+                return { id_account, username };
+              } catch (error) {
+                console.error(`Error fetching username for id_account ${id_account}:`, error);
+                return { id_account, username: null };
+              }
+            });
+        
+            const resolvedUsernames = await Promise.all(usernamePromises);
+        
+            const usernamesData = {};
+            resolvedUsernames.forEach(({ id_account, username }) => {
+              if (username !== null) {
+                usernamesData[id_account] = username;
+              } else {
+                console.error('No username found for id_account:', id_account);
+              }
+            });
+        
+            // Update state with usernames
+            setUsernames(usernamesData);
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        };
+      
+      
+    fetchReview();
   }, [id]);
 
     return (
@@ -42,13 +60,15 @@ function ReadReview() {
         <div className="review-box">
           <h2>Reviews</h2>
           <ul>
-          {reviews.map((review, index) => (
+          {reviews.map((review,index) => (
           <li key={review.id_review}>
             <p>ID: {review.id_review}</p>
             <p>Stars: {review.stars}</p>
             <p>Comment: {review.comment}</p>
-            <p>User ID: {review.id_account}</p>
-            {usernames[index] && <p>Username: {usernames[index]}</p>}
+            <p>User ID: {usernames[review.id_account]}</p>
+              {usernames[review.id_account] && (
+                <p>Username: {usernames[review.id_account]}</p>
+              )}
               </li>
             ))}
           </ul>
