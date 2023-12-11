@@ -20,7 +20,8 @@ router.post('/register', upload.none(), async (req, res) => {
         const passwordHash = await bcrypt.hash(password, 10);
         await register(fname, lname, username, passwordHash);
         const token = createToken(username);
-        res.status(200).json({ jwtToken: token });
+        const user = username;
+        res.status(200).json({ jwtToken: token, username: user});
 } catch (err) {
     console.error(err); // Log the entire error object
     res.status(500).json({ error: 'Internal Server Error' });
@@ -40,7 +41,8 @@ router.post('/login', upload.none(), async (req, res) => {
             const isAuth = await bcrypt.compare(password, db_password);
             if (isAuth) {
                 const token = createToken(username);
-                res.status(200).json({jwtToken: token});
+                const user = username;
+                res.status(200).json({jwtToken: token, username: user});
             } else {
                 res.status(401).send('Incorrect password');
             }
