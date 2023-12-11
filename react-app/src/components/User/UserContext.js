@@ -12,7 +12,7 @@ export const UserProvider = ({ children }) => {
 
 
   const [username, setUsername] = useState('');
-  const [idAccout, setIdAccount] = useState('');
+  
   useEffect(() => {
     const storedToken = sessionStorage.getItem('jwtToken');
     if (storedToken) {
