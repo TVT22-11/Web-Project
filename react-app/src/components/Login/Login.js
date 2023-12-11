@@ -83,6 +83,7 @@ function Login() {
       if (isLoggedIn) {
         timeoutId = setTimeout(() => {
           navigate("/");
+          window.location.reload();
         }, 3000);
       }
   

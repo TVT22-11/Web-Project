@@ -12,7 +12,7 @@ export const UserProvider = ({ children }) => {
 
 
   const [username, setUsername] = useState('');
-
+  const [idAccout, setIdAccount] = useState('');
   useEffect(() => {
     const storedToken = sessionStorage.getItem('jwtToken');
     if (storedToken) {
@@ -42,7 +42,7 @@ export const UserProvider = ({ children }) => {
 
   const fetchAccountID = async (token) => {
     try {
-      const response = await fetch('http://localhost:3001/account/personal', {
+      const response = await fetch('http://localhost:3001/account', {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -54,6 +54,7 @@ export const UserProvider = ({ children }) => {
       console.log(data);
       
       setUsername(data.username);
+      setIdAccount(data.id_account);
     } catch (error) {
       console.error('Error:', error);
     }
@@ -67,6 +68,7 @@ export const UserProvider = ({ children }) => {
     showLogoutNotification,
     setShowLogoutNotification,
     username,
+    idAccout,
   };
 
   return (

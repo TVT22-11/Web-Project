@@ -40,12 +40,12 @@ router.get('/personal', authenticateToken, async (req, res) => {
       const username = res.locals.username;
       const account_id = res.locals.account_id;
   
-      req.session.id_account = account_id;
+     
   
       res.status(200).json({
         username: username,
         account_id: account_id,
-        personalData: 'This is your personal data',
+        
       });
     } catch (err) {
       res.status(500).json({ error: err.message });
