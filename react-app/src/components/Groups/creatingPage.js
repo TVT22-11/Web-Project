@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Groups.css';
 import axios from 'axios';
 
@@ -7,6 +7,21 @@ function CreatingPage() {
   const [groupName, setGroupName] = useState('');
   const [additionalInfo, setAdditionalInfo] = useState('');
   const [isOptionalFeatureEnabled, setIsOptionalFeatureEnabled] = useState(false);
+  const [userId, setUserId] = useState(null);
+
+  useEffect(() => {
+    // Fetch user information from the endpoint
+    const fetchUser = async () => {
+      try {
+        const userResponse = await axios.get('http://localhost:3001/account/user'); // Replace with your actual user endpoint
+        setUserId(userResponse.data.id); // Adjust this based on your actual user object structure
+      } catch (error) {
+        console.error('Error fetching user:', error);
+      }
+    };
+
+    fetchUser();
+  }, []);
 
   const handleGroupNameChange = (e) => {
     setGroupName(e.target.value);
@@ -26,6 +41,7 @@ function CreatingPage() {
       name: groupName,
       description: additionalInfo,
       isprivate: isOptionalFeatureEnabled,
+      owner: userId, // Set the owner to the user's ID
     };
 
     try {

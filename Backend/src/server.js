@@ -10,6 +10,7 @@ const group = require('./routes/group');
 
 
 
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
@@ -22,6 +23,7 @@ app.use('/review', review);
 app.use('/preferences',  preferences);
 app.use('/account',  user);
 app.use('/group', group);
+
 
 app.get('/test', (req, res) => {
   res.status(200).send({ message: 'Server is running successfully!' });
