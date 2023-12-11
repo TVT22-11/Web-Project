@@ -1,0 +1,9 @@
+.review-box{
+  position: bottom;
+  margin-left: 25px;
+    margin-top: 50px;
+    max-width: 800px;
+    background-color: var(--text-background-color);
+    border-radius: 8px;
+    border: 1px solid var(--third-color);
+}
