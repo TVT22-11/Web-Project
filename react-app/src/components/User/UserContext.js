@@ -9,10 +9,8 @@ export const UserProvider = ({ children }) => {
   const [accountID, setAccountID] = useState('');
   const [isLoggedOut, setIsLoggedOut] = useState(false);
   const [showLogoutNotification, setShowLogoutNotification] = useState(false);
-
-
   const [username, setUsername] = useState('');
-  const [idAccout, setIdAccount] = useState('');
+
   useEffect(() => {
     const storedToken = sessionStorage.getItem('jwtToken');
     if (storedToken) {
