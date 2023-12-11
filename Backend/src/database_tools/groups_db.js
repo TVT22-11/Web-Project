@@ -17,41 +17,7 @@ async function createParty(name, description, isprivate) {
   }
 }
 
-async function addMessage(id_party, sender, content) {
-  const client = await pgPool.connect();
 
-  try {
-    const query = {
-      text: 'INSERT INTO messages(id_party, sender, content) VALUES($1, $2, $3) RETURNING *',
-      values: [id_party, sender, content],
-    };
-
-    const result = await client.query(query);
-    return result.rows[0];
-  } catch (err) {
-    throw err;
-  } finally {
-    client.release();
-  }
-}
-
-async function getMessages(id_party) {
-  const client = await pgPool.connect();
-
-  try {
-    const query = {
-      text: 'SELECT * FROM messages WHERE id_party = $1',
-      values: [id_party],
-    };
-
-    const result = await client.query(query);
-    return result.rows;
-  } catch (err) {
-    throw err;
-  } finally {
-    client.release();
-  }
-}
 
 async function getGroup(name) {
   const client = await pgPool.connect();
@@ -83,4 +49,4 @@ async function getAllGroups() {
   }
 }
 
-module.exports = { createParty, addMessage, getMessages, getGroup, getAllGroups };
+module.exports = { createParty, getGroup, getAllGroups };
