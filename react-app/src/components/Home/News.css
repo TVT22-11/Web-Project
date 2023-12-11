@@ -70,15 +70,15 @@
     display: flex;
     text-decoration: none;
   }
-  .Article-desc{
-    
+  .Article-desc {
+    display: flex;
     position: relative;
-    width: 1000px;
+    width: 100%;
     top: 45px;
     font-weight: 300;
     overflow: inherit;
     text-overflow: ellipsis;
-  }
+}
   .Article-date{
     position:relative;
     width: 200px;

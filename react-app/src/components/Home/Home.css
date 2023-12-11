@@ -7,7 +7,6 @@ position: relative;
 .Top-Movie{
     padding-top: 25px;
     padding-bottom: 25px;
-
     align-items: center;
     justify-content: center;
     display: flex;
@@ -21,7 +20,11 @@ position: relative;
     background-color: var(--first-color);
 }
 
-
+.Welcome-Message{
+    display: flex;
+    justify-content: center;
+    padding-top: 25px;
+}
 
 @media screen and (max-width: 1200px){
     .Top-Movie{

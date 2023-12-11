@@ -43,7 +43,14 @@ function SignUp() {
       console.log(response.status, response.data);
       setIsSubmitted(true);
       setErrorMessages({});
-      window.location.href = '/login';
+      const token = response.data.jwtToken;
+      console.log('Token from server:', token);
+      
+      // Set the token in sessionStorage
+      sessionStorage.setItem('jwtToken', token);
+      console.log('Token stored in sessionStorage:', sessionStorage.getItem('jwtToken'));
+      setErrorMessages({}); // Clears error messages on successful login
+      window.location.href = '/';
     })
     
 

@@ -1,60 +1,83 @@
-// ChatPage.js
 import React, { useState } from 'react';
-import { Container, Form, Button, ListGroup } from 'react-bootstrap';
+import '../Home/News.css';
 
-const ChatPage = () => {
-  const [message, setMessage] = useState('');
-  const [messages, setMessages] = useState([]);
+const apiUrl = process.env.REACT_APP_FINNKINO_API_URL;
 
-  const getCurrentTime = () => {
-    const now = new Date();
-    const hours = now.getHours().toString().padStart(2, '0');
-    const minutes = now.getMinutes().toString().padStart(2, '0');
-    return `${hours}:${minutes}`;
-  };
+function ChatPage() {
+  const [currentNews, setCurrentNews] = useState(null);
 
-  const handleMessageChange = (e) => {
-    setMessage(e.target.value);
-  };
+  const fetchSingleNews = async () => {
+    try {
+      const response = await fetch(apiUrl);
+      const xmlData = await response.text();
+      const parser = new DOMParser();
+      const xmlDoc = parser.parseFromString(xmlData, 'text/xml');
+      const newsNode = xmlDoc.querySelector('NewsArticle');
 
-  const handleSendMessage = () => {
-    if (message.trim() !== '') {
-      const currentTime = getCurrentTime();
-      const newMessage = `${currentTime} - ${message}`;
-      setMessages([...messages, newMessage]);
-      setMessage('');
+      const rawPublishDate = newsNode.querySelector('PublishDate').textContent;
+      const trimmedPublishDate = trimTimeFromDate(rawPublishDate);
+
+      const newsData = {
+        title: newsNode.querySelector('Title').textContent,
+        publishDate: trimmedPublishDate,
+        articleURL: newsNode.querySelector('ArticleURL').textContent,
+        imageURL: newsNode.querySelector('ImageURL').textContent,
+        description: newsNode.querySelector('HTMLLead').textContent,
+      };
+
+      setCurrentNews(newsData);
+    } catch (error) {
+      console.error('Error fetching news:', error);
     }
   };
 
+  function trimTimeFromDate(dateString) {
+    const date = new Date(dateString);
+    const trimmedDate = date.toLocaleDateString('fi-FI', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+    return trimmedDate;
+  }
+
+  const handleAddUser = () => {
+    // Implement the logic for adding a user
+    console.log('Add User button clicked');
+  };
+
+  const handleDeleteUser = () => {
+    // Implement the logic for deleting a user
+    console.log('Delete User button clicked');
+  };
+
   return (
-      <div className='chat'>
-            <div className='chat-backround'>
-                 
-    <Container>
-      <h1>Chat Page</h1>
-      <ListGroup style={{ maxHeight: '400px', overflowY: 'auto' }}>
-        {messages.map((msg, index) => (
-          <ListGroup.Item key={index}>{msg}</ListGroup.Item>
-        ))}
-      </ListGroup>
-      <Form>
-        <Form.Group>
-          <Form.Control
-            type="text"
-            placeholder="Type your message..."
-            value={message}
-            onChange={handleMessageChange}
-          />
-        </Form.Group>
-         <Button variant="primary" onClick={handleSendMessage}>
-          Send
-        </Button>
-      </Form>
-    </Container>
-    
-    </div>
+    <div>
+      <div>
+        <button onClick={fetchSingleNews}>Fetch News Article</button>
+      </div>
+
+      {currentNews && (
+        <div>
+          <img src={currentNews.imageURL} alt={`News`} />
+          <div>
+            <strong>
+              <a href={currentNews.articleURL} target="_blank" rel="noopener noreferrer">
+                {currentNews.title}
+              </a>
+            </strong>
+            <p>{currentNews.publishDate}</p>
+            <p>{currentNews.description}</p>
+          </div>
+        </div>
+      )}
+
+      <div>
+        <button onClick={handleAddUser}>Add Member</button>
+        <button onClick={handleDeleteUser}>Delete Member</button>
+      </div>
     </div>
   );
-};
+}
 
 export default ChatPage;
