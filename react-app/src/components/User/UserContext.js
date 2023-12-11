@@ -13,8 +13,6 @@ export const UserProvider = ({ children }) => {
 
   const [username, setUsername] = useState('');
   const [idAccout, setIdAccount] = useState('');
-  const [fname, setFname] = useState('');
-  const [lname, setLname] = useState('');
   useEffect(() => {
     const storedToken = sessionStorage.getItem('jwtToken');
     if (storedToken) {
@@ -56,9 +54,7 @@ export const UserProvider = ({ children }) => {
       console.log(data);
       
       setUsername(data.username);
-      setIdAccount(data.id_account);
-      setFname(data.fname);
-      setLname(data.lname);
+      setAccountID(data.id_account);
     } catch (error) {
       console.error('Error:', error);
     }
@@ -72,9 +68,7 @@ export const UserProvider = ({ children }) => {
     showLogoutNotification,
     setShowLogoutNotification,
     username,
-    idAccout,
-    fname,
-    lname,
+    accountID,
   };
 
   return (
