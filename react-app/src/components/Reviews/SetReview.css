@@ -1,0 +1,8 @@
+.Review-container{
+    
+    background-color: var(--body-background-color);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
