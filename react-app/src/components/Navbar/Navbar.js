@@ -17,6 +17,18 @@ const Navbar = ({ selectedTimezone, defaultTimezone }) => {
     setIsOpen((prevIsOpen) => !prevIsOpen);
   };
 
+  const handleRefresh = () => {
+    window.location.reload();
+  };
+
+  const handleLogout = () =>{
+    logout();
+  };
+  const handleLogoutClicked = () => {
+    handleLogout();
+    handleRefresh();
+  };
+
   const closeDropdown = (event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
       setIsOpen(false);
@@ -68,7 +80,7 @@ const Navbar = ({ selectedTimezone, defaultTimezone }) => {
             <li><Link to="/Groups" onClick={closeDropdownOnLinkClick}>Groups</Link></li>
             <li><Link to="/options/preferences" onClick={closeDropdownOnLinkClick}>Options</Link></li>
             {isLoggedIn ? (
-              <button onClick={logout} className="log-out-button">Logout</button>
+              <button onClick={handleLogoutClicked} className="log-out-button">Logout</button>
             ) : (
               <Link to="/Login" className="sign-in-button">Sign In</Link>
             )}
