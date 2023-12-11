@@ -12,9 +12,9 @@ export function SetReviews(){
     const [rating, setRating] = useState(0);
     const [reviewText, setReviewText] = useState("");
     const [state, setState] = useState({});
-    const {idAccount} = useUser();
+    const {accountID} = useUser();
     const { id } = useParams();
-    console.log('account_id:', idAccount);
+    console.log('account_id:', accountID);
 
     const handleRating = (rate) => {
         setRating(rate);
@@ -32,11 +32,12 @@ export function SetReviews(){
       const handleSubmit = async () => {
        
         const reviewData = {
-            id_account: {idAccount},
-            stars: state.stars,
+            id_account: {accountID},
+            stars: state.rate,
             comment: state.comment,
-            movie_id: {id}
-        };
+            movie_id: {id},
+            
+        };console.log('reviewdata: ',reviewData);
         try {
             const response = await axios.post(`http://localhost:3001/review/post`,reviewData,
                 {
@@ -71,7 +72,7 @@ return(
             <div>
               <Rating
                 onClick={handleRating}
-                initialValue={rating.state}
+                initialValue={rating.rate}
                 size={24}
               />
             </div>
