@@ -100,3 +100,8 @@
   justify-content: center;
   text-decoration: underline;
 }
+
+.creating-form{
+  display: flex;
+  justify-content: center;
+}
