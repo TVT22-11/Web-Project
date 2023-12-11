@@ -5,6 +5,8 @@ const sql = {
   GET_GROUP_BY_ID: 'SELECT * FROM party WHERE name = $1',
   GET_ALL_GROUPS: 'SELECT id_party, name, description, isprivate FROM party', // Include isprivate in the SELECT statement
   Delete_Group: 'DELETE FROM party WHERE name = $1',
+  ADD_GROUP_MEMBER: 'INSERT INTO account_party_relation (id_account, id_party) VALUES ($1, $2)',
+  DELETE_GROUP_MEMBER: 'DELETE FROM account_party_relation WHERE id_account = $1'
 };
 
 async function createParty(name, description, isprivate) {
@@ -17,41 +19,26 @@ async function createParty(name, description, isprivate) {
   }
 }
 
-async function addMessage(id_party, sender, content) {
+async function addMember(id_account, id_party) {
   const client = await pgPool.connect();
 
   try {
-    const query = {
-      text: 'INSERT INTO messages(id_party, sender, content) VALUES($1, $2, $3) RETURNING *',
-      values: [id_party, sender, content],
-    };
-
-    const result = await client.query(query);
-    return result.rows[0];
-  } catch (err) {
-    throw err;
+    await client.query(sql.ADD_GROUP_MEMBER, [id_account, id_party]);
   } finally {
     client.release();
   }
 }
 
-async function getMessages(id_party) {
+async function deleteMember(id_account){
   const client = await pgPool.connect();
+  try{
+      await client.query(sql.DELETE_GROUP_MEMBER, [id_account])
 
-  try {
-    const query = {
-      text: 'SELECT * FROM messages WHERE id_party = $1',
-      values: [id_party],
-    };
-
-    const result = await client.query(query);
-    return result.rows;
-  } catch (err) {
-    throw err;
-  } finally {
-    client.release();
+  }finally{
+      client.release();
   }
 }
+
 
 async function getGroup(name) {
   const client = await pgPool.connect();
@@ -83,4 +70,4 @@ async function getAllGroups() {
   }
 }
 
-module.exports = { createParty, addMessage, getMessages, getGroup, getAllGroups };
+module.exports = { createParty, getGroup, getAllGroups, addMember, deleteMember };

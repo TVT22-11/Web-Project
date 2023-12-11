@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import ReactDOM from "react-dom";
 import "./Login.css";
 import "./SignUp.css";
 import { useUser } from "../User/UserContext";
@@ -83,6 +82,7 @@ function Login() {
       if (isLoggedIn) {
         timeoutId = setTimeout(() => {
           navigate("/");
+          window.location.reload();
         }, 3000);
       }
   

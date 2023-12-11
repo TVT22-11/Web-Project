@@ -7,7 +7,7 @@ const server = require('../src/server')
 
 chai.use(chaiHttp);
 
-describe('/First Test Collection', () =>{
+describe('Endpoint tests', () =>{
 
         it('Server Should be running correctly...', (done) => {
 
@@ -22,10 +22,30 @@ describe('/First Test Collection', () =>{
             });
         });
 
+        it('Reviews Should be working...', (done) => {
+
+          chai.request(server)
+          .get('/review?movie_id=238')  
+          .end((err, res) =>{
+              res.should.have.status(200);
+              res.body.should.be.a('object');
+          done();
+          });
+      });
+
+      it('Accounts Should be working...', (done) => {
+
+        chai.request(server)
+        .get('/account')  
+        .end((err, res) =>{
+            res.should.have.status(403);
+        done();
+        });
+    });
 })
 
 
-describe('Käyttäjä testit', () => {
+describe('Account tests', () => {
   let createdUserId; 
 
   it('Should create a new user', (done) => {
@@ -63,10 +83,11 @@ describe('Käyttäjä testit', () => {
 
   it('Should delete the created user', (done) => {
     chai.request(server)
-      .delete(`/auth/delete/${createdUserId}`)
-      .end((err, res) => {
-        res.should.have.status(200);
-        done();
-      });
-  });
+        .delete('/auth/delete')
+        .send({ username: createdUserId }) 
+        .end((err, res) => {
+            res.should.have.status(200);
+            done();
+        });
+});
 });
