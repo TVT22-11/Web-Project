@@ -38,13 +38,13 @@ router.get('/', authenticateToken,  async (req, res) => {
 router.get('/personal', authenticateToken, async (req, res) => {
     try {
       const username = res.locals.username;
-      const account_id = res.locals.account_id;
+      const id_account = res.locals.id_account;
   
-      req.session.id_account = account_id;
+      req.session.id_account = id_account;
   
       res.status(200).json({
         username: username,
-        account_id: account_id,
+        id_account: id_account,
         personalData: 'This is your personal data',
       });
     } catch (err) {
