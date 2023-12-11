@@ -33,8 +33,17 @@ async function getReview(movie_id) {
 async function Review(id_account, stars, comment, movie_id){
     const client = await pgPool.connect();
     try{
+
+        if(!comment){
+          throw new Error('Comment is missing.');
+        }
+
         await client.query(sql.Review, [id_account, stars, comment, movie_id])
-    }finally{
+    } catch(error){
+
+      console.error('Error in Review function:', error.message);
+      throw error;
+    } finally {
         client.release();
     }
 }
