@@ -11,6 +11,7 @@ const GetTopMovies = ({language, page}) => {
   const [movie, setMovie] = useState([]);
   const history = useNavigate();
 
+
 useEffect(() =>{
   const fetchData = async () => {
     try {
@@ -45,14 +46,12 @@ return (
   <div className='HomeMovie-Container'>
     {movie.map((movie) => (
       <li className='TopMovie-Box' key={movie.id} onClick={() => movieClickHandler(movie.id)}>
-      
           <img
             src={`${apiImageBaseUrl}${movie.poster_path}`}
             className='Top-Movie-Image'
             alt={movie.title}
           />
           <div className='TopMovie-Desc'>
-            <p>Rating: TBA</p>
             <h2>{movie.title}</h2>
             <p className='movie-overview'>{movie.overview}</p>
             <p className='Topmovie-release-date'>{'Release date : '}{'\n'}{movie.release_date}</p>
