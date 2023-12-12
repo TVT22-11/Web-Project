@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './SeriesDetail.css';
+import ReadReview from '../Reviews/ReadReview';
+import SetReview from '../Reviews/SetReview';
 
 const apiKey = process.env.REACT_APP_IMDB_API_BEARER_TOKEN;
 const apiUrl = process.env.REACT_APP_IMDB_API_URL;
@@ -58,6 +60,7 @@ function SeriesDetail() {
         className='Series-Image'
         alt={series.name}
       />
+      <div className='Series-Grid'>
       <div className="Series-Text">
         <h1>{series.name}</h1>
         <p>{series.overview}</p>
@@ -70,6 +73,9 @@ function SeriesDetail() {
           ))}
         </ul>
       </div>
+      <ReadReview />
+      <SetReview/>
+    </div>
     </div>
   );
 }
