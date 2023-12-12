@@ -7,7 +7,7 @@ const {getReview, Review} = require('../database_tools/review_db');
 const upload = multer({dest: 'uploads/'});
 
 
-router.post('/post', upload.none(), async (req, res) => {
+router.post('/post', authenticateToken, upload.none(), async (req, res) => {
     const id_account = req.body.id_account;
     const stars = req.body.stars;
     const comment = req.body.comment;
