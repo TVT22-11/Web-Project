@@ -5,10 +5,10 @@
     width: 90%;
     background-color: var(--text-background-color);
     border-radius: 8px;
-    border: 1px solid var(--third-color);
     min-height: 300px;
     overflow-y: auto;
     height: 340px;
+    box-shadow: var(--box-shadow);
 }
 
 @media screen and (max-width: 1200px) {
