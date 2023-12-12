@@ -6,6 +6,7 @@ import { jwtToken } from "../Login/signals";
 import axios from 'axios';
 import { useParams } from "react-router-dom";
 import { useUser } from "../User/UserContext";
+import { clear } from "@testing-library/user-event/dist/clear";
 
 export function SetReviews(){
   const [reviews, setReviews] = useState([]);
@@ -21,8 +22,11 @@ export function SetReviews(){
       };
     
       const handleReset = () => {
+
+        console.log("Reset:", reviewText);
+        console.log("Reset:", rating);
         setRating(0);
-        setReviewText('');
+        setReviewText("");
       };
     
       const handleReviewText = (event) => {
