@@ -37,14 +37,12 @@ useEffect(() => {
 
   const handleJoinGroup = async (id_party) => {
     try {
-      // Replace 'http://localhost:3001/join' with your actual server endpoint for joining the group
       const response = await axios.post('http://localhost:3001/group/join', {
         id_account:  accountID ,
         id_party:  id_party 
     });
 
       if (response.status === 200) {
-        // Handle success, e.g., show a success message
         console.log('Successfully joined the group');
       } else {
         console.error('Failed to join the group');

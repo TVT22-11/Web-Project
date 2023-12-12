@@ -10,11 +10,6 @@ export const UserProvider = ({ children }) => {
   const [isLoggedOut, setIsLoggedOut] = useState(false);
   const [showLogoutNotification, setShowLogoutNotification] = useState(false);
 
-
-  const [username, setUsername] = useState('');
-  const [fname, setFname] = useState('');
-  const [lname, setLname] = useState('');
-  
   useEffect(() => {
     const storedToken = sessionStorage.getItem('jwtToken');
     if (storedToken) {
@@ -30,51 +25,56 @@ export const UserProvider = ({ children }) => {
     setIsLoggedOut(false);
   };
 
+
   const logout = () => {
-    const shouldLogout = window.confirm("Are you sure you want to log out?");
+  const shouldLogout = window.confirm("Are you sure you want to log out?");
 
-    if (shouldLogout) {
-      sessionStorage.removeItem('jwtToken');
-      setIsLoggedIn(false);
-      setIsLoggedOut(true);
-      setShowLogoutNotification(true); 
-      navigate('/');
-    }
-  };
+  if (shouldLogout) {
+    sessionStorage.removeItem('jwtToken');
+    setIsLoggedIn(false);
+    setIsLoggedOut(true);
+    setShowLogoutNotification(true); 
+    navigate('/');
 
-  const fetchAccountID = async (token) => {
-    try {
-      const response = await fetch('http://localhost:3001/account', {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      });
+  }  
+};
+const fetchAccountID = async (token) => {
+  try {
+    const response = await fetch('http://localhost:3001/account/personal', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+       
+      },
+    });
 
+      // Process the response
       const data = await response.json();
       console.log(data);
-      
-      setUsername(data.username);
-      setAccountID(data.id_account);
-      setFname(data.fname);
-      setLname(data.lname);
     } catch (error) {
       console.error('Error:', error);
     }
-  };
+ /*   if (!response.ok) {
+      console.error('HTTP error:', response.status, response.statusText);
+      const text = await response.json(); // Get the response text (HTML)
+      console.error('Response text:', text);
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
 
-  const contextValue = {
+    const data = await response.json();
+    setAccountID(data.account_id);
+  } catch (error) {
+    console.error('Error fetching account_id:', error);
+  }*/
+};
+const contextValue = {
     isLoggedIn,
     isLoggedOut,
     login,
     logout,
     showLogoutNotification,
     setShowLogoutNotification,
-    username,
-    accountID,
-    fname,
-    lname,
   };
 
   return (

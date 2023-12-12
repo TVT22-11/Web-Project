@@ -3,18 +3,16 @@ import './Groups.css';
 import axios from 'axios';
 
 function CreatingPage() {
-  // Declare state variables for input values
   const [groupName, setGroupName] = useState('');
   const [additionalInfo, setAdditionalInfo] = useState('');
   const [isOptionalFeatureEnabled, setIsOptionalFeatureEnabled] = useState(false);
   const [userId, setUserId] = useState(null);
 
   useEffect(() => {
-    // Fetch user information from the endpoint
     const fetchUser = async () => {
       try {
-        const userResponse = await axios.get('http://localhost:3001/account/user'); // Replace with your actual user endpoint
-        setUserId(userResponse.data.id); // Adjust this based on your actual user object structure
+        const userResponse = await axios.get('http://localhost:3001/account/user'); 
+        setUserId(userResponse.data.id);
       } catch (error) {
         console.error('Error fetching user:', error);
       }
@@ -36,7 +34,6 @@ function CreatingPage() {
   };
 
   const handleCreateGroup = async () => {
-    // Create a new group object with the input values
     const newGroup = {
       name: groupName,
       description: additionalInfo,
@@ -45,13 +42,10 @@ function CreatingPage() {
     };
 
     try {
-      // Send a POST request to your server endpoint that adds the group to the database
       const response = await axios.post('http://localhost:3001/group/post', newGroup);
 
-      // Check if the request was successful (you may want to add more error handling)
       if (response.status === 201) {
         console.log('Group created successfully!');
-        // Optionally, you can reset the form after successful creation
         setGroupName('');
         setAdditionalInfo('');
         setIsOptionalFeatureEnabled(false);
