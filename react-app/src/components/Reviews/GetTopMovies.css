@@ -52,6 +52,10 @@
     flex-direction: column;
     overflow: hidden;
 }
+.TopMovie-Desc{
+    padding: 5px;
+    margin-top: 15px;
+}
 
 .Movie-Desc{
     height: 100%;
