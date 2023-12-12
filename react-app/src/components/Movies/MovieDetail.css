@@ -25,7 +25,7 @@
     max-width: 100%;
   }
   .Movie-Text {
-
+    box-shadow: var(--box-shadow);
     margin-top: 50px;
     width: 90%;
     background-color: var(--text-background-color);
@@ -48,6 +48,7 @@
   }
   
   .Movie-Info {
+    box-shadow: var(--box-shadow);
     margin-top: 50px;
     width: 90%;
     height: -moz-fit-content;
@@ -93,11 +94,12 @@
       max-width: 60%;
       margin-right: 0;
       margin-left: 0;
+      margin-bottom: 30px;
     }
 
     .Movie-Text {
       margin-top: 5px;
-      width: 50%;
+      width: 90%;
     }
   
     .Movie-Info {

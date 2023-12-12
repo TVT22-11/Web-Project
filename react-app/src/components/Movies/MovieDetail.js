@@ -75,8 +75,8 @@ function MovieDetail() {
         </ul>
         
       </div>
-      <ReadReview />
       <SetReview/>
+      <ReadReview />
       </div>
     </div>
   );

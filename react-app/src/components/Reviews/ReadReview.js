@@ -10,7 +10,16 @@ function ReadReview() {
   const [username, setUsername] = useState({});
   const [loading, setLoading] = useState(true);
   const [averageRating, setAverageRating] = useState(0);
+  const [expandedComment, setExpandedComment] = useState(null);
 
+  const handleReadMoreClick = (reviewId) => {
+    setExpandedComment(reviewId);
+  };
+
+  const handleModalClose = () => {
+    setExpandedComment(null);
+  };
+  
   useEffect(() => {
     const fetchReview = async () => {
       try {
@@ -34,6 +43,8 @@ function ReadReview() {
     fetchReview();
   }, [id]);
 
+  
+
   return (
     <div>
       <div className="review-box">
@@ -55,18 +66,46 @@ function ReadReview() {
           <div>
             {reviews.map((review) => (
               <div key={review.id_review} className="individual-review">
-                <p>{review.username}</p>
+                <p>User: {review.username}</p>
                 <p>Rating: {review.stars}</p> <Rating
                           initialValue={review.stars}
                           size={24}
                           readonly={true}
                       />
-                <p className="Comment-box">Comment: {review.comment}</p>
+                <p>Comment:</p>
+                <p className="Comment-box">
+                  {expandedComment === review.id_review
+                    ? review.comment 
+                    : `${review.comment.substring(0, 25)}`}
+                  {review.comment.length > 25 && (
+                    <div>
+                    <span
+                      className="read-more-link"
+                      onClick={() => handleReadMoreClick(review.id_review)}
+                    >
+                      Read more
+                    </span>
+                    </div>
+                  )}
+                </p>
               </div>
             ))}
           </div>
         )}
       </div>
+
+      {expandedComment !== null && (
+        <div className="modal">
+          <div className="modal-content">
+            <span className="close" onClick={handleModalClose}>
+              &times;
+            </span>
+            <p>
+              {reviews.find((review) => review.id_review === expandedComment)?.comment}
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
