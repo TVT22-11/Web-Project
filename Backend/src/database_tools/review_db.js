@@ -1,36 +1,34 @@
 const pgPool = require('./pg_connection');
 
 const sql = {
-    Review : 'INSERT INTO review (id_account, stars, comment, movie_id) VALUES ($1, $2, $3, $4)',
+    Review : 'INSERT INTO review (id_account, stars, comment, movie_id, movie_name) VALUES ($1, $2, $3, $4, $5)',
     GET_REVIEW_BY_ID: `
     SELECT review.*, account.username
     FROM review
     JOIN account ON review.id_account = account.id_account
-    WHERE review.movie_id = $1
+    WHERE 
+    ($1::integer IS NULL OR review.movie_id = $1::integer) AND
+    ($2::integer IS NULL OR review.id_account = $2::integer)
   `,
     Delete_Review: 'DELETE FROM review WHERE id_account = $1'
 };
 
-async function getReview(movie_id) {
+async function getReview(movie_id, id_account) {
     const client = await pgPool.connect();
-    
+
     try {
-      if (movie_id) {
-        let result = await pgPool.query(sql.GET_REVIEW_BY_ID, [movie_id]);
+        let result = await pgPool.query(sql.GET_REVIEW_BY_ID, [movie_id, id_account]);
         return result.rows.length > 0 ? result.rows : null;
-      }
-      throw new Error("Missing movie_id parameter");
-  
     } catch (err) {
-    
-      throw err;
+        throw err;
     } finally {
-      client.release();
+        client.release();
     }
-  }
+}
+
   
 
-async function Review(id_account, stars, comment, movie_id){
+async function Review(id_account, stars, comment, movie_id, movie_name){
     const client = await pgPool.connect();
     try{
 
@@ -38,7 +36,7 @@ async function Review(id_account, stars, comment, movie_id){
           throw new Error('Comment is missing.');
         }
 
-        await client.query(sql.Review, [id_account, stars, comment, movie_id])
+        await client.query(sql.Review, [id_account, stars, comment, movie_id, movie_name])
     } catch(error){
 
       console.error('Error in Review function:', error.message);
