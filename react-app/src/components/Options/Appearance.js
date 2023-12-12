@@ -5,7 +5,6 @@ import './Appearance.css';
 import { useUser } from '../User/UserContext';
 
 const Appearance = () => {
-  const [password, setPassword] = useState('');
   const { username } = useUser();
   const { fname } = useUser();
   const { lname } = useUser();
@@ -27,8 +26,8 @@ const Appearance = () => {
             Account Name: {username}
           </label>
         </div>
-        <div>
-            <h2>Reviews:</h2>
+        <div className='My-reviews'>
+            <h2>My reviews:</h2>
             <label></label>
         </div>
       </div>

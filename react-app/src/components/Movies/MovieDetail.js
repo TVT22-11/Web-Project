@@ -5,6 +5,8 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './MovieDetail.css';
 import ReadReview from '../Reviews/ReadReview';
+import SetReview from '../Reviews/SetReview';
+
 
 const apiKey = process.env.REACT_APP_IMDB_API_BEARER_TOKEN;
 const apiUrl = process.env.REACT_APP_IMDB_API_URL;
@@ -59,6 +61,7 @@ function MovieDetail() {
         className='Movie-Image'
         alt={movie.title}
       />
+      <div className='Movie-grid'>
       <div className="Movie-Text">
         <h1>{movie.title}</h1>
         <p>{movie.overview}</p>
@@ -73,6 +76,8 @@ function MovieDetail() {
         
       </div>
       <ReadReview />
+      <SetReview/>
+      </div>
     </div>
   );
 }
