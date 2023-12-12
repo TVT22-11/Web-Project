@@ -6,7 +6,7 @@ const sql = {
   GET_ALL_GROUPS: 'SELECT id_party, name, description, isprivate FROM party', // Include isprivate in the SELECT statement
   Delete_Group: 'DELETE FROM party WHERE name = $1',
   ADD_GROUP_MEMBER: 'INSERT INTO account_party_relation (id_account, id_party) VALUES ($1, $2)',
-  DELETE_GROUP_MEMBER: 'DELETE FROM account_party_relation WHERE id_account = $1'
+  DELETE_GROUP_MEMBER: 'DELETE FROM account_party_relation WHERE id_account = $1 AND id_party = $2'
 };
 
 async function createParty(name, description, isprivate) {
@@ -29,10 +29,10 @@ async function addMember(id_account, id_party) {
   }
 }
 
-async function deleteMember(id_account){
+async function deleteMember(id_account, id_party){
   const client = await pgPool.connect();
   try{
-      await client.query(sql.DELETE_GROUP_MEMBER, [id_account])
+      await client.query(sql.DELETE_GROUP_MEMBER, [id_account, id_party])
 
   }finally{
       client.release();
