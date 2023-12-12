@@ -7,14 +7,15 @@ const {getReview, Review} = require('../database_tools/review_db');
 const upload = multer({dest: 'uploads/'});
 
 
-router.post('/post', authenticateToken, upload.none(), async (req, res) => {
+router.post('/post',  upload.none(), async (req, res) => {
     const id_account = req.body.id_account;
     const stars = req.body.stars;
     const comment = req.body.comment;
     const movie_id = req.body.movie_id;
+    const movie_name = req.body.movie_name;
   
     try {
-      await Review(id_account, stars, comment, movie_id);
+      await Review(id_account, stars, comment, movie_id, movie_name);
       res.status(200).json({ message: 'Review posted successfully' });
     } catch (err) {
       console.error(err);
@@ -24,16 +25,21 @@ router.post('/post', authenticateToken, upload.none(), async (req, res) => {
 
 
 
-router.get('/', async (req, res) => {
+  router.get('/', async (req, res) => {
     const movie_id = req.query.movie_id;
-  
+    const id_account = req.query.id_account;
+
     try {
-      const review = await getReview(movie_id);
-      res.status(200).json({ movie_id: movie_id, ReviewData: review });
+        if (!movie_id && !id_account) {
+            throw new Error("Missing parameters. Please provide either movie_id or id_account.");
+        }
+
+        const review = await getReview(movie_id, id_account);
+        res.status(200).json({ movie_id: movie_id, id_account: id_account, ReviewData: review });
     } catch (err) {
-      console.error(err);
-      res.status(500).json({ error: 'Internal server error' });
+        console.error(err);
+        res.status(500).json({ error: 'Internal server error' });
     }
-  });
+});
 
 module.exports = router;
