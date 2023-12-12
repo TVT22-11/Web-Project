@@ -1,47 +1,49 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import ReadReview from '../Reviews/ReadReview';
+import { useUser } from '../User/UserContext';
 
-
-function UserReviews () {
-    const { id } = useParams();
-    const [review, setReview] = useState(null);
+function UserReviews() {
+    const { accountID } = useUser();
+    const [reviews, setReviews] = useState([]);
   
     useEffect(() => {
-      const fetchReview = async () => {
+      const fetchReviews = async () => {
         try {
           const reviewResponse = await axios.get(
-            `http://localhost:3001/review?movie_id=${id}`,
+            `http://localhost:3001/review?id_account=${accountID}`,
             {
               headers: {
                 'Content-Type': 'application/json',
               },
             }
           );
-          setReview(reviewResponse.data);
-  
+          setReviews(reviewResponse.data);
         } catch (error) {
           console.error(error);
         }
       };
   
-      fetchReview();
-    }, [id]);
+      fetchReviews();
+    }, [accountID]);
   
-    if (!review) {
+    if (!Array.isArray(reviews) || reviews.length === 0) {
       return <div>Loading...</div>;
     }
   
     return (
-      <div className='Review-Container'>
-        <h1>Review</h1>
-        <h2>{review.title}</h2>
-        <p>{review.review}</p>
-        <ReadReview />
+      <div>
+        <h2>Your Reviews</h2>
+        <ul>
+          {reviews.map((review) => (
+            <li key={review.id}>
+              <p>Rating: {review.rating}</p>
+              <p>Comment: {review.comment}</p>
+              {/* Add more details as needed */}
+            </li>
+          ))}
+        </ul>
       </div>
     );
   }
-
+  
   export default UserReviews;
-
