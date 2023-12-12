@@ -12,7 +12,7 @@ export function SetReviews(){
   const [reviews, setReviews] = useState([]);
   const [rating, setRating] = useState(0);
   const [reviewText, setReviewText] = useState('');
-  const { accountID } = useUser();
+  const { accountID, isLoggedIn } = useUser();
   const { id } = useParams();
   const [reviewSend, setReviewSend] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
@@ -89,8 +89,11 @@ export function SetReviews(){
     return (
       <div className="Review-container">
           <h2>Create review:</h2>
+          {!isLoggedIn && <p>Sign in to create reviews</p>}
+      {isLoggedIn && (
           <Form>
               <FormGroup>
+                
                   <Label for="exampleText">Overall rating</Label>
                   <div>
                       <Rating
@@ -116,7 +119,7 @@ export function SetReviews(){
               </Button>
               <Button onClick={handleReset}>Reset</Button>
           </Form>
-      </div>
+       )} </div>
   );
 }
 export default SetReviews;

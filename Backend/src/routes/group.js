@@ -20,7 +20,7 @@ router.post('/post', upload.none(), async (req, res) => {
   }
 });
 
-router.post('/post', upload.none(), async (req, res) => {
+router.post('/join', upload.none(), async (req, res) => {
   const id_account = req.body.id_account;
   const id_party = req.body.id_party;
  
@@ -33,22 +33,13 @@ router.post('/post', upload.none(), async (req, res) => {
   }
 });
 
-router.delete('/deleteFromGroup', upload.none(), async (req, res) => {
-  const { id_account, id_party } = req.body;
-
+router.delete('/deleteMember', upload.none(), async (req, res) => {
+  const id_account = req.body.id_account;
+  const id_party = req.body.id_party;
+ 
   try {
-    if (!id_account && !id_party) {
-      return res.status(400).json({ error: 'Either username or group_id must be provided' });
-    }
-
-    // Assuming deleteUserFromGroup is a function that deletes a user from a group
-    const rowCount = await deleteMember(id_account, id_party);
-
-    if (rowCount === 1) {
-      return res.status(200).json({ message: 'User deleted from the group successfully' });
-    } else {
-      return res.status(404).json({ error: 'User not found in the group' });
-    }
+    await deleteMember(id_account, id_party);
+    res.status(200).json({ message: 'Member deleted successfully' });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Internal server error' });

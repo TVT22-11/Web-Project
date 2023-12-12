@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import '../Home/News.css';
+import { useUser } from '../User/UserContext';
+import axios from 'axios';
+
 
 const apiUrl = process.env.REACT_APP_FINNKINO_API_URL;
 
 function ChatPage() {
   const [currentNews, setCurrentNews] = useState(null);
+const { accountID } = useUser;
 
   const fetchSingleNews = async () => {
     try {
@@ -46,9 +50,23 @@ function ChatPage() {
     console.log('Add User button clicked');
   };
 
-  const handleDeleteUser = () => {
-    // Implement the logic for deleting a user
-    console.log('Delete User button clicked');
+  const handleDeleteUser = async (accountID, id_party) => {
+    try {
+      
+      const response = await axios.delete('http://localhost:3001/group/deleteMember', {
+        id_account:  accountID,
+        id_party:  id_party
+    });
+console.log('deleted account:', accountID);
+console.log('deleted id party:', id_party);
+      if (response.status === 200) {
+       console.log('Successfully deleted member');
+      } else {
+        console.error('Failed to delete member');
+      }
+    } catch (error) {
+      console.error('Error deleting member:', error);
+    }
   };
 
   return (
