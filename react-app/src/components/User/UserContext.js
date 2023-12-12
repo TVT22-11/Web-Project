@@ -12,6 +12,8 @@ export const UserProvider = ({ children }) => {
 
 
   const [username, setUsername] = useState('');
+  const [fname, setFname] = useState('');
+  const [lname, setLname] = useState('');
   
   useEffect(() => {
     const storedToken = sessionStorage.getItem('jwtToken');
@@ -55,6 +57,8 @@ export const UserProvider = ({ children }) => {
       
       setUsername(data.username);
       setAccountID(data.id_account);
+      setFname(data.fname);
+      setLname(data.lname);
     } catch (error) {
       console.error('Error:', error);
     }
@@ -69,6 +73,8 @@ export const UserProvider = ({ children }) => {
     setShowLogoutNotification,
     username,
     accountID,
+    fname,
+    lname,
   };
 
   return (
