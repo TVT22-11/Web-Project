@@ -60,6 +60,7 @@ function SeriesDetail() {
         className='Series-Image'
         alt={series.name}
       />
+      <div className='Series-Grid'>
       <div className="Series-Text">
         <h1>{series.name}</h1>
         <p>{series.overview}</p>
@@ -74,6 +75,7 @@ function SeriesDetail() {
       </div>
       <ReadReview />
       <SetReview/>
+    </div>
     </div>
   );
 }
