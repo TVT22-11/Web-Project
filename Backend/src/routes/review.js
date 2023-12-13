@@ -67,4 +67,14 @@ router.post('/post',  upload.none(), async (req, res) => {
       }
 });
 
+    router.get('/all', async (req, res) => {
+      try {
+        const reviews = await getReview(null, null); // Pass null for both movie_id and id_account
+        res.status(200).json({ ReviewData: reviews });
+      } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 module.exports = router;
