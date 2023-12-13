@@ -3,7 +3,8 @@ import './Groups.css';
 import YourGroups from './yourGroups';
 import AvailableGroups from './availableGroups';
 import CreateGroup from './createGroup';
-import { useUser } from '../User/UserContext'; 
+import { useUser } from '../User/UserContext';
+
 
 function Groups() {
   const { isLoggedIn } = useUser();
