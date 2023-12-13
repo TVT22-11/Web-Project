@@ -24,11 +24,9 @@ const owner = req.body.owner;
 
 router.delete('/deleteParty', upload.none(), async (req, res) => {
   const id_party = req.body.id_party;
-  const id_account = req.body.id_account;
   
- 
   try {
-    await deleteParty(id_party, id_account);
+    await deleteParty(id_party);
     res.status(200).json({ message: 'Party deleted successfully' });
   } catch (err) {
     console.error(err);
