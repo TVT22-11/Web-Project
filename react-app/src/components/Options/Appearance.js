@@ -26,7 +26,6 @@ const Appearance = () => {
           </label>
         </div>
         <div className='My-reviews'>
-            <h2>My reviews:</h2>
             <UserReviews />
         </div>
       </div>
