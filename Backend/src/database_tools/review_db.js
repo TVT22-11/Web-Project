@@ -10,7 +10,9 @@ const sql = {
     ($1::integer IS NULL OR review.movie_id = $1::integer) AND
     ($2::integer IS NULL OR review.id_account = $2::integer)
   `,
-    Delete_Review: 'DELETE FROM review WHERE id_account = $1'
+    Delete_Review: 'DELETE FROM review WHERE id_account = $1',
+    Delete_ReviewByAccount: 'DELETE FROM review WHERE id_account = $1',
+    Delete_ReviewById: 'DELETE FROM review WHERE id_review = $1',
 };
 
 async function getReview(movie_id, id_account) {
@@ -55,5 +57,22 @@ async function Delete_Review(id_account){
         client.release();
     }
 }
+async function Delete_ReviewByAccount(id_account) {
+    const client = await pgPool.connect();
+    try {
+      await client.query(sql.Delete_ReviewByAccount, [id_account]);
+    } finally {
+      client.release();
+    }
+  }
+  
+  async function Delete_ReviewById(id_review) {
+    const client = await pgPool.connect();
+    try {
+      await client.query(sql.Delete_ReviewById, [id_review]);
+    } finally {
+      client.release();
+    }
+  }
 
-module.exports = {getReview, Review, Delete_Review};
+module.exports = {getReview, Review, Delete_Review, Delete_ReviewByAccount, Delete_ReviewById};
