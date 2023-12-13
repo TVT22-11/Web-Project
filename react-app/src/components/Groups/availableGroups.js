@@ -51,13 +51,13 @@ function AvailableGroups() {
 
   const handleJoinGroup = async (id_party) => {
     try {
-
+      
       const response = await axios.post(`http://localhost:3001/group/join`, {
         id_account:  accountID ,
         id_party:  id_party 
     });
 
-    if (response.data.success) {
+     if (response.status === 200) {
       console.log('Successfully joined the group');
     } else {
       console.error('Failed to join the group');
