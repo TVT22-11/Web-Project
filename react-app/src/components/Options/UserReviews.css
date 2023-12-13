@@ -33,6 +33,7 @@ box-shadow: var(--box-shadow);
     text-align: center;
     justify-content: center;
     border-radius: 4px;
+    font-size: 14px;
 }
 
 .dark-mode .myreviewsbox {
