@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useUser } from '../User/UserContext';
 
 function AvailableGroups() {
-  console.log('Component Rendering');
+  
   const [groups, setGroups] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true);
