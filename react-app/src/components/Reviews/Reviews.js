@@ -13,7 +13,7 @@ export function Reviews() {
   const fetchAllReviews = async () => {
     try {
       const response = await axios.get(`http://localhost:3001/review/all`);
-      const data = response.data;
+      const data = response.data.ReviewData; // Assuming the response structure has a ReviewData property
       setReviews(data);
     } catch (error) {
       console.error("Error fetching reviews:", error);

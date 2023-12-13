@@ -79,7 +79,7 @@
   .dropdown-item {
     cursor: pointer;
     padding: 10px;
-    color: var(--dark-color);
+    color: var(--first-color);
   }
   
   .dropdown-item:hover {
