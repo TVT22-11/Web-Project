@@ -53,7 +53,6 @@ export const UserProvider = ({ children }) => {
       });
 
       const data = await response.json();
-      console.log(data);
       
       setUsername(data.username);
       setAccountID(data.id_account);

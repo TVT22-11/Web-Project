@@ -1,146 +1,97 @@
 // Reviews.js
 import React, { useState, useEffect } from "react";
-import { Form, FormGroup, Input, Label, Button } from "reactstrap";
-import { Rating } from "react-simple-star-rating";
-import { Container } from 'react-bootstrap';
-import './Reviews.css';
-import { useParams } from "react-router-dom";
+import { Container } from "react-bootstrap";
 import axios from "axios";
-
-const apiUrl = process.env.REACT_APP_IMDB_API_URL;
-const apiKey = process.env.REACT_APP_IMDB_API_BEARER_TOKEN;
-
-const movieReviewsUrl = process.env.REACT_APP_IMDB_MOVIE_REVIEWS_URL;
+import { useNavigate } from "react-router-dom";
+import "./Reviews.css";
 
 export function Reviews() {
-  const { id } = useParams();
   const [reviews, setReviews] = useState([]);
-    const [rating, setRating] = useState(0);
-    const [reviewText, setReviewText] = useState("");
-    const [state, setState] = useState({});
+  const [sortByDropdownVisible, setSortByDropdownVisible] = useState(false);
+  const navigate = useNavigate();
 
-    const handleRating = (rate) => {
-      setRating(rate);
-    };
-  
-    const handleReset = () => {
-      console.log("Reset:", reviewText);
-      setRating(0);
-    };
-  
-    const handleReviewText = (event) => {
-      setReviewText(event.target.value);
-    };  
-
-  
-  const reviewData = {
-    id_account: state.id_account,
-    stars: state.stars,
-    comment: state.comment,
-    movie_id: state.movie_id
-  };
-  const handleSubmit = async () => {
+  const fetchAllReviews = async () => {
     try {
-      const response = await fetch(`http://localhost:5432/review/post`, {
-        method: 'POST', 
-        headers: {
-          //'Authorization': `Bearer ${apiKey}`,
-        },
-        body: JSON.stringify({
-          rating: rating,
-          text: reviewText,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const data = await response.json();
-
-      console.log("Submitted:", data);
-      setReviews([...reviews, data]); 
+      const response = await axios.get(`http://localhost:3001/review/all`);
+      const data = response.data;
+      setReviews(data);
     } catch (error) {
-      console.error('Error submitting review:', error);
-    }
-  };
-
-  /*const fetchReviews = async () => {
-    try {
-      const options = {
-        method: 'GET',
-        headers: {
-          'accept': 'application/json',
-          'Authorization': `Bearer ${apiKey}`,
-        },
-      };
-
-      const response = await fetch(`${apiUrl}movie/${id}/reviews?`,);
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      setReviews(data.results); 
-
-    } catch (error) {
-      console.error('Error fetching reviews:', error);
+      console.error("Error fetching reviews:", error);
     }
   };
 
   useEffect(() => {
-    fetchReviews();
-  }, [id]);
-  */
+    fetchAllReviews();
+  }, []);
+
+  const readMoreHandler = (movieId) => {
+    navigate(`/movie/${movieId}`);
+  };
+
+  const handleSorting = (type) => {
+    let sortedReviews = [...reviews];
+
+    switch (type) {
+      case "newest":
+        sortedReviews.sort((a, b) => new Date(b.date) - new Date(a.date));
+        break;
+      case "oldest":
+        sortedReviews.sort((a, b) => new Date(a.date) - new Date(b.date));
+        break;
+      case "best":
+        sortedReviews.sort((a, b) => b.stars - a.stars);
+        break;
+      case "worst":
+        sortedReviews.sort((a, b) => a.stars - b.stars);
+        break;
+      default:
+        break;
+    }
+
+    setReviews(sortedReviews);
+    setSortByDropdownVisible(false);
+  };
 
   return (
     <div>
       <div className="Reviews-box">
         <Container>
-          <h2>Reviews</h2>
           <div className="Reviews">
-            <h3>Movie Reviews</h3>
+            <h3>All Movie Reviews</h3>
+            <div className="sorting-buttons">
+              <div className="sorting-button" onClick={() => setSortByDropdownVisible(!sortByDropdownVisible)}>
+                Sort By
+                {sortByDropdownVisible && (
+                  <div className="dropdown-menu">
+                    <div className="dropdown-title">Sort By</div>
+                    <div className="dropdown-item" onClick={() => handleSorting("newest")}>Newest</div>
+                    <div className="dropdown-item" onClick={() => handleSorting("oldest")}>Oldest</div>
+                    <div className="dropdown-item" onClick={() => handleSorting("best")}>Best</div>
+                    <div className="dropdown-item" onClick={() => handleSorting("worst")}>Worst</div>
+                  </div>
+                )}
+              </div>
+            </div>
             <ul>
               {reviews.map((result) => (
-                <li key={result.id}>
-                  <p>Author: {result.author}</p>
-                  <p>Content: {result.content}</p>
-                  <p>Updated at: {result.updated_at}</p>
+                <li key={result.id_review}>
+                  <div className="AllReviewbox">
+                    <p>Author: {result.username}</p>
+                    <p>Movie: {result.movie_name}</p>
+                    <p>Rating: {result.stars}</p>
+                    <p>Comment: {result.comment}</p>
+                    <button
+                      onClick={() => readMoreHandler(result.movie_id)}
+                      className="read-more-btn"
+                    >
+                      Read More
+                    </button>
+                  </div>
                 </li>
               ))}
             </ul>
           </div>
         </Container>
-      </div>
-      <div className="Review-container">
-        <h2>Create review:</h2>
-        <Form>
-          <FormGroup>
-            <Label for="exampleText">Overall rating</Label>
-            <div>
-              <Rating
-                onClick={handleRating}
-                initialValue={rating}
-                size={24}
-              />
-            </div>
-          </FormGroup>
-          <FormGroup>
-            <Label for="reviewText">Leave your review here</Label>
-            <Input
-              type="textarea"
-              name="reviewText"
-              id="reviewText"
-              comment="comment"
-              onChange={handleReviewText}
-            />
-          </FormGroup>
-          <Button color="info" onClick={handleSubmit}>
-            Submit
-          </Button>
-          <Button onClick={handleReset}>Reset</Button>
-        </Form>
       </div>
     </div>
   );

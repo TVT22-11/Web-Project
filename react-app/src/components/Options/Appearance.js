@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
 import './Options.css';
 import Sidebar from './Sidebar';
 import './Appearance.css';
 import { useUser } from '../User/UserContext';
+import UserReviews from './UserReviews';
 
 const Appearance = () => {
   const { username } = useUser();
   const { fname } = useUser();
   const { lname } = useUser();
  
-
   return (
     <div className="page-container">
       <Sidebar />
@@ -27,8 +26,7 @@ const Appearance = () => {
           </label>
         </div>
         <div className='My-reviews'>
-            <h2>My reviews:</h2>
-            <label></label>
+            <UserReviews />
         </div>
       </div>
     </div>

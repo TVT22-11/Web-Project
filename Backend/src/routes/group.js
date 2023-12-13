@@ -3,7 +3,9 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const { authenticateToken } = require('../auth/auth');
-const { createParty, getGroup, getAllGroups, addMember, deleteMember, sendMessage, fetchMessages} = require('../database_tools/groups_db');
+
+const { createParty, getGroup, getAllGroups, addMember, deleteMember, sendMessage, fetchMessages, deleteParty} = require('../database_tools/groups_db');
+
 const upload = multer({ dest: 'uploads/' });
 
 
@@ -35,10 +37,26 @@ router.post('/post', upload.none(), async (req, res) => {
   const name = req.body.name;
   const description = req.body.description;
   const isprivate = req.body.isprivate;
+const owner = req.body.owner;
 
   try {
-    await createParty(name, description, isprivate);
+    await createParty(name, description, isprivate, owner);
     res.status(200).json({ message: 'Group posted successfully' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+
+router.delete('/deleteParty', upload.none(), async (req, res) => {
+  const id_party = req.body.id_party;
+  const id_account = req.body.id_account;
+  
+ 
+  try {
+    await deleteParty(id_party, id_account);
+    res.status(200).json({ message: 'Party deleted successfully' });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Internal server error' });
