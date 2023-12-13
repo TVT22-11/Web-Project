@@ -1,19 +1,33 @@
+const { error } = require('console');
 const pgPool = require('./pg_connection');
 
 const sql = {
-  Group: 'INSERT INTO party (name, description, isprivate) VALUES ($1, $2, $3)',
+  Group: 'INSERT INTO party (name, description, isprivate, owner) VALUES ($1, $2, $3, $4)',
   GET_GROUP_BY_ID: 'SELECT * FROM party WHERE name = $1',
   GET_ALL_GROUPS: 'SELECT id_party, name, description, isprivate FROM party', // Include isprivate in the SELECT statement
-  Delete_Group: 'DELETE FROM party WHERE name = $1',
+  Delete_Group: 'DELETE FROM party WHERE id_party = $1',
   ADD_GROUP_MEMBER: 'INSERT INTO account_party_relation (id_account, id_party) VALUES ($1, $2)',
   DELETE_GROUP_MEMBER: 'DELETE FROM account_party_relation WHERE id_account = $1 AND id_party = $2'
 };
 
-async function createParty(name, description, isprivate) {
+async function deleteParty(id_party, id_account){
+  const client = await pgPool.connect();
+  try {
+    const result = await pgPool.query(sql.Delete_Group, DELETE_GROUP_MEMBER [id_party, id_account]);
+    return result.rowCount; 
+  } catch (err) {
+    throw err;
+  } finally {
+    client.release();
+  }
+}
+
+
+async function createParty(name, description, isprivate, owner) {
   const client = await pgPool.connect();
 
   try {
-    await client.query(sql.Group, [name, description, isprivate]);
+    await client.query(sql.Group, [name, description, isprivate, owner]);
   } finally {
     client.release();
   }
@@ -70,4 +84,4 @@ async function getAllGroups() {
   }
 }
 
-module.exports = { createParty, getGroup, getAllGroups, addMember, deleteMember };
+module.exports = { createParty, getGroup, getAllGroups, addMember, deleteMember, deleteParty };

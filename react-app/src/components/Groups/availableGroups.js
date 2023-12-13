@@ -37,7 +37,7 @@ useEffect(() => {
 
   const handleJoinGroup = async (id_party) => {
     try {
-      // Replace 'http://localhost:3001/join' with your actual server endpoint for joining the group
+     
       const response = await axios.post('http://localhost:3001/group/join', {
         id_account:  accountID ,
         id_party:  id_party 
@@ -54,6 +54,33 @@ useEffect(() => {
     }
   };
 
+  const handleDeleteGroup = async (id_party) => {
+    console.log('ID Party to Delete:', id_party);
+    if (!id_party) {
+      console.error('No party selected for deletion');
+      return;
+    }
+
+    try {
+      const response = await axios.delete('http://localhost:3001/group/deleteParty', {
+        data: {
+          id_party: id_party,
+        },
+      });
+      console.log('deleted party id:', id_party);
+
+      if (response.status === 200) {
+        console.log('Successfully deleted member');
+
+      } else {
+        console.error('Failed to delete member');
+      }
+    } catch (error) {
+      console.error('Error deleting member:', error);
+    }
+  };
+
+
   return (
     <div className="groups flex-container">
       <div className="groups-list">
@@ -69,6 +96,7 @@ useEffect(() => {
                   <button className="join-button" onClick={() => handleJoinGroup(group.id_party)}>
                     <Link to={`/Groups/chatpage/${group.id_party}`}>Join</Link>
                   </button>
+                  <button onClick={handleDeleteGroup}>Delete Group</button> 
                 </div>
               </li>
             ))}
