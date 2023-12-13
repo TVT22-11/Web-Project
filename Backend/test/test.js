@@ -91,3 +91,13 @@ describe('Account tests', () => {
         });
 });
 });
+
+
+describe('Group page endpoint tests...', ()  => {
+
+  it('Should get groups', (done) =>{
+
+  })
+  chai.request(server)
+  
+})
