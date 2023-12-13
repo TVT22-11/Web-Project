@@ -66,8 +66,8 @@ export function Reviews() {
                     <div className="dropdown-title">Sort By</div>
                     <div className="dropdown-item" onClick={() => handleSorting("newest")}>Newest</div>
                     <div className="dropdown-item" onClick={() => handleSorting("oldest")}>Oldest</div>
-                    <div className="dropdown-item" onClick={() => handleSorting("best")}>Best</div>
-                    <div className="dropdown-item" onClick={() => handleSorting("worst")}>Worst</div>
+                    <div className="dropdown-item" onClick={() => handleSorting("best")}>Top-rated</div>
+                    <div className="dropdown-item" onClick={() => handleSorting("worst")}>Worst-rated</div>
                   </div>
                 )}
               </div>
