@@ -1,0 +1,44 @@
+.myreviews {
+   
+flex-direction: column;
+padding: 30px;
+margin-top: 50px;
+margin-bottom: 90px;
+width: 90%;
+background-color: var(--text-background-color);
+border-radius: 8px;
+min-height: 400px;
+overflow-y: auto;
+height: 80%;
+box-shadow: var(--box-shadow);
+}
+
+.myreviewsbox {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: var(--dark-color);
+    box-shadow: var(--box-shadow);
+    
+}
+
+.myreviewsbox button {
+    display: flex;
+    width: 20%;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+.dark-mode .myreviewsbox {
+    background-color: var(--first-color);
+}
+
+.dark-mode .myreviews {
+    background-color: var(--hover-color);
+}
