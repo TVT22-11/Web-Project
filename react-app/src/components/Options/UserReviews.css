@@ -42,3 +42,18 @@ box-shadow: var(--box-shadow);
 .dark-mode .myreviews {
     background-color: var(--hover-color);
 }
+
+@media screen and (max-width: 1200px) {
+    .myreviews {
+        width: 100%;
+        margin-top: 0;
+        margin-bottom: 0;
+        height: 100%;
+    }
+
+    .myreviewsbox button {
+        width: fit-content;
+        font-size: 11px;
+    }
+    
+}
