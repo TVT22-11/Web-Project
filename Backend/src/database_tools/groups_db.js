@@ -30,6 +30,12 @@ async function fetchMessages(id_party){
       return result.rows.length > 0 ? result.rows : null;
     }
     throw new Error("Missing id_party parameter");
+  } catch (err) {
+    throw err;
+  } finally {
+    client.release();
+  }
+}
 
 async function deleteParty(id_party, id_account){
   const client = await pgPool.connect();
