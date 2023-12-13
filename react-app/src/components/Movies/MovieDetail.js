@@ -7,10 +7,10 @@ import './MovieDetail.css';
 import ReadReview from '../Reviews/ReadReview';
 import SetReview from '../Reviews/SetReview';
 
+export const apiImageBaseUrl = process.env.REACT_APP_IMDB_IMAGE_API_URL;
 
 const apiKey = process.env.REACT_APP_IMDB_API_BEARER_TOKEN;
 const apiUrl = process.env.REACT_APP_IMDB_API_URL;
-const apiImageBaseUrl = process.env.REACT_APP_IMDB_IMAGE_API_URL;
 const movieCreditsUrl = process.env.REACT_APP_IMDB_MOVIE_CREDITS_URL;
 
 function MovieDetail() {
@@ -76,8 +76,8 @@ function MovieDetail() {
         </ul>
         
       </div>
-      <SetReview movieTitle={movie.title} />
-      <ReadReview />
+      <SetReview movieTitle={movie.title} movieImage={`${apiImageBaseUrl}${movie.poster_path}`} />
+      <ReadReview movieImage={`${apiImageBaseUrl}${movie.poster_path}`} />
       </div>
     </div>
   );

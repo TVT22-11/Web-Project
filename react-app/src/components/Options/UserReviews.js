@@ -18,7 +18,6 @@ function UserReviews() {
             },
           }
         );
-        console.log('Fetched reviews:', reviewResponse.data);
         setReviews(reviewResponse.data);
       } catch (error) {
         console.error('Error fetching reviews:', error);
