@@ -107,3 +107,18 @@
   display: flex;
   justify-content: center;
 }
+
+/* CHATPAGE */
+.Message-board{
+  background-color: #232323;
+  margin-bottom: 25px;
+  box-shadow: var(--box-shadow);
+  
+}
+
+.message-box{
+  background-color: #141313c9;
+  box-shadow: var(--box-shadow);
+  padding: 25px;
+  margin: 5px;
+}

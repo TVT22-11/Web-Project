@@ -3,24 +3,55 @@ import { useNavigate, useParams } from 'react-router-dom';
 import '../Home/News.css';
 import { useUser } from '../User/UserContext';
 import axios from 'axios';
-
-const apiUrl = process.env.REACT_APP_FINNKINO_API_URL;
+import Getchats from './Getchats';
 
 function ChatPage() {
   const { accountID } = useUser();
   const navigate = useNavigate();
   const [idPartyToDelete, setIdPartyToDelete] = useState(null);
-  const {id_party} = useParams();
+  const [newMessage, setNewMessage] = useState('');
+  const { id_party } = useParams();
+  const [refreshKey, setRefreshKey] = useState(0);
+
+  const postMessage = async () => {
+    try {
+      console.log('id ACCOUNT :', accountID);
+      const response = await axios.post(`http://localhost:3001/group/send-message`, {
+        id_account: accountID,
+        id_party: id_party,
+        messages: newMessage,
+      });
+
+      console.log('Posted message:', newMessage);
+
+      if (response.status === 200) {
+        console.log('Successfully posted message');
+        setNewMessage('');
+        setRefreshKey((prevKey) => prevKey + 1);
+      } else {
+        console.error('Failed to post message');
+      }
+    } catch (error) {
+      console.error('Error posting message:', error);
+    }
+  };
 
   useEffect(() => {
+    const fetchMessages = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3001/group/fetch-messages?id_party=${id_party}`);
+        if (Array.isArray(response.data.messages)) {
+          setRefreshKey((prevKey) => prevKey + 1);
+        } else {
+          console.error('Invalid data format for messages:', response.data.messages);
+        }
+      } catch (error) {
+        console.error('Error fetching messages:', error);
+      }
+    };
 
-    const params = new URLSearchParams(window.location.search);
-    const id_party = params.get('id_party');
-  
-    console.log('Party ID from URL:', id_party);
-  
-    setIdPartyToDelete(id_party);
-  }, []);
+    fetchMessages();
+  }, [id_party]);
 
   const handleAddUser = () => {
     // Implement the logic for adding a user
@@ -35,7 +66,7 @@ function ChatPage() {
     }
 
     try {
-      const response = await axios.delete('http://localhost:3001/group/deleteMember', {
+      const response = await axios.delete(`http://localhost:3001/group/deleteMember`, {
         data: {
           id_account: accountID,
           id_party: id_party,
@@ -47,8 +78,6 @@ function ChatPage() {
 
       if (response.status === 200) {
         console.log('Successfully deleted member');
-
-        
         navigate('/groups');
       } else {
         console.error('Failed to delete member');
@@ -58,13 +87,22 @@ function ChatPage() {
     }
   };
 
-
-  
   return (
     <div>
-        <button onClick={handleAddUser}>Add Member</button>
-        <button onClick={handleDeleteUser}>Delete Member</button>
-      
+
+      <input
+        type="text"
+        value={newMessage}
+        onChange={(e) => setNewMessage(e.target.value)}
+        placeholder="Type your message..."
+      />
+      <button onClick={postMessage}>Send Message</button>
+
+      <button onClick={handleAddUser}>Add Member</button>
+      <button onClick={handleDeleteUser}>Delete Member</button>
+      <div>
+        <Getchats key={refreshKey} />
+      </div>
     </div>
   );
 }
