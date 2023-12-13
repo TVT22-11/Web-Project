@@ -25,12 +25,11 @@
     max-width: 100%;
   }
   .Movie-Text {
-
+    box-shadow: var(--box-shadow);
     margin-top: 50px;
     width: 90%;
     background-color: var(--text-background-color);
     padding: 15px;
-    border: 1px solid var(--third-color);
     border-radius: 8px;
     margin-bottom: 20px;
     text-align: center;
@@ -49,6 +48,7 @@
   }
   
   .Movie-Info {
+    box-shadow: var(--box-shadow);
     margin-top: 50px;
     width: 90%;
     height: -moz-fit-content;
@@ -56,7 +56,6 @@
     overflow-y: auto;
     background-color: var(--text-background-color);
     padding: 15px;
-    border: 1px solid var(--third-color);
     border-radius: 8px;
     text-align: center;
     min-height: 500px;
@@ -95,11 +94,12 @@
       max-width: 60%;
       margin-right: 0;
       margin-left: 0;
+      margin-bottom: 30px;
     }
 
     .Movie-Text {
       margin-top: 5px;
-      width: 50%;
+      width: 90%;
     }
   
     .Movie-Info {

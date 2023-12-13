@@ -6,8 +6,9 @@ import { jwtToken } from "../Login/signals";
 import axios from 'axios';
 import { useParams } from "react-router-dom";
 import { useUser } from "../User/UserContext";
+import { clear } from "@testing-library/user-event/dist/clear";
 
-export function SetReviews(){
+export function SetReviews({ movieTitle }){
   const [reviews, setReviews] = useState([]);
   const [rating, setRating] = useState(0);
   const [reviewText, setReviewText] = useState('');
@@ -21,8 +22,11 @@ export function SetReviews(){
       };
     
       const handleReset = () => {
+
+        console.log("Reset:", reviewText);
+        console.log("Reset:", rating);
         setRating(0);
-        setReviewText('');
+        setReviewText("");
       };
     
       const handleReviewText = (event) => {
@@ -36,6 +40,7 @@ export function SetReviews(){
           stars: rating,
           comment: reviewText,
           movie_id:  id ,
+          movie_name: movieTitle ,
       };
       
       console.log('reviewdata: ',reviewData); // Testausta varten...

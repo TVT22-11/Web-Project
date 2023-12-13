@@ -17,7 +17,7 @@ function MovieDetail() {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
   const [credits, setCredits] = useState(null);
-
+  
   useEffect(() => {
     const fetchMovieDetails = async () => {
       try {
@@ -31,7 +31,7 @@ function MovieDetail() {
           }
         );
         setMovie(movieResponse.data);
-
+        
         const creditsResponse = await axios.get(
           movieCreditsUrl.replace('{movie_id}', id),
           {
@@ -56,6 +56,7 @@ function MovieDetail() {
 
   return (
     <div className='Movie-Container'>
+      
       <img
         src={`${apiImageBaseUrl}${movie.poster_path}`}
         className='Movie-Image'
@@ -75,8 +76,8 @@ function MovieDetail() {
         </ul>
         
       </div>
+      <SetReview movieTitle={movie.title} />
       <ReadReview />
-      <SetReview/>
       </div>
     </div>
   );

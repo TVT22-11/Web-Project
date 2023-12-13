@@ -1,17 +1,91 @@
 .review-box{
   flex-direction: column;
   padding: 30px;
+  margin-bottom: 50px;
   width: 90%;
   background-color: var(--text-background-color);
   border-radius: 8px;
-  border: 1px solid var(--third-color);
   min-height: 300px;
   overflow-y: auto;
-  max-width: 850px;
   height: 340px;
-  
+  box-shadow: var(--box-shadow);
+
+
 }
 
+.individual-review{
+  
+  flex-direction: column;
+  padding: 20px;
+  background-color: #151515;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  width: 90%;
+  overflow: hidden;
+}
+.Comment-box{
+  height: fit-content;
+  max-width: 600px;
+  text-overflow: ellipsis;
+  
+}
+.review-box-top-text{
+  padding: 20px;
+  
+}
+.modal{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.modal-content {
+  background-color: var(--text-background-color);
+  border-radius: 8px;
+  padding: 20px;
+  width: 90%;
+  box-shadow: var(--box-shadow);
+  overflow: hidden;
+  max-width: 600px;
+  word-wrap: break-word;
+ 
+}
+.modal-content p{
+  border-radius: 8px;
+  padding: 20px;
+  width: 90%;
+  height: 100%;
+  overflow: hidden;
+}
+.close{
+  font-size: 25px;
+  cursor: pointer;
+}
+.modal-content {
+  animation: modal-appear 0.3s ease-out;
+}
+
+@keyframes modal-appear {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.read-more-link{
+  cursor: pointer;
+  color: #a0a0a0;
+}
 @media  screen and (max-width: 1200px) {
   .review-box{
     width: 100%;

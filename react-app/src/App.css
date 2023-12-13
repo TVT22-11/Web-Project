@@ -38,7 +38,7 @@
     --normal-font-size: 1em;
     --big-font-size: 1.3em;
 
-    --scroll-bar-color: #4d4d4d;
+    --scroll-bar-color: #8f8f8f;
     --scroll-thumb-color: #585a5e;
     --scroll-thumb-hover-color: #5f6069;
 
@@ -111,4 +111,27 @@ a {
   color: var(--light-mode-text-color);
 }
 
+
+
+::-webkit-scrollbar {
+  width: 12px;
+  background: var(--scroll-bar-color);
+}
+
+
+::-webkit-scrollbar-track {
+  background: var(--scroll-bar-color);
+  border-radius: 15px;
+}
+
+
+::-webkit-scrollbar-thumb {
+  background: var(--scroll-thumb-color);
+  border-radius: 15px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scroll-thumb-hover-color);
+}
 
