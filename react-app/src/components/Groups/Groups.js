@@ -3,7 +3,7 @@ import './Groups.css';
 import YourGroups from './yourGroups';
 import AvailableGroups from './availableGroups';
 import CreateGroup from './createGroup';
-import { useUser } from '../User/UserContext'; // Replace 'path-to-your-user-context' with the actual path
+import { useUser } from '../User/UserContext'; 
 
 function Groups() {
   const { isLoggedIn } = useUser();
