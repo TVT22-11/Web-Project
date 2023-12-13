@@ -1,21 +1,89 @@
-.Reviews-box{
-    background-color: rgb(23, 121, 206);
-    position: center;
-    content: center;
-    width: auto;
-    height: 500px;
-}
+/* Reviews.css */
 
-
-
-.Review-container{
-    
-    padding: 30px;
+.Reviews-box {
+    padding: 20px;
+    margin: 20px;
+  }
+  
+  .Reviews {
+    padding: 10px;
+  }
+  
+  .AllReviewbox {
+    border: 1px solid var(--yellow-color);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    background-color: var(--text-background-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  h3 {
+    font-size: 1.7rem;
+    color: var(---color);
+  }
+  
+  .AllReviewbox button {
+    background-color: var(--first-color);
+    color: var(--dark-color);
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 4px;
+  }
+  
+  .AllReviewbox button:hover {
+    background-color: var(--yellow-color);
+    color: var(--dark-color);
+  }
+  
+  
+  .sorting-buttons {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-    
-.dark-mode .Movies-Desc{
-    color: var(--text-color-light);
-}
+    margin-top: 10px;
+  }
+  
+  .sorting-button {
+    background-color: var(--first-color);
+    color: var(--dark-color);
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+    border-radius: 4px;
+    font-size: small;
+    position: relative;
+    margin-bottom: 5px;
+  }
+  
+  .sorting-button:hover .dropdown-menu {
+    display: block;
+  }
+  
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: var(--text-background-color);
+    border: 1px solid var(--yellow-color);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    top: 100%;
+    left: 0;
+  }
+  
+  .dropdown-title {
+    font-weight: bold;
+    color: var(--second-color);
+  }
+  
+  .dropdown-item {
+    cursor: pointer;
+    padding: 10px;
+    color: var(--dark-color);
+  }
+  
+  .dropdown-item:hover {
+    background-color: var(--yellow-color);
+    color: var(--dark-color);
+  }
+  

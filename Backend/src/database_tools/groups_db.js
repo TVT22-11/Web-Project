@@ -7,14 +7,40 @@ const sql = {
   GET_ALL_GROUPS: 'SELECT id_party, name, description, isprivate FROM party', 
   Delete_Group: 'DELETE FROM party WHERE id_party = $1',
   ADD_GROUP_MEMBER: 'INSERT INTO account_party_relation (id_account, id_party) VALUES ($1, $2)',
-  DELETE_GROUP_MEMBER: 'DELETE FROM account_party_relation WHERE id_account = $1 AND id_party = $2'
+  DELETE_GROUP_MEMBER: 'DELETE FROM account_party_relation WHERE id_account = $1 AND id_party = $2',
+  SEND_MESSAGE: 'INSERT INTO party_messages (id_account, id_party, messages) VALUES ($1, $2, $3)',
+  FETCH_MESSAGES: 'SELECT FROM party_messages WHERE id_party = $1',
 };
 
+<<<<<<< HEAD
 async function deleteParty(id_party){
+=======
+
+async function sendMessage(id_account, id_party, messages) {
+  const client = await pgPool.connect();
+  try {
+    await client.query(sql.SEND_MESSAGE, [id_account, id_party, messages]);   
+  } finally {
+    client.release();
+  }
+}
+
+async function fetchMessages(id_party){
+  const client = await pgPool.connect();
+  try {
+    if (id_party) {
+      let result = await pgPool.query(sql.FETCH_MESSAGES, [id_party]);
+      return result.rows.length > 0 ? result.rows : null;
+    }
+    throw new Error("Missing id_party parameter");
+
+async function deleteParty(id_party){
+
   const client = await pgPool.connect();
   try {
     const result = await pgPool.query(sql.Delete_Group[id_party]);
     return result.rowCount; 
+
   } catch (err) {
     throw err;
   } finally {
@@ -23,7 +49,9 @@ async function deleteParty(id_party){
 }
 
 
+
 async function createParty(name, description, isprivate, owner) {
+
   const client = await pgPool.connect();
 
   try {
@@ -84,4 +112,4 @@ async function getAllGroups() {
   }
 }
 
-module.exports = { createParty, getGroup, getAllGroups, addMember, deleteMember, deleteParty };
+module.exports = { createParty, getGroup, getAllGroups, addMember, deleteMember, sendMessage, fetchMessages, deleteParty };
