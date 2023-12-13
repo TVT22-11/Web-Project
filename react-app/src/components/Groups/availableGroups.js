@@ -10,6 +10,7 @@ function AvailableGroups() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true);
   const { accountID } = useUser();
+ 
 
   useEffect(() => {
     const fetchGroups = async () => {
