@@ -8,10 +8,46 @@ import Getchats from './Getchats';
 function ChatPage() {
   const { accountID } = useUser();
   const navigate = useNavigate();
-  const [idPartyToDelete, setIdPartyToDelete] = useState(null);
   const [newMessage, setNewMessage] = useState('');
   const { id_party } = useParams();
   const [refreshKey, setRefreshKey] = useState(0);
+  const [groupMembers, setGroupMembers] = useState([]);
+  const [groupData, setGroupData] = useState(null);
+
+  const fetchGroupData = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3001/group`);
+      if (Array.isArray(response.data.GroupData)) {
+        setGroupData(response.data.GroupData.find(group => group.id_party === Number(id_party)));
+      } else {
+        console.error('Invalid data format for group data:', response.data.GroupData);
+      }
+    } catch (error) {
+      console.error('Error fetching group data:', error);
+    }
+  };
+
+  const fetchGroupMembers = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3001/group/fetch-group-members?id_party=${id_party}`);
+      if (Array.isArray(response.data.members)) {
+        const members = await Promise.all(
+          response.data.members.map(async (member) => {
+            const usernameResponse = await axios.get(`http://localhost:3001/account/user?id_account=${member.id_account}`);
+            return {
+              id_account: member.id_account,
+              username: usernameResponse.data[0].username,
+            };
+          })
+        );
+        setGroupMembers(members);
+      } else {
+        console.error('Invalid data format for group members:', response.data.members);
+      }
+    } catch (error) {
+      console.error('Error fetching group members:', error);
+    }
+  };
 
   const postMessage = async () => {
     try {
@@ -49,14 +85,41 @@ function ChatPage() {
         console.error('Error fetching messages:', error);
       }
     };
-
+    fetchGroupData();
     fetchMessages();
+    fetchGroupMembers();
   }, [id_party]);
 
-  const handleAddUser = () => {
 
-    console.log('Add User button clicked');
+  const handleRemoveUser = async (id_account) => {
+    try {
+      if (!groupData || groupData.owner !== accountID) {
+        console.error('You are not the owner of this group. Cannot remove user.');
+        return;
+      }
+
+      const response = await axios.delete(`http://localhost:3001/group/deleteMember`, {
+        data: {
+          id_account,
+          id_party: id_party,
+        },
+      });
+
+      console.log('Removed account:', id_account);
+      console.log('Removed from id party:', id_party);
+
+      if (response.status === 200) {
+        console.log('Successfully removed member');
+        // Update the group members after removing a member
+        fetchGroupMembers();
+      } else {
+        console.error('Failed to remove member');
+      }
+    } catch (error) {
+      console.error('Error removing member:', error);
+    }
   };
+
 
   const handleDeleteUser = async () => {
     console.log('ID Party to Delete:', id_party);
@@ -104,8 +167,20 @@ function ChatPage() {
       />
       <div className='chat-page-buttons'>
       <button onClick={postMessage}>Send Message</button>
-
-      <button onClick={handleDeleteUser}>Leave Group</button>
+      </div>
+          <div className='group-members'>
+        <h2>Group Members:</h2>
+        <ul>
+          {groupMembers.map((member) => (
+            <li key={member.id_account}>
+              {`${member.username} `}
+              {groupData && groupData.owner === accountID && member.id_account !== accountID && (
+                <button onClick={() => handleRemoveUser(member.id_account)}>Remove User</button>
+              )}
+            </li>
+          ))}
+        </ul>
+        <button onClick={handleDeleteUser}>Leave Group</button>
       </div>
       <div>
         <Getchats key={refreshKey} />

@@ -11,7 +11,7 @@ const upload = multer({ dest: 'uploads/' });
 router.get('/fetch-group-members', async (req, res) =>{
   const id_party = req.query.id_party;
  try {
-    const members = await fetchMessages(id_party);
+    const members = await fetchGroupMembers(id_party);
     res.status(200).json({ members: members});
   } catch (err) {
     console.error(err);
