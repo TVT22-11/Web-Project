@@ -23,7 +23,7 @@ function CreatingPage() {
   };
 
   const handleCreateGroup = async () => {
-    // Create a new group object with the input values
+
     const newGroup = {
       name: groupName,
       description: additionalInfo,
@@ -32,10 +32,9 @@ function CreatingPage() {
     };
 
     try {
-      // Send a POST request to your server endpoint that adds the group to the database
+
       const response = await axios.post('http://localhost:3001/group/post', newGroup);
 
-      // Check if the request was successful
       if (response.status === 200) {
         console.log('Group created successfully!');
         

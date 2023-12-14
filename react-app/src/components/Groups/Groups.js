@@ -11,14 +11,16 @@ function Groups() {
 
   return (
     <div className='group-page'>
-      <div>
-        <AvailableGroups />
-        {!isLoggedIn && <p>Sign in to create a group</p>}
-        {isLoggedIn && <YourGroups />}
-        {isLoggedIn && <CreateGroup />}
-      </div>
+      <AvailableGroups />
+  
+      {!isLoggedIn && <p>Sign in to Create or See groups</p>}
+      {isLoggedIn && (
+        <div className='Groups-Page-Bottom-container'>
+          <YourGroups />
+          <CreateGroup />
+        </div>
+      )} 
     </div>
   );
 }
-
 export default Groups;

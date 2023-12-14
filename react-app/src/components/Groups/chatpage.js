@@ -54,7 +54,7 @@ function ChatPage() {
   }, [id_party]);
 
   const handleAddUser = () => {
-    // Implement the logic for adding a user
+
     console.log('Add User button clicked');
   };
 
@@ -88,18 +88,25 @@ function ChatPage() {
   };
 
   return (
-    <div>
+    <div className='chatpage-container'>
 
       <input
+        className='chat-page-text-input'
         type="text"
         value={newMessage}
         onChange={(e) => setNewMessage(e.target.value)}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter') {
+            postMessage();
+          }
+        }}
         placeholder="Type your message..."
       />
+      <div className='chat-page-buttons'>
       <button onClick={postMessage}>Send Message</button>
 
-      <button onClick={handleAddUser}>Add Member</button>
-      <button onClick={handleDeleteUser}>Delete Member</button>
+      <button onClick={handleDeleteUser}>Leave Group</button>
+      </div>
       <div>
         <Getchats key={refreshKey} />
       </div>
