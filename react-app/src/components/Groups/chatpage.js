@@ -8,12 +8,10 @@ import Getchats from './Getchats';
 function ChatPage() {
   const { accountID } = useUser();
   const navigate = useNavigate();
-  const [idPartyToDelete, setIdPartyToDelete] = useState(null);
   const [newMessage, setNewMessage] = useState('');
   const { id_party } = useParams();
   const [refreshKey, setRefreshKey] = useState(0);
   const [groupMembers, setGroupMembers] = useState([]);
-  const [usernames, setusernames] = useState([]);
   const [groupData, setGroupData] = useState(null);
 
   const fetchGroupData = async () => {
@@ -93,12 +91,6 @@ function ChatPage() {
   }, [id_party]);
 
 
-/*
-  const handleAddUser = () => {
-
-    console.log('Add User button clicked');
-  };
-  */
   const handleRemoveUser = async (id_account) => {
     try {
       if (!groupData || groupData.owner !== accountID) {
