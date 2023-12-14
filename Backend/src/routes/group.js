@@ -4,10 +4,20 @@ const router = express.Router();
 const multer = require('multer');
 const { authenticateToken } = require('../auth/auth');
 
-const { createParty, getGroup, getAllGroups, addMember, deleteMember, sendMessage, fetchMessages, deleteParty, fetchMyGroups} = require('../database_tools/groups_db');
+const { fetchGroupMembers, createParty, getGroup, getAllGroups, addMember, deleteMember, sendMessage, fetchMessages, deleteParty, fetchMyGroups} = require('../database_tools/groups_db');
 
 const upload = multer({ dest: 'uploads/' });
 
+router.get('/fetch-group-members', async (req, res) =>{
+  const id_party = req.query.id_party;
+ try {
+    const members = await fetchMessages(id_party);
+    res.status(200).json({ members: members});
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
 router.post('/send-message', upload.none(), async (req,res) =>{
   const id_account = req.body.id_account;

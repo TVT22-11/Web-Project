@@ -11,6 +11,7 @@ const sql = {
   SEND_MESSAGE: 'INSERT INTO party_messages (id_account, id_party, messages) VALUES ($1, $2, $3)',
   FETCH_MESSAGES: 'SELECT * FROM party_messages WHERE id_party = $1',
   FETCH_MY_GROUP:'SELECT id_party FROM account_party_relation  WHERE id_account = $1',
+  FETCH_GROUP_MEMBERS: 'SELECT id_account FROM account_party_relation WHERE id_party =$1',
 };
 
 
@@ -28,6 +29,21 @@ async function fetchMessages(id_party){
   try {
     if (id_party) {
       let result = await pgPool.query(sql.FETCH_MESSAGES, [id_party]);
+      return result.rows.length > 0 ? result.rows : null;
+    }
+    throw new Error("Missing id_party parameter");
+  } catch (err) {
+    throw err;
+  } finally {
+    client.release();
+  }
+}
+
+async function fetchGroupMembers(id_party){
+  const client = await pgPool.connect();
+  try {
+    if (id_party) {
+      let result = await pgPool.query(sql.FETCH_GROUP_MEMBERS, [id_party]);
       return result.rows.length > 0 ? result.rows : null;
     }
     throw new Error("Missing id_party parameter");
@@ -130,4 +146,4 @@ async function getAllGroups() {
   }
 }
 
-module.exports = { createParty, getGroup, getAllGroups, addMember, deleteMember, sendMessage, fetchMessages, deleteParty, fetchMyGroups };
+module.exports = {fetchGroupMembers, createParty, getGroup, getAllGroups, addMember, deleteMember, sendMessage, fetchMessages, deleteParty, fetchMyGroups };
