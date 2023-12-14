@@ -86,4 +86,12 @@
     background-color: var(--yellow-color);
     color: var(--dark-color);
   }
+
+  .flex-container {
+    display: flex;
+  }
   
+  .News-Box {
+    width: 100%;
+    /* Add any additional styling */
+  }
