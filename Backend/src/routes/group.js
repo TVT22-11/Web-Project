@@ -49,11 +49,11 @@ router.post('/post', upload.none(), async (req, res) => {
   const name = req.body.name;
   const description = req.body.description;
   const isprivate = req.body.isprivate;
-const owner = req.body.owner;
+  const owner = req.body.owner;
 
   try {
     await createParty(name, description, isprivate, owner);
-    res.status(200).json({ message: 'Group posted successfully' });
+ res.status(200).json({ message: 'Group posted successfully' });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Internal server error' });
