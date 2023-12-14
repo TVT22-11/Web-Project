@@ -4,8 +4,8 @@ const pgPool = require('./pg_connection');
 const sql = {
   Group: 'INSERT INTO party (name, description, isprivate, owner) VALUES ($1, $2, $3, $4)',
   GET_GROUP_BY_ID: 'SELECT * FROM party WHERE name = $1',
-  GET_ALL_GROUPS: 'SELECT id_party, name, description, isprivate FROM party', // Include isprivate in the SELECT statement
-  DELETE_GROUP: 'DELETE FROM party WHERE id_party = $1',
+  GET_ALL_GROUPS: 'SELECT * FROM party', 
+  DELETE_GROUP: 'CALL delete_group($1)',
   ADD_GROUP_MEMBER: 'INSERT INTO account_party_relation (id_account, id_party) VALUES ($1, $2)',
   DELETE_GROUP_MEMBER: 'DELETE FROM account_party_relation WHERE id_account = $1 AND id_party = $2',
   SEND_MESSAGE: 'INSERT INTO party_messages (id_account, id_party, messages) VALUES ($1, $2, $3)',
