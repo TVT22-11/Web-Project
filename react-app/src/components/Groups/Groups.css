@@ -183,3 +183,24 @@
   flex-direction: row;
   justify-content: space-between;
 }
+
+.group-members{
+  display: flex;
+  height: fit-content;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: var( --body-background-color);
+  width: 350px;
+  position: absolute;
+  box-shadow: var(--box-shadow);
+  right: 0;
+  top: 0px;
+  padding: 25px;
+  border-radius: 0px 0px 10px 10px;
+
+}
+.group-members li{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
