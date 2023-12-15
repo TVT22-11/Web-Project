@@ -122,8 +122,10 @@ export function Reviews() {
             </div>
             <div className='link-field-container'>
               <input type='text' id='linkField' readOnly ref={linkFieldRef} />
-              <button onClick={handleLinkCopy}>Copy Link</button>
-            </div>
+              <button className='sorting-button' onClick={handleLinkCopy}>
+                Copy Link
+              </button>
+              </div>
           </div>
           <ul>
             {reviews.map((result) => (

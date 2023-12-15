@@ -95,3 +95,29 @@
     width: 100%;
     /* Add any additional styling */
   }
+  .link-field-container {
+  display: flex;
+  align-items: center;
+}
+
+.link-field-container input {
+  flex: 1;
+  margin-right: 5px;
+  
+}
+
+.link-field-container button {
+  background-color: var(--first-color);
+  color: var(--dark-color);
+  padding: 5px 10px;
+  margin-bottom: 0px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: small;
+}
+
+.link-field-container button:hover {
+  background-color: var(--yellow-color);
+  color: var(--dark-color);
+}
