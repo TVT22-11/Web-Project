@@ -51,7 +51,11 @@ const Navbar = ({ selectedTimezone, defaultTimezone }) => {
     <header>
       <nav className={`navbar ${isOpen ? 'visible' : ''}`} id="navbar">
         <div className="dropdown" ref={dropdownRef}>
+        {isLoggedIn ? (
+              <button onClick={handleLogoutClicked} className="log-out-button-ddmenu">Logout</button>
+            ) : (
           <Link to="/Login" className="drop-sign-in-button">Sign In</Link>
+          )}
           <FontAwesomeIcon
             icon={faBars}
             onClick={DDmenuClickHandler}
