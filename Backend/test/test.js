@@ -91,3 +91,64 @@ describe('Account tests', () => {
         });
 });
 });
+
+
+describe('Group page endpoint tests...', ()  => {
+let createdparty;
+  it('Should get groups', (done) =>{
+
+    chai.request(server)
+    .get('/group')
+    .end((err, res) =>{
+      res.should.have.status(200);
+      res.body.should.be.a('object');
+  done();
+    });
+  });
+
+  it('should create a party', (done) =>{
+
+    chai.request(server)
+    .post('/group/post')
+    .send({
+      name: 'testuser',
+      description: 'testdescription',
+      isprivate: false,
+      owner: 1,
+    })
+    .end((err, res) => {
+      res.should.have.status(200);
+      res.body.should.be.a('object');
+      res.body.should.have.property('message');
+      done();
+
+    });
+  });
+  it('should find created party', (done) =>{
+    chai.request(server)
+    .get('/group/search?name=testuser')
+    .end((err, res) =>{
+      res.should.have.status(200);
+      res.body.should.be.a('object');
+      res.body.should.have.property('GroupData');
+      res.body.GroupData.should.be.an('array').that.is.not.empty;
+      createdparty = res.body.GroupData[0].id_party;
+  done();
+  });
+  });
+
+  it('should delete created party', (done) =>{
+    chai.request(server)
+    .delete('/group/deleteParty') 
+    .send({
+      id_party: createdparty
+    })
+    .end((err, res) => {
+      res.should.have.status(200);
+      res.body.should.be.a('object');
+      res.body.should.have.property('message');
+      done();
+    });
+  });
+  
+});

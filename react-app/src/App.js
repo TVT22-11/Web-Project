@@ -35,7 +35,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/Login" element={<Login />} />
-          <Route path="/groups/*" element={<GroupRoutes />} />
+          <Route path="/Groups/*" element={<GroupRoutes />} />
           <Route path= "/Movies/*" element={<Movies/>} />
           <Route path= "/Reviews/*" element={<Reviews/>} />
           <Route

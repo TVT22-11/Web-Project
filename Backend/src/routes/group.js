@@ -3,17 +3,80 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const { authenticateToken } = require('../auth/auth');
-const { createParty, getGroup, getAllGroups, addMember, deleteMember} = require('../database_tools/groups_db');
+
+const { fetchGroupMembers, createParty, getGroup, getAllGroups, addMember, deleteMember, sendMessage, fetchMessages, deleteParty, fetchMyGroups} = require('../database_tools/groups_db');
+
 const upload = multer({ dest: 'uploads/' });
+
+router.get('/fetch-group-members', async (req, res) =>{
+  const id_party = req.query.id_party;
+ try {
+    const members = await fetchGroupMembers(id_party);
+    res.status(200).json({ members: members});
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+router.post('/send-message', upload.none(), async (req,res) =>{
+  const id_account = req.body.id_account;
+  const id_party = req.body.id_party;
+  const messages = req.body.messages;
+  try {
+    await sendMessage(id_account, id_party, messages);
+    res.status(200).json({ message: 'Post Send successfully' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+router.get('/fetch-messages', async (req, res) =>{
+  const id_party = req.query.id_party;
+  try {
+    const messages = await fetchMessages(id_party);
+    res.status(200).json({ messages: messages});
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+router.get('/joined-groups', async (req, res) =>{
+  const id_account = req.query.id_account;
+  try {
+    const groups = await fetchMyGroups(id_account);
+    res.status(200).json({ Groups: groups});
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 
 router.post('/post', upload.none(), async (req, res) => {
   const name = req.body.name;
   const description = req.body.description;
   const isprivate = req.body.isprivate;
+  const owner = req.body.owner;
 
   try {
-    await createParty(name, description, isprivate);
-    res.status(200).json({ message: 'Group posted successfully' });
+    await createParty(name, description, isprivate, owner);
+ res.status(200).json({ message: 'Group posted successfully' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+
+router.delete('/deleteParty', upload.none(), async (req, res) => {
+  const id_party = req.body.id_party;
+ 
+  try {
+    await deleteParty(id_party);
+    res.status(200).json({ message: 'Party deleted successfully' });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Internal server error' });
@@ -61,7 +124,7 @@ router.get('/search', async (req, res) => {
 router.get('/', async (req, res) => {
   try {
     const group = await getAllGroups();
-    res.status(200).json({ GroupDataData: group });
+    res.status(200).json({ GroupData: group });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Internal server error' });

@@ -12,7 +12,7 @@ router.get('/user',  async (req, res) => {
   
     try {
       const UserData = await getUserByID(id_account);
-      res.status(200).json({ id_account: id_account, UserData: UserData });
+      res.status(200).json( UserData );
     } catch (err) {
       console.error(err);
       res.status(500).json({ error: 'Internal server error' });
