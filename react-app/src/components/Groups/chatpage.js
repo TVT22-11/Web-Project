@@ -16,7 +16,7 @@ function ChatPage() {
 
   const fetchGroupData = async () => {
     try {
-      const response = await axios.get(`http://localhost:3001/group`);
+      const response = await axios.get(`/group`);
       if (Array.isArray(response.data.GroupData)) {
         setGroupData(response.data.GroupData.find(group => group.id_party === Number(id_party)));
       } else {
@@ -29,11 +29,11 @@ function ChatPage() {
 
   const fetchGroupMembers = async () => {
     try {
-      const response = await axios.get(`http://localhost:3001/group/fetch-group-members?id_party=${id_party}`);
+      const response = await axios.get(`/group/fetch-group-members?id_party=${id_party}`);
       if (Array.isArray(response.data.members)) {
         const members = await Promise.all(
           response.data.members.map(async (member) => {
-            const usernameResponse = await axios.get(`http://localhost:3001/account/user?id_account=${member.id_account}`);
+            const usernameResponse = await axios.get(`/account/user?id_account=${member.id_account}`);
             return {
               id_account: member.id_account,
               username: usernameResponse.data[0].username,
@@ -52,7 +52,7 @@ function ChatPage() {
   const postMessage = async () => {
     try {
       console.log('id ACCOUNT :', accountID);
-      const response = await axios.post(`http://localhost:3001/group/send-message`, {
+      const response = await axios.post(`/group/send-message`, {
         id_account: accountID,
         id_party: id_party,
         messages: newMessage,
@@ -75,7 +75,7 @@ function ChatPage() {
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/group/fetch-messages?id_party=${id_party}`);
+        const response = await axios.get(`/group/fetch-messages?id_party=${id_party}`);
         if (Array.isArray(response.data.messages)) {
           setRefreshKey((prevKey) => prevKey + 1);
         } else {
@@ -98,7 +98,7 @@ function ChatPage() {
         return;
       }
 
-      const response = await axios.delete(`http://localhost:3001/group/deleteMember`, {
+      const response = await axios.delete(`/group/deleteMember`, {
         data: {
           id_account,
           id_party: id_party,
@@ -129,7 +129,7 @@ function ChatPage() {
     }
 
     try {
-      const response = await axios.delete(`http://localhost:3001/group/deleteMember`, {
+      const response = await axios.delete(`/group/deleteMember`, {
         data: {
           id_account: accountID,
           id_party: id_party,

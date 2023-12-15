@@ -15,7 +15,7 @@ function Getchats() {
 
   const fetchMessages = async () => {
     try {
-      const response = await axios.get(`http://localhost:3001/group/fetch-messages?id_party=${id_party}`);
+      const response = await axios.get(`/group/fetch-messages?id_party=${id_party}`);
       if (Array.isArray(response.data.messages ) && response.status === 200) {
         setMessages(response.data.messages);
   
@@ -23,7 +23,7 @@ function Getchats() {
   
         const usernamesPromises = idAccounts.map(async idAccount => {
           try {
-            const userResponse = await axios.get(`http://localhost:3001/account/user?id_account=${idAccount}`);
+            const userResponse = await axios.get(`/account/user?id_account=${idAccount}`);
             return userResponse.data[0]?.username || null;
           } catch (userError) {
             console.error('Error fetching username:', userError);

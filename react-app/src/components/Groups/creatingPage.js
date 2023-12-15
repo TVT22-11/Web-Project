@@ -33,7 +33,7 @@ function CreatingPage() {
 
     try {
 
-      const response = await axios.post('http://localhost:3001/group/post', newGroup);
+      const response = await axios.post('/group/post', newGroup);
 
       if (response.status === 200) {
         console.log('Group created successfully!');

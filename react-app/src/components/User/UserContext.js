@@ -44,7 +44,7 @@ export const UserProvider = ({ children }) => {
 
   const fetchAccountID = async (token) => {
     try {
-      const response = await fetch('http://localhost:3001/account', {
+      const response = await fetch('/account', {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${token}`,

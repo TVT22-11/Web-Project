@@ -11,7 +11,7 @@ function YourGroups() {
   useEffect(() => {
     const fetchGroups = async () => {
       try {
-        const GroupsResponse = await axios.get('http://localhost:3001/group');
+        const GroupsResponse = await axios.get('/group');
         const Groupsdata = GroupsResponse.data.GroupData;
 
         setAllGroups(Groupsdata);
@@ -26,7 +26,7 @@ function YourGroups() {
   useEffect(() => {
     const fetchUserGroups = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/group/joined-groups?id_account=${accountID}`);
+        const response = await axios.get(`/group/joined-groups?id_account=${accountID}`);
         const userGroupIds = response.data.Groups.map(group => group.id_party);
 
         const userGroups = allGroups.filter(group => userGroupIds.includes(group.id_party));
@@ -54,7 +54,7 @@ function YourGroups() {
 
 
     try {
-      const response = await axios.delete('http://localhost:3001/group/deleteParty', {
+      const response = await axios.delete('/group/deleteParty', {
         data: {
           id_party: id_party,
         },

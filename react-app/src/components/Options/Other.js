@@ -40,7 +40,7 @@ const Other = () => {
         const id_account = decodedToken.id_account;
         const password = decodedToken.password;
 
-        const response = await axios.delete('http://localhost:3001/auth/delete', {
+        const response = await axios.delete('/auth/delete', {
           headers: {
             Authorization: `Bearer ${token}`,
           },

@@ -16,7 +16,7 @@ function AvailableGroups() {
     const fetchGroups = async () => {
       
       try {
-        const GroupsResponse = await axios.get('http://localhost:3001/group');
+        const GroupsResponse = await axios.get('/group');
         const Groupsdata = GroupsResponse.data.GroupData;
 
 
@@ -38,7 +38,7 @@ function AvailableGroups() {
   useEffect(() => {
     const fetchUserJoinedGroups = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/group/joined-groups?id_account=${accountID}`);
+        const response = await axios.get(`/group/joined-groups?id_account=${accountID}`);
         const userGroupIds = response.data.Groups.map(group => group.id_party);
 
         setUserJoinedGroups(userGroupIds);
@@ -66,7 +66,7 @@ function AvailableGroups() {
   const handleJoinGroup = async (id_party) => {
     try {
       
-      const response = await axios.post(`http://localhost:3001/group/join`, {
+      const response = await axios.post(`/group/join`, {
         id_account:  accountID ,
         id_party:  id_party 
     });
@@ -98,7 +98,7 @@ function AvailableGroups() {
     }
 
     try {
-      const response = await axios.delete('http://localhost:3001/group/deleteParty', {
+      const response = await axios.delete('/group/deleteParty', {
         data: {
           id_party: id_party,
         },

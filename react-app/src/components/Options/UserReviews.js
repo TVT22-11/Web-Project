@@ -11,7 +11,7 @@ function UserReviews() {
     const fetchReviews = async () => {
       try {
         const reviewResponse = await axios.get(
-          `http://localhost:3001/review?id_account=${accountID}`,
+          `/review?id_account=${accountID}`,
           {
             headers: {
               'Content-Type': 'application/json',
@@ -29,7 +29,7 @@ function UserReviews() {
 
   const handleDeleteReview = async (idReview) => {
     try {
-      await axios.delete(`http://localhost:3001/review/${idReview}`);
+      await axios.delete(`/review/${idReview}`);
       setReviews((prevReviews) => {
         const reviewsArray = Array.isArray(prevReviews.ReviewData) ? prevReviews.ReviewData : [];
         return { ReviewData: reviewsArray.filter((review) => review.id_review !== idReview) };

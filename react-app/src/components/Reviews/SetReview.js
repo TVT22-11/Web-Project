@@ -46,7 +46,7 @@ export function SetReviews({ movieTitle }){
       console.log('reviewdata: ',reviewData); // Testausta varten...
 
         try {
-            const response = await axios.post(`http://localhost:3001/review/post`,reviewData,
+            const response = await axios.post(`/review/post`,reviewData,
                 {
                   headers: {
                     'Authorization': `Bearer ${jwtToken}`,

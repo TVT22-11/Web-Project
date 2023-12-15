@@ -26,7 +26,7 @@ export function Reviews() {
 
   const fetchAllReviews = async () => {
     try {
-      const response = await axios.get(`http://localhost:3001/review/all`);
+      const response = await axios.get(`/review/all`);
       const data = response.data.ReviewData;
       setReviews(data);
     } catch (error) {

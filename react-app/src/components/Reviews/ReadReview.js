@@ -24,7 +24,7 @@ function ReadReview() {
     const fetchReview = async () => {
       try {
         // Fetch reviews
-        const reviewResponse = await axios.get(`http://localhost:3001/review?movie_id=${id}`);
+        const reviewResponse = await axios.get(`/review?movie_id=${id}`);
         const reviewsData = reviewResponse.data.ReviewData;
        
         const totalStars = reviewsData.reduce((total, review) => total + review.stars, 0);

@@ -38,7 +38,7 @@ function SignUp() {
     };
 
 
-    axios.post("http://localhost:3001/auth/register", userData)
+    axios.post("/auth/register", userData)
     .then((response) => {
       console.log(response.status, response.data);
       setIsSubmitted(true);
