@@ -1,12 +1,12 @@
 const cors = require('cors');
 const express = require('express');
 
-const user = require('./routes/user');
-const auth = require('./routes/authorization');
+const user = require('./src/routes/user');
+const auth = require('./src/routes/authorization');
 const app = express();
-const preferences = require('./routes/preferences');
-const review = require('./routes/review');
-const group = require('./routes/group');
+const preferences = require('./src/routes/preferences');
+const review = require('./src/routes/review');
+const group = require('./src/routes/group');
 
 
 
