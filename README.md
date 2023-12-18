@@ -63,46 +63,21 @@ REST- rajapinta on toteutettu Visual Studio Code -sovelluksessa ja sen toimintaa
 
 Käyttöliittymä 
 
- 
+ Käyttöliittymäsuunnitelma on tehty käyttäen Figma-ryhmätyösovellusta. 
 
-Käyttöliittymäsuunnitelma on tehty käyttäen Figma-ryhmätyösovellusta. 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
+![alt text](https://cdn.discordapp.com/attachments/1171772409540522045/1172153067051958302/image.png?ex=655f479c&is=654cd29c&hm=a6f771bec1af3611bdf4243c13bbf62dca28d28c9c439b0f61240a358d3a2c29&)
 KUVA 1. Frontpage 
 
- 
-
+![alt text](https://cdn.discordapp.com/attachments/1171772409540522045/1172152928157564948/image.png?ex=655f477b&is=654cd27b&hm=378132982c3e88a8c7c647a7b3fe83b35a18b1e9b32d1c2ff52e49154d59320c&)
 KUVA 2. Register/Sign in ja Group pages. 
 
- 
-
- 
-
- 
-
- 
-
- 
-
+![alt text](https://cdn.discordapp.com/attachments/1171772409540522045/1172153357469765712/image.png?ex=655f47e1&is=654cd2e1&hm=8e5edcb61ca0ebe032fa1a40ee497a0e73ae9da4f0b533dc07996a35d1f5d5f4&)
+![alt text](https://cdn.discordapp.com/attachments/1171772409540522045/1172153172006027335/image.png?ex=655f47b5&is=654cd2b5&hm=27731c4d2201262cd68c22ae01351589b838f85ea8208bb577297ad2bb9a73b1&)
 KUVA 3. Mobile version 
 
 Käyttöönotto 
 
- 
-
 Sovellus otetaan käyttöön Render- sivustolla. Render -sivustolle yhdistetään projektin GitHub- repositoriin talletettu sovellus, jolloin Render -sivusto tekee siitä toimivan nettisivun.  
-
- 
 
 Linkki valmiiseen sovellukseen:  
 
