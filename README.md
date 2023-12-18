@@ -1,6 +1,3 @@
-# Web-Project
-Our web applications project
-
 Ohjelmoinnin sovellusprojekti 
 
 # Elokuvasovellus 
