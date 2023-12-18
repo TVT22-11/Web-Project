@@ -3,7 +3,7 @@ Our web applications project
 
 Ohjelmoinnin sovellusprojekti 
 
-#Elokuvasovellus 
+# Elokuvasovellus 
 
  
 18.12.2023 – Iiro Moilanen, Nea Brännfors, Veeti Kokkonen, Eetu Purhonen, Iivari Rantala 
