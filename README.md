@@ -10,13 +10,13 @@ Ohjelmoinnin sovellusprojekti
 
  
 
-#Esittely 
+# Esittely 
 
 Tämän tekstin aiheena on Web-Ohjelmoinnin sovellusprojekti. 15 opintopisteen projektin aiheena oli tehdä React pohjainen nettisivu elokuvaharrastajille. Tämän projektin toteuttivat toisen vuoden ohjelmistokehityksen opiskelijat. Nettisivulla vieraileva käyttäjä voi selailla erilaisia elokuvia ja sarjoja erilaisilla suodatuksilla.  Nettisivulle voi myös luoda käyttäjän, joka mahdollistaa uusien ryhmien luomisen valitsemallaan nimellä. Ryhmäsivulla voit luoda ryhmiä, joissa voi lähettää viestejä ryhmien muille jäsenille. Ryhmäsivun omistaja voi myös lisätä ja poistaa ryhmän jäseniä. Kirjautumatta sovellukseen käyttäjä näkee vain listan luoduista ryhmistä sekä niiden nimet ja kuvaukset mutta ei pääse liittymään ryhmiin kirjautumatta sisään. 
 
  
 
-#Menetelmät 
+# Menetelmät 
 
 Sovellus on tehty JavaScript-ohjelmointikielellä hyödyntämällä Reactia, joka on JavaScript-kirjasto. Sovelluksessa on hyödynnetty avoimen datan lähteinä The movie database (https://developer.themoviedb.org/reference/intro/getting-started), joka sisältää suuren määrän elokuviin liittyvää avointa dataa IMDB:stä, sekä Finnkinon tarjoamasta API:stä (https://www.finnkino.fi/xml/), jonka kautta voi hakea tietoa uutisista ja esim. eri teattereiden esitysajoista. Lisäksi sovellukseen on tehty oma palvelin ja tietokanta Renderissä sovelluksen oman datan hallitsemiseen. 
 
