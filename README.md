@@ -84,8 +84,10 @@ Linkki valmiiseen sovellukseen:
 
 (https://leffasovellus-r11.onrender.com/) 
 
- 
+Linkki esittelyvideoon:
 
+(https://youtu.be/YlgnnL064fY)
+ 
 
 # ER-Kaavio
 ![alt text](https://cdn.discordapp.com/attachments/1171772409540522045/1171782631294238720/image.png?ex=655dee9d&is=654b799d&hm=230785bd66b535bf17198f4a1ed7a1eec6088b9d6c21a4113a45ae7ff5cd17e7&)
@@ -93,3 +95,4 @@ Linkki valmiiseen sovellukseen:
 #REST-Documentation
 
 (https://documenter.getpostman.com/view/25692396/2s9YkjCPvg)
+
