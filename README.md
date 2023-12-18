@@ -106,7 +106,7 @@ Sovellus otetaan käyttöön Render- sivustolla. Render -sivustolle yhdistetää
 
 Linkki valmiiseen sovellukseen:  
 
-![alt text](https://leffasovellus-r11.onrender.com/). 
+(https://leffasovellus-r11.onrender.com/) 
 
  
 
@@ -116,7 +116,7 @@ Linkki valmiiseen sovellukseen:
 
 #REST-Documentation
 
-![alt text](https://documenter.getpostman.com/view/25692396/2s9YkjCPvg).
+(https://documenter.getpostman.com/view/25692396/2s9YkjCPvg)
 
 # UI Wireframe
 
