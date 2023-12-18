@@ -3,26 +3,26 @@ Our web applications project
 
 Ohjelmoinnin sovellusprojekti 
 
-Elokuvasovellus 
+#Elokuvasovellus 
 
  
 18.12.2023 – Iiro Moilanen, Nea Brännfors, Veeti Kokkonen, Eetu Purhonen, Iivari Rantala 
 
  
 
-Esittely 
+#Esittely 
 
 Tämän tekstin aiheena on Web-Ohjelmoinnin sovellusprojekti. 15 opintopisteen projektin aiheena oli tehdä React pohjainen nettisivu elokuvaharrastajille. Tämän projektin toteuttivat toisen vuoden ohjelmistokehityksen opiskelijat. Nettisivulla vieraileva käyttäjä voi selailla erilaisia elokuvia ja sarjoja erilaisilla suodatuksilla.  Nettisivulle voi myös luoda käyttäjän, joka mahdollistaa uusien ryhmien luomisen valitsemallaan nimellä. Ryhmäsivulla voit luoda ryhmiä, joissa voi lähettää viestejä ryhmien muille jäsenille. Ryhmäsivun omistaja voi myös lisätä ja poistaa ryhmän jäseniä. Kirjautumatta sovellukseen käyttäjä näkee vain listan luoduista ryhmistä sekä niiden nimet ja kuvaukset mutta ei pääse liittymään ryhmiin kirjautumatta sisään. 
 
  
 
-Menetelmät 
+#Menetelmät 
 
 Sovellus on tehty JavaScript-ohjelmointikielellä hyödyntämällä Reactia, joka on JavaScript-kirjasto. Sovelluksessa on hyödynnetty avoimen datan lähteinä The movie database (https://developer.themoviedb.org/reference/intro/getting-started), joka sisältää suuren määrän elokuviin liittyvää avointa dataa IMDB:stä, sekä Finnkinon tarjoamasta API:stä (https://www.finnkino.fi/xml/), jonka kautta voi hakea tietoa uutisista ja esim. eri teattereiden esitysajoista. Lisäksi sovellukseen on tehty oma palvelin ja tietokanta Renderissä sovelluksen oman datan hallitsemiseen. 
 
  
 
-Tekijät ja työvaiheet 
+# Tekijät ja työvaiheet 
 
 Projektiin osallistui Eetu Purhonen, Iivari Rantala, Nea Brännfors, Veeti Kokkonen ja Iiro Moilanen. Sovimme ryhmän kanssa, että jokainen tekee omaan komponenttiinsa frontend- näkymän, backend endpointit sekä tarvittavat tietokantamuutokset. Näin jokaiselle saatiin fullstack- tekemistä, joka oli projektin yksi vaatimus.   
 
@@ -47,7 +47,7 @@ Veeti teki nettisivujen Home-sivun ja Searchbar-elementin. Home-sivulla näkee t
 
  
 
-Tietokantarakenne 
+# Tietokantarakenne 
 
 Postgre -tietokanta on pystytetty Render -palvelussa ja sitä käytetään Visual Studio Code- sovelluksen MySQL- lisäosan avulla. Tietokannassa on erilliset taulut jokaiselle sovelluksen osa-alueelle, joihin tallennetaan tietoja sovelluksesta palvelimen välityksellä. Tietojen haku tietokannasta tapahtuu myös palvelimen kautta. 
 
@@ -55,13 +55,13 @@ Postgre -tietokanta on pystytetty Render -palvelussa ja sitä käytetään Visua
 
  
 
-Rajapintakuvaus 
+# Rajapintakuvaus 
 
 REST- rajapinta on toteutettu Visual Studio Code -sovelluksessa ja sen toimintaa testataan Postman- sovelluksella. Rajapinta sisältää kaikkien komponenttien endpointit (endpoint on pala koodia, joka yhdistää sovelluksen, tietokannan ja palvelimen). Endpointtien kautta voidaan esimerkiksi tallentaa käyttäjän tiedot sekä muutokset tietokantaan ja hakea arvosteluita elokuviin. Postman sovelluksella testataan endpointtien toimivuus ennen niiden yhdistämistä itse sovellukseen. Tällä tyylillä virheiden etsiminen ja välttäminen on helpompaa.  
 
  
 
-Käyttöliittymä 
+# Käyttöliittymä 
 
  Käyttöliittymäsuunnitelma on tehty käyttäen Figma-ryhmätyösovellusta. 
 
@@ -76,7 +76,7 @@ KUVA 2. Register/Sign in ja Group pages.
 
 KUVA 3. Options/ Mobile Version 
 
-Käyttöönotto 
+# Käyttöönotto 
 
 Sovellus otetaan käyttöön Render- sivustolla. Render -sivustolle yhdistetään projektin GitHub- repositoriin talletettu sovellus, jolloin Render -sivusto tekee siitä toimivan nettisivun.  
 
